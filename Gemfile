@@ -4,12 +4,14 @@ source 'https://rubygems.org'
 gem 'rails', '4.0.2'
 gem 'unicorn'
 gem 'pg'
+gem 'haml-rails'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+gem 'devise'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -26,6 +28,8 @@ group :development do
   gem 'binding_of_caller'
   gem 'better_errors'
   gem 'letter_opener'
+  gem 'factory_girl_rails'
+  gem "erb2haml"
 end
 
 gem 'rspec-rails', :group => [:test, :development]

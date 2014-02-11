@@ -1,10 +1,12 @@
 require 'spec_helper'
 
-describe "Users" do
+describe "The Signup process", :type => :feature do
+  let!(:user) {FactoryGirl.create(:user)}
+
   describe "GET /users/sign_up" do
-    it "works! (now write some real specs)" do
-      # Run the generator again with the --webrat flag if you want to use webrat methods/matchers
-      get new_user_registration_path
+    it "let's users sign up" do
+      visit new_user_registration_path
+      fill_in "Email", :with => user.email
       response.status.should be(200)
     end
   end

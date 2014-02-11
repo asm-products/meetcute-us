@@ -20,7 +20,7 @@ describe User do
   end
 
   it "has an email address" do
-    expect(user.email).to eq("test@test")
+    expect(user.email).to eq("test@test.com")
   end
 
   it "has a password" do

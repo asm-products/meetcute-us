@@ -1,7 +1,9 @@
 SiteService::Application.routes.draw do
   
   devise_for :users
-  
+  resource :users, only: [:index, :show]
+  resource :user_infos, only: [:show, :edit, :update]
+
   root 'users#index'
   
   # The priority is based upon order of creation: first created -> highest priority.

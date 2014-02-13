@@ -1,16 +1,10 @@
 require "spec_helper"
 
 describe "Users", :type => :feature do
-  include Warden::Test::Helpers
-  Warden.test_mode!
+  
+  let!(:user) { authed_user }
 
-  let!(:user) { FactoryGirl.create(:user) }
-
-  before :each do
-    login_as(user, :scope => :user)
-  end
-
-  describe "GET /users" do
+  describe "GET /user" do
 
     it "should have a link to their account info" do
       visit users_path(user)

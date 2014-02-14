@@ -2,17 +2,25 @@ require "spec_helper"
 
 describe "Users", :type => :feature do
   
-  let!(:user) { authed_user }
+  include RequestHelpers
+  
+  before :each do
+    @user = authed_user 
+  end
+
+  after :each do
+    Warden.test_reset!
+  end
 
   describe "GET /user" do
 
     it "should have a link to their account info" do
-      visit users_path(user)
+      visit user_path(@user.id)
       expect(page).to have_content "My account"
     end
 
     it "should have a link to their subscription info" do
-      visit users_path(user)
+      visit user_path(@user.id)
       expect(page).to have_content "My subscription"
     end
 

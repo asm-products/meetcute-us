@@ -4,10 +4,9 @@ SiteService::Application.routes.draw do
   
   resources :users, only: [:index, :show] do
     resources :subscriptions, shallow: true
+    resource :account, shallow: true
   end
 
-  resources :user_infos, only: [:show, :edit, :update], shallow: true
-  
   root 'users#index'
   
   # The priority is based upon order of creation: first created -> highest priority.

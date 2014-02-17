@@ -21,6 +21,10 @@ describe UsersController do
       visit user_path(user)
       response.should be_success
     end
+
+    it "assigns the current user" do
+      @current_user = user
+    end
   end
 
 end

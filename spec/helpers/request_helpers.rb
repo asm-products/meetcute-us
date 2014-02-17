@@ -1,6 +1,7 @@
 module RequestHelpers
   
   include Warden::Test::Helpers
+
   Warden.test_mode!
 
   def authed_user

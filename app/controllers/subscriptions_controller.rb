@@ -1,11 +1,13 @@
 class SubscriptionsController < ApplicationController
   def index
+    @subscriptions = Subscription.all()
   end
 
   def show
   end
 
   def new
+    @subscription = Subscription.new
   end
 
   def create

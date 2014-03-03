@@ -1,2 +1,4 @@
-%h1 UserInfos#show
-%p Find me in app/views/user_infos/show.html.haml
+%h1 Accounts#show
+=link_to "My account", edit_user_registration_path(current_user)
+=link_to "My subscription", edit_user_subscription_path(current_user)
+%p Find me in app/views/accounts/show.html.haml

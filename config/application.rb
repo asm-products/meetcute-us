@@ -24,8 +24,20 @@ module SiteService
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
-    
-    config.generators.stylesheets = false
-    config.generators.javascripts = false
+
+    config.generators do |g|
+      g.test_framework :rspec,
+        :fixtures => true,
+        :view_specs => false,
+        :helper_specs => false,
+        :routing_specs => false,
+        :controller_specs => true,
+        :request_specs => true
+
+      g.fixture_replacesment :factory_girl, :dir => "spec/factories"
+      
+      g.stylesheets = false
+      g.javascripts = false
+    end
   end
 end

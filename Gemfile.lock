@@ -80,6 +80,8 @@ GEM
     factory_girl_rails (4.3.0)
       factory_girl (~> 4.3.0)
       railties (>= 3.0.0)
+    faker (1.2.0)
+      i18n (~> 0.5)
     ffi (1.9.3)
     formatador (0.2.4)
     guard (2.2.3)
@@ -251,6 +253,7 @@ DEPENDENCIES
   devise
   erb2haml
   factory_girl_rails
+  faker
   guard
   guard-livereload
   guard-rails
@@ -258,6 +261,7 @@ DEPENDENCIES
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails
+  launchy
   letter_opener
   pg
   rails (= 4.0.2)

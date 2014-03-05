@@ -2,9 +2,9 @@ SiteService::Application.routes.draw do
   
   devise_for :users
   
-  resources :users, only: [:index, :show] do
-    resource :subscription, shallow: true
-    resource :account, shallow: true
+  resources :users, shallow: true do
+    resources :subscription
+    resources :accounts
   end
 
   root 'users#index'
@@ -30,7 +30,7 @@ SiteService::Application.routes.draw do
   #       post 'toggle'
   #     end
   #
-  #     collection do
+  #     collection devise_for
   #       get 'sold'
   #     end
   #   end

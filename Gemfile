@@ -33,12 +33,16 @@ group :development do
   gem "erb2haml"
 end
 
-gem 'rspec-rails', :group => [:test, :development]
-
-group :test do 
+group :development, :test do
+  gem 'rspec-rails'
   gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'faker'
   gem 'capybara'
   gem 'guard-rspec'
+  gem 'launchy'
 end
 
 # Use ActiveModel has_secure_password

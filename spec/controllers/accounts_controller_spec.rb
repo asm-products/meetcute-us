@@ -28,9 +28,31 @@ describe AccountsController do
       assigns(:account).should_not be_nil
     end
 
-    it "render the new template" do
+    it "renders the new template" do
       get :new, user_id: user.id
       response.should render_template :new
+    end
+  end
+
+  describe "GET #show" do
+    it "assigns the requested account to @account" do
+      account = FactoryGirl.create(:account)
+      get :show, id: account
+      assigns(:account).should eq(account)
+    end
+    
+    it "renders the :show view" do
+      account = FactoryGirl.create(:account)
+      get :show, id: account
+      response.should render_template :show
+    end
+  end
+
+  describe "GET #edit" do
+    it "assigns the requested account to @account" do
+      account = FactoryGirl.create(:account)
+      get :edit, id: account
+      assigns(:account).should eq(account)
     end
   end
 
@@ -59,28 +81,6 @@ describe AccountsController do
         post :create, user_id: user.id, account: FactoryGirl.attributes_for(:invalid_account)
         response.should render_template :new
       end
-    end
-  end
-
-  describe "GET #show" do
-    it "assigns the requested account to @account" do
-      account = FactoryGirl.create(:account)
-      get :show, id: account
-      assigns(:account).should eq(account)
-    end
-    
-    it "renders the :show view" do
-      account = FactoryGirl.create(:account)
-      get :show, id: account
-      response.should render_template :show
-    end
-  end
-
-  describe "GET #edit" do
-    it "assigns the requested account to @account" do
-      account = FactoryGirl.create(:account)
-      get :edit, id: account
-      assigns(:account).should eq(account)
     end
   end
 

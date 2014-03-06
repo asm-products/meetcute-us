@@ -9,22 +9,62 @@ describe UsersController do
     Warden.test_reset!
   end
 
-  describe "GET 'index'" do
-    it "returns http success" do
-      visit users_path
-      response.should be_success
+  describe "GET #index" do
+    it "populates a list of users"
+    it "renders the index view"
+  end
+
+  describe "GET #new" do
+    it "assigns a new User to @user"
+    it "renders the new template"
+  end
+
+  describe "GET #show" do
+    it "assigns the requested user to @user"
+    it "renders the :show view"
+  end
+
+  describe "GET #edit" do
+    it "assigns the requested user to @user"
+  end
+
+  describe "POST #create" do
+    context "with valid attributes" do
+      it "creates a new user"
+      it "rediercts to the new user"
+    end
+
+    context "with invalid attributes" do
+      it "does not save an invalid user"
+      it "re-renders the new method"
     end
   end
 
-  describe "GET 'show'" do
-    it "returns http success" do
-      visit user_path(user)
-      response.should be_success
+  describe "PUT #update" do
+    before :each do
+      @user = FactorGirl.create(:user)
     end
 
-    it "assigns the current user" do
-      @current_user = user
+    context "with valid attributes" do
+      it "locates the requested user"
+      it "updated the @user attributes"
+      it "re-directs to to the updated user"
     end
+
+    context "with invalid attributes" do
+      it "locates the requested user"
+      it "does not update the @user attributes"
+      it "re-renders the edit method"
+    end
+  end
+
+  describe "DELETE #destroy" do
+    before :each do
+      @user = FactorGirl.create(:user)
+    end
+
+    it "deletes the user"
+    it "rediercts to users#index"
   end
 
 end

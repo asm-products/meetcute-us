@@ -1,9 +1,19 @@
 class AccountsController < ApplicationController
   
+  def index
+    @accounts = Account.all()
+  end
+
+  def new
+    @account = Account.new
+  end
+  
   def create
     account = Account.create(account_params)
-    if account.save?
-      redierct_to users_path(current_user)
+    if account.save
+      redirect_to account_path(account)
+    else
+      render :new
     end
   end
 
@@ -27,6 +37,6 @@ class AccountsController < ApplicationController
   private
     
     def account_params
-      params[:account].permit(:user_id, :first_name, :last_name, :username, :wedding_date, :stripe_customer_token, :subscription_id, :site_id)
+      params[:account].permit(:user_id, :first_name, :last_name, :username, :wedding_date, :stripe_customer_token, :subscription_id, :site_id, :sub_domain)
     end
 end

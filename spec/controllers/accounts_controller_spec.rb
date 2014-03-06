@@ -9,6 +9,59 @@ describe AccountsController do
     Warden.test_reset!
   end
 
+  describe "GET #index" do
+    it "populates a list of accounts" do
+      account = FactoryGirl.create(:account)
+      get :index, user_id: user.id
+      assigns(:accounts).should include(account)
+    end
+
+    it "renders the index view" do
+      get :index, user_id: user.id
+      response.should render_template :index
+    end
+  end
+
+  describe "GET #new" do
+    it "assigns a new Account to @account" do
+      get :new, user_id: user.id
+      assigns(:account).should_not be_nil
+    end
+
+    it "render the new template" do
+      get :new, user_id: user.id
+      response.should render_template :new
+    end
+  end
+
+  describe "POST #create" do
+    context "with valid attributes" do
+      it "creates a new account" do
+        expect{
+          post :create, user_id: user.id, account: FactoryGirl.attributes_for(:account)
+        }.to change(Account, :count).by(1)
+      end
+      
+      it "redirects to the new account" do
+        post :create, user_id: user.id, account: FactoryGirl.attributes_for(:account)
+        response.should redirect_to Account.last
+      end
+    end
+
+    context "with invalid attributes" do
+      it "does not save an invalid account" do
+        expect {
+          post :create, user_id: user.id, account: FactoryGirl.attributes_for(:invalid_account)
+        }.to_not change(Account, :count)
+      end
+      
+      it "re-renders the new method" do
+        post :create, user_id: user.id, account: FactoryGirl.attributes_for(:invalid_account)
+        response.should render_template :new
+      end
+    end
+  end
+
   describe "GET #show" do
     it "assigns the requested account to @account" do
       account = FactoryGirl.create(:account)

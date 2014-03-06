@@ -11,6 +11,7 @@ FactoryGirl.define do
     wedding_date "2014-02-12"
     subscription_id 1
     site_id {Faker::Number.digit}
+    sub_domain {Faker::Internet.domain_word}
   end
 
   factory :invalid_account, parent: :account do |f|

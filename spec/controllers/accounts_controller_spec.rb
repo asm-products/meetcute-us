@@ -1,35 +1,29 @@
 require 'spec_helper'
 
 describe AccountsController do
-
-  include RequestHelpers
-  let!(:user) { authed_user }
-
-  after :each do
-    Warden.test_reset!
-  end
+  login_user
 
   describe "GET #index" do
     it "populates a list of accounts" do
       account = FactoryGirl.create(:account)
-      get :index, user_id: user.id
+      get :index, user_id: current_user
       assigns(:accounts).should include(account)
     end
 
     it "renders the index view" do
-      get :index, user_id: user.id
+      get :index, user_id: current_user
       response.should render_template :index
     end
   end
 
   describe "GET #new" do
     it "assigns a new Account to @account" do
-      get :new, user_id: user.id
+      get :new, user_id: current_user
       assigns(:account).should_not be_nil
     end
 
     it "renders the new template" do
-      get :new, user_id: user.id
+      get :new, user_id: current_user
       response.should render_template :new
     end
   end
@@ -59,26 +53,29 @@ describe AccountsController do
   describe "POST #create" do
     context "with valid attributes" do
       it "creates a new account" do
+        user = FactoryGirl.create(:user)
         expect{
-          post :create, user_id: user.id, account: FactoryGirl.attributes_for(:account)
+          post :create, user_id: user, account: FactoryGirl.attributes_for(:account)
         }.to change(Account, :count).by(1)
       end
       
       it "redirects to the new account" do
-        post :create, user_id: user.id, account: FactoryGirl.attributes_for(:account)
+        post :create, user_id: current_user, account: FactoryGirl.attributes_for(:account)
         response.should redirect_to Account.last
       end
     end
 
     context "with invalid attributes" do
       it "does not save an invalid account" do
+        user = FactoryGirl.create(:user)
         expect {
-          post :create, user_id: user.id, account: FactoryGirl.attributes_for(:invalid_account)
+          post :create, user_id: user, account: FactoryGirl.attributes_for(:invalid_account)
         }.to_not change(Account, :count)
       end
       
       it "re-renders the new method" do
-        post :create, user_id: user.id, account: FactoryGirl.attributes_for(:invalid_account)
+        user = FactoryGirl.create(:user)
+        post :create, user_id: user, account: FactoryGirl.attributes_for(:invalid_account)
         response.should render_template :new
       end
     end
@@ -140,7 +137,7 @@ describe AccountsController do
     end
     
     it "redirects to accounts#index" do
-      delete :destroy, id: @account, user_id: user.id
+      delete :destroy, id: @account, user_id: current_user
       response.should redirect_to user_path
     end
   end

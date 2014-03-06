@@ -1,19 +1,12 @@
 require 'spec_helper'
 
 describe UsersController do
-
-  include RequestHelpers
-  let!(:user) { authed_user }
-
-  after :each do
-    Warden.test_reset!
-  end
+  login_user
 
   describe "GET #index" do
     it "populates a list of users" do
-      user = FactoryGirl.create(:user)
       get :index
-      assigns(:users).should include(user)
+      assigns(:users).should include(current_user)
     end
 
     it "renders the index view" do
@@ -36,23 +29,20 @@ describe UsersController do
 
   describe "GET #show" do
     it "assigns the requested user to @user" do
-      user = FactoryGirl.create(:user)
-      get :show, id: user
-      assigns(:user).should eq(user)
+      get :show, id: current_user
+      assigns(:user).should eq(current_user)
     end
     
     it "renders the :show view" do
-      user = FactoryGirl.create(:user)
-      get :show, id: user
+      get :show, id: current_user
       response.should render_template :show
     end
   end
 
   describe "GET #edit" do
     it "assigns the requested user to @user" do
-      user = FactoryGirl.create(:user)
-      get :edit, id: user
-      assigns(:user).should eq(user)
+      get :edit, id: current_user
+      assigns(:user).should eq(current_user)
     end
   end
 
@@ -85,60 +75,54 @@ describe UsersController do
   end
 
   describe "PUT #update" do
-    before :each do
-      @user = FactoryGirl.create(:user)
-    end
 
     context "with valid attributes" do
       it "locates the requested user" do
-        put :update, id: @user
-        assigns(:user).should eq(@user)
+        put :update, id: current_user
+        assigns(:user).should eq(current_user)
       end
       
       it "updates the @user attributes" do
-        put :update, id: @user, user: FactoryGirl.attributes_for(:user, email: "test@test.com")
-        @user.reload
-        @user.email.should eq("test@test.com")
+        put :update, id: current_user, user: FactoryGirl.attributes_for(:user, email: "test@test.com")
+        current_user.reload
+        current_user.email.should eq("test@test.com")
       end
 
       it "re-directs to to the updated user" do
-        put :update, id: @user, user: FactoryGirl.attributes_for(:user)
-        response.should redirect_to @user
+        put :update, id: current_user, user: FactoryGirl.attributes_for(:user)
+        response.should redirect_to current_user
       end
     end
 
     context "with invalid attributes" do
       it "locates the requested user" do
-        put :update, id: @user
-        assigns(:user).should eq(@user)
+        put :update, id: current_user
+        assigns(:user).should eq(current_user)
       end
 
       it "does not update the @user attributes" do
-        put :update, id: @user, user: FactoryGirl.attributes_for(:user, email: nil)
-        @user.reload
-        @user.email.should_not be_nil
+        put :update, id: current_user, user: FactoryGirl.attributes_for(:user, email: nil)
+        current_user.reload
+        current_user.email.should_not be_nil
       end
 
       it "re-renders the edit method" do
-        put :update, id: @user, user: FactoryGirl.attributes_for(:user, email: nil)
+        put :update, id: current_user, user: FactoryGirl.attributes_for(:user, email: nil)
         response.should render_template :edit
       end
     end
   end
 
   describe "DELETE #destroy" do
-    before :each do
-      @user = FactoryGirl.create(:user)
-    end
 
     it "deletes the user" do
       expect{
-        delete :destroy, id: @account
+        delete :destroy, id: current_user
       }.to change(User, :count).by(-1)
     end
     
     it "rediercts to users#index" do
-      delete :destroy, id: @account
+      delete :destroy, id: current_user
       response.should redirect_to user_path
     end
   end

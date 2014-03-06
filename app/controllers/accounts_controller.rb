@@ -34,6 +34,13 @@ class AccountsController < ApplicationController
     end
   end
 
+  def destroy
+    account = Account.find(params[:id])
+    if account.destroy
+      redirect_to user_path
+    end
+  end
+
   private
     
     def account_params

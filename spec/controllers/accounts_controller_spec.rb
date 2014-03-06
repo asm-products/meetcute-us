@@ -128,4 +128,21 @@ describe AccountsController do
     end
   end
 
+  describe "DELETE #destroy" do
+    before :each do
+      @account = FactoryGirl.create(:account)
+    end
+
+    it "deletes the account" do
+      expect{
+        delete :destroy, id: @account
+      }.to change(Account, :count).by(-1)
+    end
+    
+    it "redirects to accounts#index" do
+      delete :destroy, id: @account, user_id: user.id
+      response.should redirect_to user_path
+    end
+  end
+
 end

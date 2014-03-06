@@ -10,61 +10,137 @@ describe UsersController do
   end
 
   describe "GET #index" do
-    it "populates a list of users"
-    it "renders the index view"
+    it "populates a list of users" do
+      user = FactoryGirl.create(:user)
+      get :index
+      assigns(:users).should include(user)
+    end
+
+    it "renders the index view" do
+      get :index
+      response.should render_template :index
+    end
   end
 
   describe "GET #new" do
-    it "assigns a new User to @user"
-    it "renders the new template"
+    it "assigns a new User to @user" do
+      get :new
+      assigns(:user).should_not be_nil
+    end
+    
+    it "renders the new template" do
+      get :new
+      response.should render_template :new
+    end
   end
 
   describe "GET #show" do
-    it "assigns the requested user to @user"
-    it "renders the :show view"
+    it "assigns the requested user to @user" do
+      user = FactoryGirl.create(:user)
+      get :show, id: user
+      assigns(:user).should eq(user)
+    end
+    
+    it "renders the :show view" do
+      user = FactoryGirl.create(:user)
+      get :show, id: user
+      response.should render_template :show
+    end
   end
 
   describe "GET #edit" do
-    it "assigns the requested user to @user"
+    it "assigns the requested user to @user" do
+      user = FactoryGirl.create(:user)
+      get :edit, id: user
+      assigns(:user).should eq(user)
+    end
   end
 
   describe "POST #create" do
     context "with valid attributes" do
-      it "creates a new user"
-      it "rediercts to the new user"
+      it "creates a new user" do
+        expect{
+          post :create, user: FactoryGirl.create(:user)
+        }.to change(User, :count).by(1)
+      end
+      
+      it "rediercts to the new user" do
+        post :create, user: FactoryGirl.create(:user)
+        response.should redierct_to User.last
+      end
     end
 
     context "with invalid attributes" do
-      it "does not save an invalid user"
-      it "re-renders the new method"
+      it "does not save an invalid user" do
+        expect{
+          post :create, user: FactoryGirl.create(:invalid_user)
+        }.to_not change(User, :count).by(1)
+      end
+
+      it "re-renders the new method" do
+        post :create, user: FactoryGirl.create(:invalid_user)
+        response.should render_template :new
+      end
     end
   end
 
   describe "PUT #update" do
     before :each do
-      @user = FactorGirl.create(:user)
+      @user = FactoryGirl.create(:user)
     end
 
     context "with valid attributes" do
-      it "locates the requested user"
-      it "updated the @user attributes"
-      it "re-directs to to the updated user"
+      it "locates the requested user" do
+        put :update, id: @user
+        assigns(:user).should eq(@user)
+      end
+      
+      it "updates the @user attributes" do
+        put :update, id: @user, user: FactoryGirl.attributes_for(:user, email: "test@test.com")
+        @user.reload
+        @user.email.should eq("test@test.com")
+      end
+
+      it "re-directs to to the updated user" do
+        put :update, id: @user, user: FactoryGirl.attributes_for(:user)
+        response.should redirect_to @user
+      end
     end
 
     context "with invalid attributes" do
-      it "locates the requested user"
-      it "does not update the @user attributes"
-      it "re-renders the edit method"
+      it "locates the requested user" do
+        put :update, id: @user
+        assigns(:user).should eq(@user)
+      end
+
+      it "does not update the @user attributes" do
+        put :update, id: @user, user: FactoryGirl.attributes_for(:user, email: nil)
+        @user.reload
+        @user.email.should_not be_nil
+      end
+
+      it "re-renders the edit method" do
+        put :update, id: @user, user: FactoryGirl.attributes_for(:user, email: nil)
+        response.should render_template :edit
+      end
     end
   end
 
   describe "DELETE #destroy" do
     before :each do
-      @user = FactorGirl.create(:user)
+      @user = FactoryGirl.create(:user)
     end
 
-    it "deletes the user"
-    it "rediercts to users#index"
+    it "deletes the user" do
+      expect{
+        delete :destroy, id: @account
+      }.to change(User, :count).by(-1)
+    end
+    
+    it "rediercts to users#index" do
+      delete :destroy, id: @account
+      response.should redirect_to user_path
+    end
   end
 
 end

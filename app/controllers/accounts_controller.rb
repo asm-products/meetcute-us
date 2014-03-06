@@ -44,6 +44,6 @@ class AccountsController < ApplicationController
   private
     
     def account_params
-      params[:account].permit(:user_id, :first_name, :last_name, :username, :wedding_date, :stripe_customer_token, :subscription_id, :site_id, :sub_domain)
+      params[:account].permit(:user_id, :first_name, :account_id)
     end
 end

@@ -6,24 +6,24 @@ describe AccountsController do
   describe "GET #index" do
     it "populates a list of accounts" do
       account = FactoryGirl.create(:account)
-      get :index, user_id: current_user
+      get :index, user_id: subject.current_user
       assigns(:accounts).should include(account)
     end
 
     it "renders the index view" do
-      get :index, user_id: current_user
+      get :index, user_id: subject.current_user
       response.should render_template :index
     end
   end
 
   describe "GET #new" do
     it "assigns a new Account to @account" do
-      get :new, user_id: current_user
+      get :new, user_id: subject.current_user
       assigns(:account).should_not be_nil
     end
 
     it "renders the new template" do
-      get :new, user_id: current_user
+      get :new, user_id: subject.current_user
       response.should render_template :new
     end
   end
@@ -60,7 +60,7 @@ describe AccountsController do
       end
       
       it "redirects to the new account" do
-        post :create, user_id: current_user, account: FactoryGirl.attributes_for(:account)
+        post :create, user_id: subject.current_user, account: FactoryGirl.attributes_for(:account)
         response.should redirect_to Account.last
       end
     end
@@ -137,7 +137,7 @@ describe AccountsController do
     end
     
     it "redirects to accounts#index" do
-      delete :destroy, id: @account, user_id: current_user
+      delete :destroy, id: @account, user_id: subject.current_user
       response.should redirect_to user_path
     end
   end

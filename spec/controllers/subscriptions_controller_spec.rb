@@ -53,13 +53,30 @@ describe SubscriptionsController do
 
   describe "POST #create" do
     context "with valid attributs" do
-      it "creates a new subscription"
-      it "redirects to the new subscription"
+      it "creates a new subscription" do
+        expect{
+          post :create, user_id: subject.current_user, subscription: FactoryGirl.attributes_for(:subscription)
+        }.to change(Subscription, :count).by(1)
+      end
+      
+      it "redirects to the new subscription" do
+        post :create, user_id: subject.current_user, subscription: FactoryGirl.attributes_for(:subscription)
+        response.should redirect_to Subscription.last
+      end
     end
 
     context "with invalid attributs" do
-      it "does not save an invalid subscription"
-      it "re-renders the new method"
+      it "does not save an invalid subscription" do
+        expect{
+          post :create, user_id: subject.current_user, subscription: FactoryGirl.attributes_for(:invalid_subscription)
+        }.to_not change(Subscription, :count).by(1)
+      end
+      
+      it "re-renders the new method" do
+        post :create, user_id: subject.current_user, subscription: FactoryGirl.attributes_for(:invalid_subscription)
+        response.should render_template :new
+      end
+      
     end
   end
 

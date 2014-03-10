@@ -6,6 +6,8 @@ SiteService::Application.routes.draw do
     resource :account
     resources :subscriptions
   end
+  
+  resources :plans
 
   root 'users#index'
   

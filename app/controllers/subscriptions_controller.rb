@@ -1,9 +1,11 @@
 class SubscriptionsController < ApplicationController
+  
   def index
-    # @subscriptions = Subscription.all()
+    @subscriptions = current_user.subscriptions
   end
 
   def show
+    @subscription = current_user.subscriptions.find(params[:id])
   end
 
   def new
@@ -14,6 +16,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def edit
+    @subscription = current_user.subscriptions.find(params[:id])
   end
 
   def update
@@ -23,5 +26,11 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def subscription_params
+    params.permit(:id, :plan_id, :user_id, :stripe_customer_token)
   end
 end

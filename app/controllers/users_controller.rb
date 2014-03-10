@@ -9,7 +9,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
-    puts @user.errors.inspect
     if @user.save
       redirect_to user_path(@user)
     else
@@ -42,8 +41,20 @@ class UsersController < ApplicationController
   end
 
   private
-    
+
   def user_params
-    params[:user].permit(:email, :password, :last_name, :username, :wedding_date, :stripe_customer_token, :subscription_id, :site_id, :sub_domain, :account_id)
+    params.require(:user).permit(
+      :id, 
+      :email, 
+      :password, 
+      :last_name, 
+      :username, 
+      :wedding_date, 
+      :stripe_customer_token, 
+      :subscription_id, 
+      :site_id, 
+      :sub_domain, 
+      :account_id
+    )
   end
 end

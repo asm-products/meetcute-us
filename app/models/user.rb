@@ -4,7 +4,12 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  validates_presence_of :account_id
+  has_one :account, :dependent => :destroy
+  has_many :subscriptions, :dependent => :destroy
 
-  has_one :account
+  after_create :create_user_account
+
+  def create_user_account
+    Account.create :user_id => self.id
+  end
 end

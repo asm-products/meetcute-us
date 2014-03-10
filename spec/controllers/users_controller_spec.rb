@@ -78,7 +78,7 @@ describe UsersController do
 
     context "with valid attributes" do
       it "locates the requested user" do
-        put :update, id: subject.current_user
+        put :update, id: subject.current_user, user: FactoryGirl.attributes_for(:user)
         assigns(:user).should eq(subject.current_user)
       end
       
@@ -96,18 +96,18 @@ describe UsersController do
 
     context "with invalid attributes" do
       it "locates the requested user" do
-        put :update, id: subject.current_user
+        put :update, id: subject.current_user, user: FactoryGirl.attributes_for(:user)
         assigns(:user).should eq(subject.current_user)
       end
 
       it "does not update the @user attributes" do
-        put :update, id: subject.current_user, user: FactoryGirl.attributes_for(:user, email: nil)
+        put :update, id: subject.current_user, user: FactoryGirl.attributes_for(:invalid_user)
         subject.current_user.reload
         subject.current_user.email.should_not be_nil
       end
 
       it "re-renders the edit method" do
-        put :update, id: subject.current_user, user: FactoryGirl.attributes_for(:user, email: nil)
+        put :update, id: subject.current_user, user: FactoryGirl.attributes_for(:invalid_user)
         response.should render_template :edit
       end
     end

@@ -1,36 +1,54 @@
 require 'spec_helper'
 
 describe SubscriptionsController do
-  
-  include RequestHelpers
-  let!(:user) { authed_user }
+  login_user
 
-  after :each do
-    Warden.test_reset!
+  before :each do
+    @subscription = subject.current_user.subscriptions.build(FactoryGirl.attributes_for(:subscription))
+    @subscription.save
   end
 
   describe "GET #index" do
     it "populates a list of all subscriptions" do
-      subscription = FactoryGirl.create(:subscription)
-      get :index, user_id: user
-      assigns(:subscriptions).should include(subscription)
+      get :index, user_id: subject.current_user
+      assigns(:subscriptions).should include(@subscription)
     end
 
-    it "renders the index view"
+    it "renders the index view" do
+      get :index, user_id: subject.current_user
+      response.should render_template :index
+    end
   end
 
   describe "GET #new" do
-    it "assigns a new Subscriptions to @subscription"
-    it "renders the new template"
+    it "assigns a new Subscriptions to @subscription" do
+      get :new, user_id: subject.current_user
+      assigns(:subscription).should_not be_nil
+    end
+    
+    it "renders the new template" do
+      get :new, user_id: subject.current_user
+      response.should render_template :new
+    end
   end
 
   describe "GET #show" do
-    it "assigns the requested subscriptions to @subscription"
-    it "renders the :show view"
+    it "assigns the requested subscriptions to @subscription" do
+      get :show, id: @subscription
+      assigns(:subscription).should_not be_nil
+    end
+    
+    it "renders the :show view" do
+      get :show, id: @subscription
+      response.should render_template :show
+    end
   end
 
   describe "GET #edit" do
-    it "assigns the requested subscription to @subscription"
+    it "assigns the requested subscription to @subscription" do
+      get :edit, id: @subscription
+      assigns(:subscription).should eq(@subscription)
+    end
   end
 
   describe "POST #create" do

@@ -15,9 +15,9 @@ describe User do
     FactoryGirl.build(:user, password: nil).should_not be_valid
   end
 
-  it "is invalid without an account_id" do
-    FactoryGirl.build(:user, account_id: nil).should_not be_valid
-  end
+  # it "is invalid without an account_id" do
+  #   FactoryGirl.build(:user, account_id: nil).should_not be_valid
+  # end
   
   it "does not allow for duplicate email addresses" do
     FactoryGirl.create(:user, email: "test@test.com")

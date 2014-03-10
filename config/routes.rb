@@ -3,7 +3,7 @@ SiteService::Application.routes.draw do
   devise_for :users
   
   resources :users, shallow: true do
-    resources :subscription
+    resources :subscriptions
     resources :accounts
   end
 

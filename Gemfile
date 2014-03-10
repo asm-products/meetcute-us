@@ -36,6 +36,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'stripe-ruby-mock', '~> 1.10.1.2'
 end
 
 group :test do

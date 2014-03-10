@@ -82,29 +82,61 @@ describe SubscriptionsController do
 
   describe "PUT #update" do
     before :each do
-      @subscription = FactoryGirl.create(:subscription)
+      @subscription = FactoryGirl.create(:subscription, user_id: subject.current_user.id, plan_id: "myString")
     end
 
     context "with valid attributs" do
-      it "locates the requested subscription"
-      it "updates the subscription attributes"
-      it "re-directs to the updated subscription"
+      it "locates the requested subscription" do
+        put :update, id: @subscription, subscription: FactoryGirl.attributes_for(:subscription)
+        assigns(:subscription).should eq(@subscription)
+      end
+
+      it "updates the subscription attributes" do
+        put :update, id: @subscription, subscription: FactoryGirl.attributes_for(:subscription, plan_id: "myPlanId")
+        @subscription.reload
+        @subscription.plan_id.should eq("myPlanId")
+      end
+
+      it "re-directs to the updated subscription" do
+        put :update, id: @subscription, subscription: FactoryGirl.attributes_for(:subscription)
+        response.should redirect_to @subscription
+      end
     end
 
     context "with invalid attributes" do
-      it "locates the requested subscription"
-      it "does not update @subscription attributes"
-      it "re-renders the edit method"
+      it "locates the requested subscription" do
+        put :update, id: @subscription, subscription: FactoryGirl.attributes_for(:subscription)
+        assigns(:subscription).should eq(@subscription)
+      end
+
+      it "does not update @subscription attributes" do
+        put :update, id: @subscription, subscription: FactoryGirl.attributes_for(:invalid_subscription)
+        @subscription.reload
+        @subscription.plan_id.should_not be_nil
+      end
+      
+      it "re-renders the edit method" do
+        put :update, id: @subscription, subscription: FactoryGirl.attributes_for(:invalid_subscription)
+        response.should render_template :edit
+      end
     end
   end
 
   describe "DELETE #destroy" do
     before :each do
-      @subscription = FactoryGirl.create(:subscription)
+      @subscription = FactoryGirl.create(:subscription, user_id: subject.current_user.id, plan_id: "myString")
     end
 
-    it "deletes the subscription"
-    it "redirects to accounts#show"
+    it "deletes the subscription" do
+      expect{
+        delete :destroy, id: @subscription 
+      }.to change(Subscription, :count).by(-1)
+    end
+    
+    it "redirects to subscriptions#index" do
+      delete :destroy, id: @subscription
+      response.should redirect_to user_subscriptions_path subject.current_user
+    end
   end
 
 end

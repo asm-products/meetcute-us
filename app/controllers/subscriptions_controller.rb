@@ -26,12 +26,19 @@ class SubscriptionsController < ApplicationController
   end
 
   def update
-  end
-
-  def delete
+    @subscription = current_user.subscriptions.find(params[:id])
+    if @subscription.update_attributes(subscription_params)
+      redirect_to subscription_path @subscription
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @subscription = current_user.subscriptions.find(params[:id])
+    if @subscription.destroy
+      redirect_to user_subscriptions_path current_user
+    end
   end
 
   private

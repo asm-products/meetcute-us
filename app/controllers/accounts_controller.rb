@@ -1,7 +1,7 @@
 class AccountsController < ApplicationController
-  
-  def index
-    @accounts = Account.all()
+
+  def show
+    @account = current_user.account
   end
 
   def new
@@ -9,41 +9,37 @@ class AccountsController < ApplicationController
   end
   
   def create
-    @account = Account.create(account_params)
+    @account = current_user.build_account(account_params)
     if @account.save
-      redirect_to account_path(@account)
+      redirect_to user_account_path current_user
     else
       render :new
     end
   end
 
-  def show
-    @account = Account.find(params[:id])
-  end
-
   def edit
-    @account = Account.find(params[:id])
+    @account = current_user.account
   end
 
   def update
-    @account = Account.find(params[:id])
+    @account = current_user.account
     if @account.update_attributes(account_params)
-      redirect_to account_path(@account), :flash => { :success => "Profile settings updated successfully." }
+      redirect_to user_account_path current_user
     else
       render :edit
     end
   end
 
   def destroy
-    account = Account.find(params[:id])
+    account = current_user.account
     if account.destroy
-      redirect_to user_path
+      redirect_to user_path current_user
     end
   end
 
   private
     
   def account_params
-    params[:account].permit(:user_id, :first_name, :last_name, :username, :stripe_customer_token, :wedding_date, :subscription_id, :site_id, :sub_domain)
+    params.require(:account).permit(:user_id, :first_name, :last_name, :username, :stripe_customer_token, :wedding_date, :subscription_id, :site_id, :sub_domain)
   end
 end

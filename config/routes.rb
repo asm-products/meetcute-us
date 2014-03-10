@@ -3,8 +3,8 @@ SiteService::Application.routes.draw do
   devise_for :users
   
   resources :users, shallow: true do
+    resource :account
     resources :subscriptions
-    resources :accounts
   end
 
   root 'users#index'

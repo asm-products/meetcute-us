@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   has_one :account, :dependent => :destroy
   has_many :subscriptions, :dependent => :destroy
 
+  accepts_nested_attributes_for :account
+
   after_create :create_user_account
 
   def create_user_account

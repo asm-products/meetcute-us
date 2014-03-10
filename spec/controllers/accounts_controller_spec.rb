@@ -3,17 +3,9 @@ require 'spec_helper'
 describe AccountsController do
   login_user
 
-  describe "GET #index" do
-    it "populates a list of accounts" do
-      account = FactoryGirl.create(:account)
-      get :index, user_id: subject.current_user
-      assigns(:accounts).should include(account)
-    end
-
-    it "renders the index view" do
-      get :index, user_id: subject.current_user
-      response.should render_template :index
-    end
+  before :each do
+    @account = subject.current_user.build_account(FactoryGirl.attributes_for(:account))
+    @account.save
   end
 
   describe "GET #new" do
@@ -30,45 +22,40 @@ describe AccountsController do
 
   describe "GET #show" do
     it "assigns the requested account to @account" do
-      account = FactoryGirl.create(:account)
-      get :show, id: account
-      assigns(:account).should eq(account)
+      get :show, id: @account, user_id: subject.current_user
+      assigns(:account).should eq(@account)
     end
     
     it "renders the :show view" do
-      account = FactoryGirl.create(:account)
-      get :show, id: account
+      get :show, id: @account, user_id: subject.current_user
       response.should render_template :show
     end
   end
 
   describe "GET #edit" do
     it "assigns the requested account to @account" do
-      account = FactoryGirl.create(:account)
-      get :edit, id: account
-      assigns(:account).should eq(account)
+      get :show, id: @account, user_id: subject.current_user
+      assigns(:account).should eq(@account)
     end
   end
 
   describe "POST #create" do
     context "with valid attributes" do
       it "creates a new account" do
-        expect{
-          post :create, user_id: subject.current_user, account: FactoryGirl.attributes_for(:account)
-        }.to change(Account, :count).by(1)
+        post :create, user_id: subject.current_user, account: FactoryGirl.attributes_for(:account)
+        subject.current_user.account.should be_valid
       end
       
       it "redirects to the new account" do
         post :create, user_id: subject.current_user, account: FactoryGirl.attributes_for(:account)
-        response.should redirect_to Account.last
+        response.should redirect_to user_account_path subject.current_user
       end
     end
 
     context "with invalid attributes" do
       it "does not save an invalid account" do
-        expect {
-          post :create, user_id: subject.current_user, account: FactoryGirl.attributes_for(:invalid_account)
-        }.to_not change(Account, :count)
+        post :create, user_id: subject.current_user, account: FactoryGirl.attributes_for(:invalid_account)
+        subject.current_user.account.should_not be_valid
       end
       
       it "re-renders the new method" do
@@ -79,63 +66,57 @@ describe AccountsController do
   end
 
   describe "PUT #update" do
-    before :each do
-      @account = FactoryGirl.create(:account)
-    end
     
     context "with valid attributes" do
       it "locates the requested account" do
-        put :update, id: @account, account: FactoryGirl.attributes_for(:account)
+        put :update, user_id: subject.current_user, account: FactoryGirl.attributes_for(:account)
         assigns(:account).should eq(@account)
       end
       
       it "updates the @account attributes" do
-        put :update, id: @account, account: FactoryGirl.attributes_for(:account, first_name: "bob", last_name: "jones")
+        put :update, user_id: subject.current_user, account: FactoryGirl.attributes_for(:account, first_name: "bob", last_name: "jones")
         @account.reload
         @account.first_name.should eq("bob")
         @account.last_name.should eq("jones")
       end
       
       it "re-directs to the updated account" do
-        put :update, id: @account, account: FactoryGirl.attributes_for(:account)
-        response.should redirect_to @account
+        put :update, user_id: subject.current_user, account: FactoryGirl.attributes_for(:account)
+        response.should redirect_to user_account_path subject.current_user
       end
     end
 
     context "with invalid attributes" do
       it "locates the requested account" do
-        put :update, id: @account, account: FactoryGirl.attributes_for(:invalid_account)
+        put :update, user_id: subject.current_user, account: FactoryGirl.attributes_for(:invalid_account)
         assigns(:account).should eq(@account)
       end
       
       it "does not update @account attributes" do
-        put :update, id: @account, account: FactoryGirl.attributes_for(:account, first_name: "jack", last_name: nil)
+        put :update, user_id: subject.current_user, account: FactoryGirl.attributes_for(:account, first_name: "jack", last_name: nil)
         @account.reload
         @account.first_name.should_not eq("jack")
         @account.last_name.should_not eq("jackson")
       end
 
       it "re-renders the edit method" do
-        put :update, id: @account, account: FactoryGirl.attributes_for(:invalid_account)
+        put :update, user_id: subject.current_user, account: FactoryGirl.attributes_for(:invalid_account)
         response.should render_template :edit
       end
     end
   end
 
   describe "DELETE #destroy" do
-    before :each do
-      @account = FactoryGirl.create(:account)
-    end
 
     it "deletes the account" do
       expect{
-        delete :destroy, id: @account
+        delete :destroy, user_id: subject.current_user, account: FactoryGirl.attributes_for(:account)
       }.to change(Account, :count).by(-1)
     end
     
     it "redirects to accounts#index" do
-      delete :destroy, id: @account, user_id: subject.current_user
-      response.should redirect_to user_path
+      delete :destroy, user_id: subject.current_user, account: FactoryGirl.attributes_for(:account)
+      response.should redirect_to user_path subject.current_user
     end
   end
 

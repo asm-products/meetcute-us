@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  ROLES = %w[admin bronze silver gold]
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

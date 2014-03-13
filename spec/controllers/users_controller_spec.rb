@@ -1,17 +1,20 @@
 require 'spec_helper'
 
 describe UsersController do
-  login_user
+  login_admin
 
   describe "GET #index" do
-    it "populates a list of users" do
-      get :index
-      assigns(:users).should include(subject.current_user)
-    end
+    context "as an admin" do
 
-    it "renders the index view" do
-      get :index
-      response.should render_template :index
+      it "populates a list of users" do
+        get :index
+        assigns(:users).should include(subject.current_user)
+      end
+
+      it "renders the index view" do
+        get :index
+        response.should render_template :index
+      end
     end
   end
 

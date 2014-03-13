@@ -4,8 +4,19 @@ class Ability
   def initialize(user)
     user ||= User.new
       
+    base_models = %w[User Account Plan Subscription]
     alias_action :create, :read, :update, :destroy, :to => :crud
 
-    can :manage, :all if user.role == "admin"
+    case user.role
+    when "admin"
+      can :manage, :all
+    when "bronze"
+      can :crud, base_models
+    when "silver"
+      can :crud, base_models
+    when "gold"
+      can :crud, base_models
+    end
+
   end
 end

@@ -2,12 +2,12 @@ class UsersController < ApplicationController
   load_and_authorize_resource 
   skip_load_resource only: [:create] 
 
+  # CanCan is taking care of loading resources in this controller
+  
   def index
-    @users = User.all()
   end
 
   def new
-    @user = User.new
   end
 
   def create

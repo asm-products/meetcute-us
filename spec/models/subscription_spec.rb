@@ -11,4 +11,8 @@ describe Subscription do
     FactoryGirl.build(:subscription, plan_id: nil).should_not be_valid
   end
 
+  it "saves and creates a stripe subscription" do
+    FactoryGirl.build(:subscription).save_with_payment.should be_valid
+  end
+
 end

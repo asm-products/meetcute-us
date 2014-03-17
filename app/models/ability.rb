@@ -2,11 +2,11 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    user ||= user.new
+    user ||= User.new
 
     base_visitor_models = [User, Account, Plan, Subscription]
     base_member_models = [User, Account, Plan, Subscription]
-    
+
     alias_action :create, :show, :update, :destroy, :to => :crud
 
     case user.role

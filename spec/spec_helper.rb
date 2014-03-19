@@ -6,6 +6,7 @@ require 'rspec/autorun'
 require 'capybara/rspec'
 require 'cancan/matchers'
 require 'database_cleaner'
+require 'stripe_mock'
 
 include CanCan::Ability
 

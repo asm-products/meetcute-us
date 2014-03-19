@@ -53,9 +53,18 @@ describe SubscriptionsController do
 
   describe "POST #create" do
     context "with valid attributs" do
+      
+      before {StripeMock.start}
+      after {StripeMock.stop}
+
       it "creates a new subscription" do
         expect{
-          post :create, user_id: subject.current_user, subscription: FactoryGirl.attributes_for(:subscription)
+          post :create, 
+            user_id: subject.current_user, 
+            subscription: FactoryGirl.attributes_for(:subscription),
+            plan_id: FactoryGirl.attributes_for(:plan),
+            stripe_customer_token: StripeMock.generate_card_token(last4: "9191", exp_year: 2015)
+
         }.to change(Subscription, :count).by(1)
       end
       

@@ -1,5 +1,7 @@
 class Subscription < ActiveRecord::Base
   
+  attr_accessor :stripe_card_token
+
   validates_presence_of :user_id, :plan_id
 
   belongs_to :plan
@@ -10,9 +12,9 @@ class Subscription < ActiveRecord::Base
       customer = Stripe::Customer.create(
         description: "test",
         plan: plan_id,
-        card: stripr_card_token
+        card: stripe_card_token
       )
-      self.stripr_card_token = customer.id
+      self.stripe_customer_token = customer.id
       save!
     end
   end

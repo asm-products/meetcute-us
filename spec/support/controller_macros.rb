@@ -36,4 +36,10 @@ module ControllerMacros
       sign_in user
     end
   end
+
+  def mock_stripe_plans
+    before(:each) do
+      Stripe::Plan.create(id: "test_plan")
+    end
+  end
 end

@@ -53,15 +53,11 @@ describe SubscriptionsController do
 
   describe "POST #create" do
     context "with valid attributs" do
-
-      before {StripeMock.start}
-      after {StripeMock.stop}
       
       before :each do
         @plan = Stripe::Plan.create(id: "test_plan")
       end
       
-
       it "creates a new subscription" do
         expect{
           post :create, 

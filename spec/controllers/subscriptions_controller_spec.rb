@@ -63,7 +63,7 @@ describe SubscriptionsController do
           post :create, 
             user_id: subject.current_user, 
             subscription: FactoryGirl.attributes_for(:subscription, plan_id: @plan),
-            stripe_customer_token: StripeMock.generate_card_token(last4: "9191", exp_year: 2015)
+            stripe_card_token: StripeMock.generate_card_token(last4: "9191", exp_year: 2015)
 
         }.to change(Subscription, :count).by(1)
       end
@@ -72,7 +72,7 @@ describe SubscriptionsController do
         post :create, 
           user_id: subject.current_user, 
           subscription: FactoryGirl.attributes_for(:subscription, plan_id: @plan),
-          stripe_customer_token: StripeMock.generate_card_token(last4: "9191", exp_year: 2015)
+          stripe_card_token: StripeMock.generate_card_token(last4: "9191", exp_year: 2015)
         
         response.should redirect_to Subscription.last
       end

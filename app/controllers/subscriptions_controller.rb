@@ -5,7 +5,11 @@ class SubscriptionsController < ApplicationController
   end
 
   def show
-    @subscription = current_user.subscriptions.find(params[:id])
+    unless current_user.subscriptions.present?
+      redirect_to new_user_subscription_path(current_user)
+    else
+      @subscription = current_user.subscriptions.find(params[:id])
+    end
   end
 
   def new

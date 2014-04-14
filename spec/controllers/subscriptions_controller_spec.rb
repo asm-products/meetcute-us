@@ -63,7 +63,6 @@ describe SubscriptionsController do
             user_id: subject.current_user, 
             subscription: FactoryGirl.attributes_for(:subscription),
             stripe_customer_token: StripeMock.generate_card_token(last4: "9191", exp_year: 2015)
-
         }.to change(Subscription, :count).by(1)
       end
       

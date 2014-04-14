@@ -59,7 +59,7 @@ describe UsersController do
       
       it "redirects to the new user" do
         post :create, user: FactoryGirl.attributes_for(:user, :account => FactoryGirl.build(:account))
-        response.should redirect_to User.last
+        response.should redirect_to user_account_path(User.last)
       end
     end
 

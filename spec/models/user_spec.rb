@@ -10,16 +10,16 @@ describe User do
   end
 
   it "is invalid without an email address" do
-    FactoryGirl.build(:user, email: nil).should_not be_valid
+    expect(FactoryGirl.build(:user, email: nil)).to_not be_valid
   end
   
   it "is invalid without a password" do
-    FactoryGirl.build(:user, password: nil).should_not be_valid
+    expect(FactoryGirl.build(:user, password: nil)).to_not be_valid
   end
   
   it "does not allow for duplicate email addresses" do
     FactoryGirl.create(:user, email: "test@test.com")
-    FactoryGirl.build(:user, email: "test@test.com").should_not be_valid
+    expect(FactoryGirl.build(:user, email: "test@test.com")).to_not be_valid
   end
 
   it "creates a UserAccount when a User is created" do

@@ -53,16 +53,15 @@ describe SubscriptionsController do
 
   describe "POST #create" do
     context "with valid attributs" do
-      
-      before :each do
-        @plan = Stripe::Plan.create(id: "test_plan")
-      end
+
+      before { StripeMock.start }
+      after { StripeMock.stop } 
       
       it "creates a new subscription" do
         expect{
           post :create, 
             user_id: subject.current_user, 
-            subscription: FactoryGirl.attributes_for(:subscription, plan_id: @plan),
+            subscription: FactoryGirl.attributes_for(:subscription),
             stripe_customer_token: StripeMock.generate_card_token(last4: "9191", exp_year: 2015)
 
         }.to change(Subscription, :count).by(1)
@@ -71,7 +70,7 @@ describe SubscriptionsController do
       it "redirects to the new subscription" do
         post :create, 
           user_id: subject.current_user, 
-          subscription: FactoryGirl.attributes_for(:subscription, plan_id: @plan),
+          subscription: FactoryGirl.attributes_for(:subscription),
           stripe_customer_token: StripeMock.generate_card_token(last4: "9191", exp_year: 2015)
         
         response.should redirect_to Subscription.last

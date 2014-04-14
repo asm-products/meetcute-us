@@ -51,12 +51,7 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.before(:suite) do
-    @client = StripeMock.start_client
     DatabaseCleaner.clean_with(:truncation)
-  end
-
-  config.after(:suite) do
-      StripeMock.stop_client
   end
 
   config.before(:each) do

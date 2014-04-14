@@ -57,8 +57,8 @@ describe UsersController do
         }.to change(User, :count).by(1)
       end
       
-      it "rediercts to the new user" do
-        post :create, user: FactoryGirl.attributes_for(:user)
+      it "redirects to the new user" do
+        post :create, user: FactoryGirl.attributes_for(:user, :account => FactoryGirl.build(:account))
         response.should redirect_to User.last
       end
     end

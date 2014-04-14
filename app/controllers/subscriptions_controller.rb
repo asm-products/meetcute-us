@@ -14,7 +14,7 @@ class SubscriptionsController < ApplicationController
 
   def create
     @subscription = current_user.subscriptions.build(subscription_params)
-    if @subscription.save_with_payment
+    if @subscription.save
       redirect_to subscription_path @subscription
     else 
       render :new

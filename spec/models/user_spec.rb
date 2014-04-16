@@ -6,7 +6,7 @@ describe User do
   it { should have_one(:account) }
 
   it "has a valid factory" do
-    user.should be_valid
+    expect(user).to be_valid
   end
 
   it "is invalid without an email address" do

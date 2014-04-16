@@ -13,12 +13,13 @@ class SubscriptionsController < ApplicationController
   end
 
   def new
-    @subscription = Subscription.new
+    plan = Plan.find(params[:plan_id])
+    @subscription = plan.subscriptions.build
   end
 
   def create
     @subscription = current_user.subscriptions.build(subscription_params)
-    if @subscription.save
+    if @subscription.save_with_payment
       redirect_to subscription_path @subscription
     else 
       render :new
@@ -48,6 +49,6 @@ class SubscriptionsController < ApplicationController
   private
 
   def subscription_params
-    params.require(:subscription).permit(:plan_id, :user_id, :stripe_customer_token)
+    params.require(:subscription).permit(:plan_id, :user_id, :stripe_customer_token, :stripe_card_token)
   end
 end

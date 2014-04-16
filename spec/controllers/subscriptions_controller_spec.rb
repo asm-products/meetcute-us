@@ -21,13 +21,15 @@ describe SubscriptionsController do
   end
 
   describe "GET #new" do
+    before { @plan = FactoryGirl.create(:plan) }
+
     it "assigns a new Subscriptions to @subscription" do
-      get :new, user_id: subject.current_user
+      get :new, user_id: subject.current_user, plan_id: @plan.id
       assigns(:subscription).should_not be_nil
     end
     
     it "renders the new template" do
-      get :new, user_id: subject.current_user
+      get :new, user_id: subject.current_user, plan_id: @plan.id
       response.should render_template :new
     end
   end
@@ -54,23 +56,26 @@ describe SubscriptionsController do
   describe "POST #create" do
     context "with valid attributs" do
 
-      before { StripeMock.start }
+      before :each do
+        StripeMock.start 
+        @plan = Stripe::Plan.create(id: "test_plan")
+        @card = StripeMock.generate_card_token(last4: "9191", exp_year: 2015)
+      end 
+      
       after { StripeMock.stop } 
       
       it "creates a new subscription" do
         expect{
           post :create, 
             user_id: subject.current_user, 
-            subscription: FactoryGirl.attributes_for(:subscription),
-            stripe_customer_token: StripeMock.generate_card_token(last4: "9191", exp_year: 2015)
+            subscription: FactoryGirl.attributes_for(:subscription, plan_id: @plan.id, stripe_card_token: @card)
         }.to change(Subscription, :count).by(1)
       end
       
       it "redirects to the new subscription" do
         post :create, 
           user_id: subject.current_user, 
-          subscription: FactoryGirl.attributes_for(:subscription),
-          stripe_customer_token: StripeMock.generate_card_token(last4: "9191", exp_year: 2015)
+          subscription: FactoryGirl.attributes_for(:subscription, plan_id: @plan.id, stripe_card_token: @card)
         
         response.should redirect_to Subscription.last
       end

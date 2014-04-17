@@ -14,5 +14,10 @@
     = f.label :password_confirmation
     %br/
     = f.password_field :password_confirmation
+
+  = fields_for :account, resource.account do |account_fields|
+    = account_fields.label :first_name
+    = account_fields.text_field :first_name
+
   %div= f.submit "Sign up"
 = render "devise/shared/links"

@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_one :account, :dependent => :destroy
+  has_one :account, :dependent => :destroy, autosave: true
+
   has_many :subscriptions, :dependent => :destroy
 
   accepts_nested_attributes_for :account

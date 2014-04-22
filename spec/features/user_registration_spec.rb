@@ -11,19 +11,19 @@ describe "User registration", :type => :feature do
     end
 
     it "has a first_name field" do
-      expect(page).to have_selector("#account_first_name")
+      expect(page).to have_selector("#user_account_attributes_first_name")
     end
 
     it "has a last_name field" do
-      expect(page).to have_selector("#account_last_name")
+      expect(page).to have_selector("#user_account_attributes_last_name")
     end
 
     it "has a wedding_date field" do
-      expect(page).to have_selector("#account_wedding_date")
+      expect(page).to have_selector("#user_account_attributes_wedding_date")
     end
 
     it "has a sub_domain field" do
-      expect(page).to have_selector("#account_sub_domain")
+      expect(page).to have_selector("#user_account_attributes_sub_domain")
     end
 
     it "has an email field" do 
@@ -53,16 +53,16 @@ describe "User registration", :type => :feature do
     it "allows users so sign up" do
       user = FactoryGirl.build(:user)
       account = FactoryGirl.build(:account)
-      fill_in "account[first_name]", :with => account.first_name
-      fill_in "account[last_name]", :with => account.last_name
+      fill_in "user[account_attributes][first_name]", :with => account.first_name
+      fill_in "user[account_attributes][last_name]", :with => account.last_name
       fill_in "user[email]", :with => user.email
       fill_in "user[password]", :with => user.password
       fill_in "user[password_confirmation]", :with => user.password
-      fill_in "account[wedding_date]", :with => account.wedding_date
-      fill_in "account[sub_domain]", :with => account.sub_domain
+      fill_in "user[account_attributes][wedding_date]", :with => account.wedding_date
+      fill_in "user[account_attributes][sub_domain]", :with => account.sub_domain
       click_button "Sign up"
       expect(page).to have_content "Welcome! You have signed up successfully."
-      # expect(Account.find_by_user_id(user.id)).to exist
+      expect(Account.where("user_id = #{User.last.id}")).to exist
     end
   
   end

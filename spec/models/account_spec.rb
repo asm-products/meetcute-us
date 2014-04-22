@@ -7,20 +7,12 @@ describe Account do
     account.should be_valid
   end
   
-  # it "is invalid without a user_id" do 
-  #   FactoryGirl.build(:account, user_id: nil).should_not be_valid
-  # end
-  
   it "is invalid without a first_name" do
     FactoryGirl.build(:account, first_name: nil).should_not be_valid
   end
   
   it "is invalid without a last_name" do
     FactoryGirl.build(:account, last_name: nil).should_not be_valid
-  end
-
-  it "is invalid without a username" do
-    FactoryGirl.build(:account, username: nil).should_not be_valid
   end
 
   it "does not allow duplicate subdomains per account" do

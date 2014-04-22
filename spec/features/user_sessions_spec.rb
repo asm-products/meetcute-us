@@ -33,14 +33,14 @@ describe "User sessions", :type => :feature do
       expect(page).to have_content "Invalid email or password"
     end
 
-    # it "allows users so sign in" do
-    #   user = FactoryGirl.create(:user)
-    #   visit new_user_session_path
-    #   fill_in "user[email]", :with => user.email
-    #   fill_in "user[password]", :with => user.password
-    #   click_button "Sign in"
-    #   expect(page).to have_content "Signed in successfully."
-    # end
+    it "allows users so sign in" do
+      user = FactoryGirl.create(:user)
+      visit new_user_session_path
+      fill_in "user[email]", :with => user.email
+      fill_in "user[password]", :with => user.password
+      click_button "Sign in"
+      expect(page).to have_content "Signed in successfully."
+    end
 
   end
 end

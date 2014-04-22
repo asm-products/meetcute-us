@@ -38,15 +38,15 @@ describe "User registration", :type => :feature do
       expect(page).to have_content "Password is too short"
     end
 
-    # it "allows users so sign up" do
-    #   user = FactoryGirl.build(:user)
-    #   visit new_user_registration_path
-    #   fill_in "user[email]", :with => user.email
-    #   fill_in "user[password]", :with => user.password
-    #   fill_in "user[password_confirmation]", :with => user.password
-    #   click_button "Sign up"
-    #   expect(page).to have_content "Welcome! You have signed up successfully."
-    # end
+    it "allows users so sign up" do
+      user = FactoryGirl.build(:user)
+      visit new_user_registration_path
+      fill_in "user[email]", :with => user.email
+      fill_in "user[password]", :with => user.password
+      fill_in "user[password_confirmation]", :with => user.password
+      click_button "Sign up"
+      expect(page).to have_content "Welcome! You have signed up successfully."
+    end
   
   end
 end

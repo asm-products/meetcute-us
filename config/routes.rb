@@ -1,7 +1,7 @@
 SiteService::Application.routes.draw do
   
   get "main/index"
-  devise_for :users
+  devise_for :users, controllers: {registrations: "registrations"}
   
   resources :users, shallow: true do
     resource :account

@@ -29,7 +29,7 @@ describe User do
 
   it "destroys it's related UserAccount when destroyed" do
     user = FactoryGirl.create(:user, :account_attributes => FactoryGirl.attributes_for(:account))
-    user.destroy
+    user.destroy 
     expect(Account.find_by_user_id(user.id)).to be_nil
   end
 

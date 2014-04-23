@@ -1,2 +1,2 @@
 == Site Service
-Currently will be used for meetcute.us
+Rails SaaS app where users can create and manage their own websites with their own subdomain. Currently will be used for meetcute.us

@@ -10,7 +10,6 @@ module ControllerMacros
     before(:each) do
       @request.env["devise.mapping"] = Devise.mappings[:user]
       user = FactoryGirl.create(:bronze_user)
-      puts user.inspect
       sign_in user
     end
   end

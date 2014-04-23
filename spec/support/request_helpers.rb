@@ -10,4 +10,10 @@ module RequestHelpers
     user
   end
 
+  def user_with_account 
+    user = FactoryGirl.create(:user, account_attributes: FactoryGirl.attributes_for(:account))
+    login_as(user, :scope => :user)
+    user
+  end
+
 end

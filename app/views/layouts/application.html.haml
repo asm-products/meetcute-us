@@ -8,5 +8,5 @@
     = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
   %body
     - flash.each do |key, msg|
-      =content_tag :div, msg, :id => key, :class => 'user-notification'
+      = content_tag :div, msg, :id => key, :class => 'user-notification'
     = yield

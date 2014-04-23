@@ -24,6 +24,7 @@ class AccountsController < ApplicationController
   def update
     @account = current_user.account
     if @account.update_attributes(account_params)
+      flash[:notice] = "You updated your account successfully."
       redirect_to user_account_path current_user
     else
       render :edit

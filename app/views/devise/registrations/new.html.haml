@@ -27,10 +27,11 @@
     %div 
       = act_fields.label :wedding_date
       = act_fields.text_field :wedding_date
-    %div 
-      = act_fields.label :sub_domain
-      = act_fields.text_field :sub_domain
 
+  = f.fields_for :site, resource.site do |site_fields|
+    %div 
+      = site_fields.label :subdomain
+      = site_fields.text_field :subdomain
 
   %div= f.submit "Sign up"
 = render "devise/shared/links"

@@ -14,10 +14,5 @@ describe Account do
   it "is invalid without a last_name" do
     FactoryGirl.build(:account, last_name: nil).should_not be_valid
   end
-
-  it "does not allow duplicate subdomains per account" do
-    FactoryGirl.create(:account, sub_domain: "mydomain")
-    FactoryGirl.build(:account, sub_domain: "mydomain").should_not be_valid
-  end
   
 end

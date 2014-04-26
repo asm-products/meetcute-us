@@ -24,8 +24,8 @@ describe "User registration", :type => :feature do
       expect(page).to have_selector("#user_account_attributes_wedding_date")
     end
 
-    it "has a sub_domain field" do
-      expect(page).to have_selector("#user_account_attributes_sub_domain")
+    it "has a subdomain field" do
+      expect(page).to have_selector("#user_site_attributes_subdomain")
     end
 
     it "has an email field" do 
@@ -55,13 +55,15 @@ describe "User registration", :type => :feature do
     it "allows users so sign up" do
       user = FactoryGirl.build(:user)
       account = FactoryGirl.build(:account)
+      site = FactoryGirl.build(:site)
+
       fill_in "user[account_attributes][first_name]", :with => account.first_name
       fill_in "user[account_attributes][last_name]", :with => account.last_name
       fill_in "user[email]", :with => user.email
       fill_in "user[password]", :with => user.password
       fill_in "user[password_confirmation]", :with => user.password
       fill_in "user[account_attributes][wedding_date]", :with => account.wedding_date
-      fill_in "user[account_attributes][sub_domain]", :with => account.sub_domain
+      fill_in "user[site_attributes][subdomain]", :with => site.subdomain
       click_button "Sign up"
       expect(page).to have_content "Welcome! You have signed up successfully."
       expect(Account.where("user_id = #{User.last.id}")).to exist

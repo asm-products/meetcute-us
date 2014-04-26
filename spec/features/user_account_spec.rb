@@ -27,16 +27,11 @@ describe "User Account", :type => :feature do
       expect(page).to have_selector("#account_wedding_date")
     end
 
-    it "should have a sub_domain field" do
-      expect(page).to have_selector("#account_sub_domain")
-    end
-
     it "allows a user to upate their Account" do
       fill_in "account[first_name]", :with => "Myname"
       fill_in "account[last_name]", :with => user.account.last_name
-      fill_in "account[username]", :with => user.account.sub_domain
+      fill_in "account[username]", :with => user.account.username
       fill_in "account[wedding_date]", :with => user.account.wedding_date
-      fill_in "account[sub_domain]", :with => user.account.sub_domain
       click_button "Update"
       expect(page).to have_content "You updated your account successfully."
       expect(User.last.account.first_name).to eq("Myname")

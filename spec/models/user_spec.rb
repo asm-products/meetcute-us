@@ -1,9 +1,10 @@
 require 'spec_helper'
 
 describe User do
-  let!(:user) {FactoryGirl.create(:user)}
+  let!(:user) { FactoryGirl.create(:user) }
 
   it { should have_one(:account) }
+  it { should have_one(:site) }
 
   it "has a valid factory" do
     expect(user).to be_valid

@@ -1,6 +1,3 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-require 'faker'
-
 FactoryGirl.define do
   factory :account do |f|
     f.user_id {Faker::Number.digit}
@@ -11,7 +8,6 @@ FactoryGirl.define do
     f.wedding_date "2014-02-12"
     f.subscription_id 1
     f.site_id {Faker::Number.digit}
-    f.sub_domain {Faker::Internet.domain_word}
   end
 
   factory :invalid_account, parent: :account do |f|

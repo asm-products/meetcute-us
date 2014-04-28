@@ -13,4 +13,10 @@ FactoryGirl.define do
   factory :invalid_account, parent: :account do |f|
     f.first_name nil
   end
+
+  factory :second_account, parent: :account do |f|
+    f.stripe_customer_token "SecondStripeString"
+    f.wedding_date "2016-02-04"
+    f.subscription_id 2
+  end
 end

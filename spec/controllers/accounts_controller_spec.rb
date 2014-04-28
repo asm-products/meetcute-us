@@ -3,10 +3,7 @@ require 'spec_helper'
 describe AccountsController do
   login_user
 
-  before :each do
-    @account = subject.current_user.build_account(FactoryGirl.attributes_for(:account))
-    @account.save
-  end
+  # TODO: DRY up the before blocks in this file.
 
   describe "GET #new" do
     it "assigns a new Account to @account" do
@@ -21,6 +18,12 @@ describe AccountsController do
   end
 
   describe "GET #show" do
+
+    before :each do
+      @account = subject.current_user.build_account(FactoryGirl.attributes_for(:account))
+      @account.save
+    end
+
     it "assigns the requested account to @account" do
       get :show, id: @account, user_id: subject.current_user
       assigns(:account).should eq(@account)
@@ -43,7 +46,7 @@ describe AccountsController do
     context "with valid attributes" do
       it "creates a new account" do
         expect {
-          post :create, user_id: subject.current_user, account: FactoryGirl.attributes_for(:account)
+          post :create, user_id: subject.current_user, account: FactoryGirl.attributes_for(:second_account)
         }.to change(Account, :count).by(1)
       end
       
@@ -67,6 +70,11 @@ describe AccountsController do
   end
 
   describe "PUT #update" do
+  
+    before :each do
+      @account = subject.current_user.build_account(FactoryGirl.attributes_for(:account))
+      @account.save
+    end
     
     context "with valid attributes" do
       it "locates the requested account" do
@@ -108,6 +116,11 @@ describe AccountsController do
   end
 
   describe "DELETE #destroy" do
+
+    before :each do
+      @account = subject.current_user.build_account(FactoryGirl.attributes_for(:account))
+      @account.save
+    end
 
     it "deletes the account" do
       expect{

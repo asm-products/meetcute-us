@@ -26,12 +26,21 @@ class SitesController < ApplicationController
   end
 
   def update
-  end
-
-  def delete
+    @site = current_user.site
+    if @site.update_attributes(site_params)
+      flash[:notice] = "You updated your site successfully!"
+      redirect_to user_site_path current_user
+    else 
+      render :edit
+    end
   end
 
   def destroy
+    site = current_user.site
+    if site.destroy
+      flash[:notice] = "Your site has been deleted."
+      redirect_to user_account_path current_user
+    end
   end
 
   private

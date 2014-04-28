@@ -57,10 +57,74 @@ describe SitesController do
 
     context "with invalid attributes" do
       it "does not save an invalid site" do
-        
+        post :create, user_id: subject.current_user, site: FactoryGirl.attributes_for(:invalid_site)
+        expect(subject.current_user.site).to_not be_valid
       end
       
-      it "re-renders the new method"
+      it "re-renders the new method" do
+        post :create, user_id: subject.current_user, site: FactoryGirl.attributes_for(:invalid_site)
+        expect(response).to render_template :new
+      end
     end
   end
+
+  describe "PUT #update" do
+    
+    before :each do
+      @site = subject.current_user.build_site(FactoryGirl.attributes_for(:site))
+      @site.save
+    end
+
+    it "locates the requested site" do
+      get :edit, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site)
+      assigns(:site).should eq(@site)
+    end
+
+    context "with valid attributes" do
+      
+      it "updates the @site attributes" do
+        put :update, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site, name: "MyName")
+        @site.reload
+        expect(@site.name).to eql("MyName")
+      end
+
+      it "re-directs to the updated @site" do
+        put :update, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site, name: "MyName")
+        expect(response).to redirect_to user_site_path subject.current_user
+      end
+    end
+
+    context "with invalid attributes" do
+      it "does not update the @site attributes" do
+        put :update, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site, name: "MyName", subdomain: nil)
+        @site.reload
+        expect(@site.name).to_not eq("MyName")
+      end
+      
+      it "re-renders the :edit template" do
+        put :update, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site, name: "MyName", subdomain: nil)
+        expect(response).to render_template :edit
+      end
+    end
+  end
+
+  describe "DELETE #destroy" do
+
+    before :each do
+      @site = subject.current_user.build_site(FactoryGirl.attributes_for(:site))
+      @site.save
+    end
+
+    it "deletes the site" do
+      expect {
+        delete :destroy, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site)
+      }.to change(Site, :count).by(-1)
+    end
+    
+    it "redirects to the users account" do
+      delete :destroy, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site)
+      expect(response).to redirect_to user_account_path subject.current_user
+    end
+  end
+
 end

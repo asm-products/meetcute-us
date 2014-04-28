@@ -42,8 +42,9 @@ describe AccountsController do
   describe "POST #create" do
     context "with valid attributes" do
       it "creates a new account" do
-        post :create, user_id: subject.current_user, account: FactoryGirl.attributes_for(:account)
-        subject.current_user.account.should be_valid
+        expect {
+          post :create, user_id: subject.current_user, account: FactoryGirl.attributes_for(:account)
+        }.to change(Account, :count).by(1)
       end
       
       it "redirects to the new account" do

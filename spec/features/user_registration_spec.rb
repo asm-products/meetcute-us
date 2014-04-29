@@ -65,8 +65,10 @@ describe "User registration", :type => :feature do
       fill_in "user[account_attributes][wedding_date]", :with => account.wedding_date
       fill_in "user[site_attributes][subdomain]", :with => site.subdomain
       click_button "Sign up"
+      
       expect(page).to have_content "Welcome! You have signed up successfully."
       expect(Account.where("user_id = #{User.last.id}")).to exist
+      expect(Site.where("user_id = #{User.last.id}")).to exist
     end
   
   end

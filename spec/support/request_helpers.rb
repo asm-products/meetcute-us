@@ -16,4 +16,10 @@ module RequestHelpers
     user
   end
 
+  def user_with_account_site 
+    user = FactoryGirl.create(:user, account_attributes: FactoryGirl.attributes_for(:account), site_attributes: FactoryGirl.attributes_for(:site))
+    login_as(user, :scope => :user)
+    user
+  end
+
 end

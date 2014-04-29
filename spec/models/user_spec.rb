@@ -34,4 +34,15 @@ describe User do
     expect(Account.find_by_user_id(user.id)).to be_nil
   end
 
+  it "creates a Sute when a User is created" do
+    user = FactoryGirl.create(:user, :account_attributes => FactoryGirl.attributes_for(:account), :site_attributes => FactoryGirl.attributes_for(:site))
+    expect(user.site).to_not be_nil
+  end
+
+  it "destroys it's related Site when destroyed" do
+    user = FactoryGirl.create(:user, :account_attributes => FactoryGirl.attributes_for(:account), :site_attributes => FactoryGirl.attributes_for(:site))
+    user.destroy
+    expect(Site.find_by_user_id(user.id)).to be_nil
+  end
+
 end

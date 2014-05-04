@@ -9,6 +9,7 @@ describe Site do
   end
 
   it { should belong_to(:user) }
+  it { should have_one(:layout) }
   it { should validate_presence_of(:subdomain) }
 
 end

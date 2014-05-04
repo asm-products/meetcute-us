@@ -1,6 +1,6 @@
 class SitesController < ApplicationController
   def index
-    @sites = Site.all()
+    @sites = Site.all
   end
 
   def show
@@ -46,6 +46,6 @@ class SitesController < ApplicationController
   private
 
   def site_params
-    params.require(:site).permit(:user_id, :name, :description, :analytics, :password_protected, :is_indexed, :layout_id, :subdomain)
+    params.require(:site).permit(:user_id, :name, :description, :analytics, :password_protected, :is_indexed, :layout, :subdomain)
   end
 end

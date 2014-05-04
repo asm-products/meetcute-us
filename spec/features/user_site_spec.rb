@@ -35,6 +35,10 @@ require "spec_helper"
       expect(page).to have_selector("#site_is_indexed")
     end
 
+    it "should have a layout dropdown" do
+      expect(page).to have_selector("#site_layout")
+    end
+
     it "allows a user to update their site" do
       fill_in "site[name]", :with => "MyName"
       fill_in "site[description]", :with => user.site.description

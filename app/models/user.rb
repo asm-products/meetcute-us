@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  ROLES = %w[admin bronze silver gold]
+  enum role: [:guest, :bronze, :silver, :gold, :admin]
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :account
   accepts_nested_attributes_for :site
+
+  def set_default_role
+    self.role ||= :guest
+  end
 end

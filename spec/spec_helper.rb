@@ -4,11 +4,9 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 require 'capybara/rspec'
-require 'cancan/matchers'
+require 'pundit/rspec'
 require 'database_cleaner'
 require 'stripe_mock'
-
-include CanCan::Ability
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.

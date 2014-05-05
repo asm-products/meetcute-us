@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.2'
+gem 'rails', '4.1'
 gem 'unicorn'
 gem 'pg'
 gem 'haml-rails'
@@ -13,7 +13,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'stripe'
-gem "cancan"
+gem "pundit"
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -48,15 +48,3 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers'
 end
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]

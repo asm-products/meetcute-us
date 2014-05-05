@@ -2,6 +2,7 @@ class LayoutsController < ApplicationController
   
   def index
     @layouts = Layout.all
+    authorize @layouts
   end
 
   def show

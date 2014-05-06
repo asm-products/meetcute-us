@@ -1,5 +1,7 @@
-class LayoutPolicy < Struct.new(:user, :layout)
+class LayoutPolicy < ApplicationPolicy
+  
   def index?
-    user.admin?
+    @user.admin?
   end
+  
 end

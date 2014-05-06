@@ -10,7 +10,7 @@ describe LayoutPolicy do
 
   permissions :index? do
     it "Denies access if user is not an admin" do
-      expect(subject).not_to permit(FactoryGirl.build(:user), FactoryGirl.build(:layout))
+      expect(subject).not_to permit(user, layout)
     end
 
     it "Grants accses if user is an admin" do

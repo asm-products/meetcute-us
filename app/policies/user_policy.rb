@@ -1,7 +1,7 @@
-class UserPolicy < Struct.new(:current_user, :user)
+class UserPolicy < ApplicationPolicy
 
   def index?
-    current_user.admin?
+    @user.admin?
   end
 
 end

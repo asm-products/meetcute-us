@@ -15,6 +15,7 @@ class LayoutsController < ApplicationController
 
   def create
     @layout = Layout.create(layout_params)
+    authorize @layout
     if @layout.save
       flash[:notice] = "Layout created successfully."
       redirect_to layout_path @layout
@@ -29,6 +30,7 @@ class LayoutsController < ApplicationController
 
   def update
     @layout = Layout.find(params[:id])
+    authorize @layout
     if @layout.update_attributes(layout_params)
       flash[:notice] = "Layout updated successfully."
       redirect_to layout_path @layout
@@ -39,6 +41,7 @@ class LayoutsController < ApplicationController
 
   def destroy
     layout = Layout.find(params[:id])
+    authorize layout
     if layout.destroy
       flash[:notice] = "Layout deleted successfully."
       redirect_to layouts_path

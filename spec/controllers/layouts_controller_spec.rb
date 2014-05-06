@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe LayoutsController do
-
+  login_admin
+  
   before :each do
     @layout = FactoryGirl.create(:layout)
   end

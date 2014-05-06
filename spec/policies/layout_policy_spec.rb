@@ -8,7 +8,7 @@ describe LayoutPolicy do
   let(:admin_user) { FactoryGirl.build(:admin_user) }
   let(:layout) { FactoryGirl.build(:layout) }
 
-  [:index?, :create?, :update?, :destroy?].each do |action|
+  [:index?, :create?, :update?, :destroy?, :edit?].each do |action|
     permissions action do
       it "denies access if user is not an admin" do
         expect(subject).not_to permit(user, layout)
@@ -19,5 +19,5 @@ describe LayoutPolicy do
       end
     end
   end
-  
+
 end

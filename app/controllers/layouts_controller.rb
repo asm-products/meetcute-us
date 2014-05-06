@@ -26,6 +26,7 @@ class LayoutsController < ApplicationController
 
   def edit
     @layout = Layout.find(params[:id])
+    authorize @layout
   end
 
   def update

@@ -1,4 +1,4 @@
-class LayoutPolicy < ApplicationPolicy
+class DesignPolicy < ApplicationPolicy
   
   def index?
     @user.admin?

@@ -8,7 +8,7 @@ SiteService::Application.routes.draw do
     resources :subscriptions
   end
   
-  resources :layouts
+  resources :designs
   resources :plans
 
   root 'main#index'

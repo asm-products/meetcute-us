@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Layout do
+describe Design do
 
   it "has a valid factory" do
-    expect(FactoryGirl.create(:layout)).to be_valid
+    expect(FactoryGirl.create(:design)).to be_valid
   end
   
   it { should belong_to(:site) }

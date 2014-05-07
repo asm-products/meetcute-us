@@ -35,8 +35,8 @@ require "spec_helper"
       expect(page).to have_selector("#site_is_indexed")
     end
 
-    it "should have a layout dropdown" do
-      expect(page).to have_selector("#site_layout")
+    it "should have a design dropdown" do
+      expect(page).to have_selector("#site_design")
     end
 
     it "allows a user to update their site" do

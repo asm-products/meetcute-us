@@ -20,7 +20,7 @@
     = f.label :is_indexed
     = f.check_box :is_indexed
   .control-group
-    = f.label :layout
-    = f.collection_select :layout, Layout.all, :id, :name
+    = f.label :design
+    = f.collection_select :design, Design.all, :id, :name
   .control-group 
     = f.submit "Update"

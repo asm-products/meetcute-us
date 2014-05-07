@@ -32,6 +32,7 @@ group :development do
   gem 'letter_opener'
   gem 'factory_girl_rails'
   gem "erb2haml"
+  gem "pry"
 end
 
 group :development, :test do

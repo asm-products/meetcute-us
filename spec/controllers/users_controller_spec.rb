@@ -53,12 +53,12 @@ describe UsersController do
     context "with valid attributes" do
       it "creates a new user" do
         expect{
-          post :create, user: FactoryGirl.attributes_for(:user)
+          post :create, user: attributes_for(:user)
         }.to change(User, :count).by(1)
       end
       
       it "redirects to the new user" do
-        post :create, user: FactoryGirl.attributes_for(:user, :account => FactoryGirl.build(:account))
+        post :create, user: attributes_for(:user, :account => build(:account))
         response.should redirect_to user_account_path(User.last)
       end
     end
@@ -66,12 +66,12 @@ describe UsersController do
     context "with invalid attributes" do
       it "does not save an invalid user" do
         expect{
-          post :create, user: FactoryGirl.attributes_for(:invalid_user)
+          post :create, user: attributes_for(:invalid_user)
         }.to_not change(User, :count).by(1)
       end
 
       it "re-renders the new method" do
-        post :create, user: FactoryGirl.attributes_for(:invalid_user)
+        post :create, user: attributes_for(:invalid_user)
         response.should render_template :new
       end
     end
@@ -81,36 +81,36 @@ describe UsersController do
 
     context "with valid attributes" do
       it "locates the requested user" do
-        put :update, id: subject.current_user, user: FactoryGirl.attributes_for(:user)
+        put :update, id: subject.current_user, user: attributes_for(:user)
         assigns(:user).should eq(subject.current_user)
       end
       
       it "updates the @user attributes" do
-        put :update, id: subject.current_user, user: FactoryGirl.attributes_for(:user, email: "test@test.com")
+        put :update, id: subject.current_user, user: attributes_for(:user, email: "test@test.com")
         subject.current_user.reload
         subject.current_user.email.should eq("test@test.com")
       end
 
       it "re-directs to to the updated user" do
-        put :update, id: subject.current_user, user: FactoryGirl.attributes_for(:user)
+        put :update, id: subject.current_user, user: attributes_for(:user)
         response.should redirect_to subject.current_user
       end
     end
 
     context "with invalid attributes" do
       it "locates the requested user" do
-        put :update, id: subject.current_user, user: FactoryGirl.attributes_for(:user)
+        put :update, id: subject.current_user, user: attributes_for(:user)
         assigns(:user).should eq(subject.current_user)
       end
 
       it "does not update the @user attributes" do
-        put :update, id: subject.current_user, user: FactoryGirl.attributes_for(:invalid_user)
+        put :update, id: subject.current_user, user: attributes_for(:invalid_user)
         subject.current_user.reload
         subject.current_user.email.should_not be_nil
       end
 
       it "re-renders the edit method" do
-        put :update, id: subject.current_user, user: FactoryGirl.attributes_for(:invalid_user)
+        put :update, id: subject.current_user, user: attributes_for(:invalid_user)
         response.should render_template :edit
       end
     end

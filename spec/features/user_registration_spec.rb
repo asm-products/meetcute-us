@@ -53,9 +53,9 @@ describe "User registration", :type => :feature do
     end
 
     it "allows users so sign up" do
-      user = FactoryGirl.build(:user)
-      account = FactoryGirl.build(:account)
-      site = FactoryGirl.build(:site)
+      user = build(:user)
+      account = build(:account)
+      site = build(:site)
 
       fill_in "user[account_attributes][first_name]", :with => account.first_name
       fill_in "user[account_attributes][last_name]", :with => account.last_name

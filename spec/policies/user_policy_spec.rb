@@ -6,11 +6,11 @@ describe UserPolicy do
 
   permissions :index? do
     it "Denies access if user is not an admin" do
-      expect(subject).not_to permit(FactoryGirl.build(:user), FactoryGirl.build(:user))
+      expect(subject).not_to permit(build(:user), build(:user))
     end
 
     it "Grants accses if user is an admin" do
-      expect(subject).to permit(FactoryGirl.build(:admin_user), FactoryGirl.build(:user))
+      expect(subject).to permit(build(:admin_user), build(:user))
     end
   end
   

@@ -4,9 +4,9 @@ describe DesignPolicy do
 
   subject { DesignPolicy }
 
-  let(:user) { FactoryGirl.build(:user) }
-  let(:admin_user) { FactoryGirl.build(:admin_user) }
-  let(:design) { FactoryGirl.build(:design) }
+  let(:user) { build(:user) }
+  let(:admin_user) { build(:admin_user) }
+  let(:design) { build(:design) }
 
   [:index?, :create?, :update?, :destroy?, :edit?].each do |action|
     permissions action do

@@ -4,9 +4,9 @@ describe SitePolicy do
 
   subject { SitePolicy }
 
-  let(:user) { FactoryGirl.build(:user) }
-  let(:admin_user) { FactoryGirl.build(:admin_user) }
-  let(:site) { FactoryGirl.build(:site) }
+  let(:user) { build(:user) }
+  let(:admin_user) { build(:admin_user) }
+  let(:site) { build(:site) }
 
   permissions :index? do
     it "denies access if user is not an admin" do

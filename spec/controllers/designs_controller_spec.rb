@@ -4,7 +4,7 @@ describe DesignsController do
   login_admin
   
   before :each do
-    @design = FactoryGirl.create(:design)
+    @design = create(:design)
   end
   
   describe "GET #index" do
@@ -57,12 +57,12 @@ describe DesignsController do
     context "with valid attributes" do
       it "creates a new Design" do
         expect {
-          post :create, design: FactoryGirl.attributes_for(:design)
+          post :create, design: attributes_for(:design)
         }.to change(Design, :count).by(1)
       end
       
       it "redirects to the new Design" do
-        post :create, design: FactoryGirl.attributes_for(:design)
+        post :create, design: attributes_for(:design)
         expect(response).to redirect_to design_path Design.last
       end
     end
@@ -70,12 +70,12 @@ describe DesignsController do
     context "with invalid attributes" do
       it "does not create a new Design" do
         expect {
-          post :create, design: FactoryGirl.attributes_for(:design, name: nil)
+          post :create, design: attributes_for(:design, name: nil)
         }.to change(Design, :count).by(0)
       end
       
       it "re-renders the :new template" do
-        post :create, design: FactoryGirl.attributes_for(:design, name: nil)
+        post :create, design: attributes_for(:design, name: nil)
         expect(response).to render_template :new
       end
     end
@@ -89,25 +89,25 @@ describe DesignsController do
 
     context "with valid attributes" do
       it "updates the @design attributes" do
-        put :update, id: @design, design: FactoryGirl.attributes_for(:design, name: "Test")
+        put :update, id: @design, design: attributes_for(:design, name: "Test")
         @design.reload
         expect(@design.name).to eq("Test") 
       end
       
       it "redirects to the updated Design" do
-        put :update, id: @design, design: FactoryGirl.attributes_for(:design, name: "Test")
+        put :update, id: @design, design: attributes_for(:design, name: "Test")
         expect(response).to redirect_to design_path @design
       end
     end
 
     context "with invalid attributes" do
       it "does not update the @design attributes" do
-        put :update, id: @design, design: FactoryGirl.attributes_for(:design, name: nil, description: "NO DICE")
+        put :update, id: @design, design: attributes_for(:design, name: nil, description: "NO DICE")
         expect(@design.description).to_not eq("NO DICE")
       end
       
       it "re-renders the :edit template" do
-        put :update, id: @design, design: FactoryGirl.attributes_for(:design, name: nil, description: "NO DICE")
+        put :update, id: @design, design: attributes_for(:design, name: nil, description: "NO DICE")
         expect(response).to render_template :edit
       end
     end

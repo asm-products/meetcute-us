@@ -4,7 +4,7 @@ describe SubscriptionsController do
   login_user
 
   before :each do
-    @subscription = subject.current_user.subscriptions.build(FactoryGirl.attributes_for(:subscription))
+    @subscription = subject.current_user.subscriptions.build(attributes_for(:subscription))
     @subscription.save
   end
 
@@ -21,7 +21,7 @@ describe SubscriptionsController do
   end
 
   describe "GET #new" do
-    before { @plan = FactoryGirl.create(:plan) }
+    before { @plan = create(:plan) }
 
     it "assigns a new Subscriptions to @subscription" do
       get :new, user_id: subject.current_user, plan_id: @plan.id
@@ -68,14 +68,14 @@ describe SubscriptionsController do
         expect{
           post :create, 
             user_id: subject.current_user, 
-            subscription: FactoryGirl.attributes_for(:subscription, plan_id: @plan.id, stripe_card_token: @card)
+            subscription: attributes_for(:subscription, plan_id: @plan.id, stripe_card_token: @card)
         }.to change(Subscription, :count).by(1)
       end
       
       it "redirects to the new subscription" do
         post :create, 
           user_id: subject.current_user, 
-          subscription: FactoryGirl.attributes_for(:subscription, plan_id: @plan.id, stripe_card_token: @card)
+          subscription: attributes_for(:subscription, plan_id: @plan.id, stripe_card_token: @card)
         
         response.should redirect_to Subscription.last
       end
@@ -84,12 +84,12 @@ describe SubscriptionsController do
     context "with invalid attributs" do
       it "does not save an invalid subscription" do
         expect{
-          post :create, user_id: subject.current_user, subscription: FactoryGirl.attributes_for(:invalid_subscription)
+          post :create, user_id: subject.current_user, subscription: attributes_for(:invalid_subscription)
         }.to_not change(Subscription, :count).by(1)
       end
       
       it "re-renders the new method" do
-        post :create, user_id: subject.current_user, subscription: FactoryGirl.attributes_for(:invalid_subscription)
+        post :create, user_id: subject.current_user, subscription: attributes_for(:invalid_subscription)
         response.should render_template :new
       end
       
@@ -98,41 +98,41 @@ describe SubscriptionsController do
 
   describe "PUT #update" do
     before :each do
-      @subscription = FactoryGirl.create(:subscription, user_id: subject.current_user.id, plan_id: "myString")
+      @subscription = create(:subscription, user_id: subject.current_user.id, plan_id: "myString")
     end
 
     context "with valid attributs" do
       it "locates the requested subscription" do
-        put :update, id: @subscription, subscription: FactoryGirl.attributes_for(:subscription)
+        put :update, id: @subscription, subscription: attributes_for(:subscription)
         assigns(:subscription).should eq(@subscription)
       end
 
       it "updates the subscription attributes" do
-        put :update, id: @subscription, subscription: FactoryGirl.attributes_for(:subscription, plan_id: "myPlanId")
+        put :update, id: @subscription, subscription: attributes_for(:subscription, plan_id: "myPlanId")
         @subscription.reload
         @subscription.plan_id.should eq("myPlanId")
       end
 
       it "re-directs to the updated subscription" do
-        put :update, id: @subscription, subscription: FactoryGirl.attributes_for(:subscription)
+        put :update, id: @subscription, subscription: attributes_for(:subscription)
         response.should redirect_to @subscription
       end
     end
 
     context "with invalid attributes" do
       it "locates the requested subscription" do
-        put :update, id: @subscription, subscription: FactoryGirl.attributes_for(:subscription)
+        put :update, id: @subscription, subscription: attributes_for(:subscription)
         assigns(:subscription).should eq(@subscription)
       end
 
       it "does not update @subscription attributes" do
-        put :update, id: @subscription, subscription: FactoryGirl.attributes_for(:invalid_subscription)
+        put :update, id: @subscription, subscription: attributes_for(:invalid_subscription)
         @subscription.reload
         @subscription.plan_id.should_not be_nil
       end
       
       it "re-renders the edit method" do
-        put :update, id: @subscription, subscription: FactoryGirl.attributes_for(:invalid_subscription)
+        put :update, id: @subscription, subscription: attributes_for(:invalid_subscription)
         response.should render_template :edit
       end
     end
@@ -140,7 +140,7 @@ describe SubscriptionsController do
 
   describe "DELETE #destroy" do
     before :each do
-      @subscription = FactoryGirl.create(:subscription, user_id: subject.current_user.id, plan_id: "myString")
+      @subscription = create(:subscription, user_id: subject.current_user.id, plan_id: "myString")
     end
 
     it "deletes the subscription" do

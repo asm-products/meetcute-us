@@ -4,7 +4,7 @@ describe SitesController do
   login_user
 
   before :each do
-    @site = subject.current_user.build_site(FactoryGirl.attributes_for(:site))
+    @site = subject.current_user.build_site(attributes_for(:site))
     @site.save
     request.host = "#{@site.subdomain}.lvh.me:3000"
   end
@@ -45,25 +45,25 @@ describe SitesController do
     
     context "with valid attributes" do
       it "creates a new site" do
-        site = FactoryGirl.attributes_for(:site)
+        site = attributes_for(:site)
         post :create, user_id: subject.current_user, site: site
         expect(subject.current_user.site.name).to eq(site[:name])
       end
       
       it "redirects to the new site" do
-        post :create, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site)
+        post :create, user_id: subject.current_user, site: attributes_for(:site)
         expect(response).to redirect_to user_site_path subject.current_user
       end
     end
 
     context "with invalid attributes" do
       it "does not save an invalid site" do
-        post :create, user_id: subject.current_user, site: FactoryGirl.attributes_for(:invalid_site)
+        post :create, user_id: subject.current_user, site: attributes_for(:invalid_site)
         expect(subject.current_user.site).to_not be_valid
       end
       
       it "re-renders the new method" do
-        post :create, user_id: subject.current_user, site: FactoryGirl.attributes_for(:invalid_site)
+        post :create, user_id: subject.current_user, site: attributes_for(:invalid_site)
         expect(response).to render_template :new
       end
     end
@@ -72,33 +72,33 @@ describe SitesController do
   describe "PUT #update" do
 
     it "locates the requested site" do
-      get :edit, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site)
+      get :edit, user_id: subject.current_user, site: attributes_for(:site)
       assigns(:site).should eq(@site)
     end
 
     context "with valid attributes" do
       
       it "updates the @site attributes" do
-        put :update, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site, name: "MyName")
+        put :update, user_id: subject.current_user, site: attributes_for(:site, name: "MyName")
         @site.reload
         expect(@site.name).to eql("MyName")
       end
 
       it "re-directs to the updated @site" do
-        put :update, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site, name: "MyName")
+        put :update, user_id: subject.current_user, site: attributes_for(:site, name: "MyName")
         expect(response).to redirect_to edit_user_site_path subject.current_user
       end
     end
 
     context "with invalid attributes" do
       it "does not update the @site attributes" do
-        put :update, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site, name: "MyName", subdomain: nil)
+        put :update, user_id: subject.current_user, site: attributes_for(:site, name: "MyName", subdomain: nil)
         @site.reload
         expect(@site.name).to_not eq("MyName")
       end
       
       it "re-renders the :edit template" do
-        put :update, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site, name: "MyName", subdomain: nil)
+        put :update, user_id: subject.current_user, site: attributes_for(:site, name: "MyName", subdomain: nil)
         expect(response).to render_template :edit
       end
     end
@@ -108,12 +108,12 @@ describe SitesController do
 
     it "deletes the site" do
       expect {
-        delete :destroy, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site)
+        delete :destroy, user_id: subject.current_user, site: attributes_for(:site)
       }.to change(Site, :count).by(-1)
     end
     
     it "redirects to the users account" do
-      delete :destroy, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site)
+      delete :destroy, user_id: subject.current_user, site: attributes_for(:site)
       expect(response).to redirect_to user_account_path subject.current_user
     end
   end

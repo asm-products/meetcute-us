@@ -34,7 +34,7 @@ describe "User sessions", :type => :feature do
     end
 
     it "allows users so sign in" do
-      user = FactoryGirl.create(:user)
+      user = create(:user)
       visit new_user_session_path
       fill_in "user[email]", :with => user.email
       fill_in "user[password]", :with => user.password

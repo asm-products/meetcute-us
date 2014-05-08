@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Site do
-  subject(:site) { FactoryGirl.create(:site) }
+  subject(:site) { create(:site) }
   
 
   it "has a valid factore" do

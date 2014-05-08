@@ -4,7 +4,7 @@ class SitesController < ApplicationController
   end
 
   def show
-    @site = current_user.site
+    @site = Site.find_by_subdomain!(request.subdomain)
   end
 
   def new
@@ -29,7 +29,7 @@ class SitesController < ApplicationController
     @site = current_user.site
     if @site.update_attributes(site_params)
       flash[:notice] = "You updated your site successfully!"
-      redirect_to user_site_path current_user
+      redirect_to edit_user_site_path current_user
     else 
       render :edit
     end

@@ -3,6 +3,12 @@ require "spec_helper"
 describe SitesController do
   login_user
 
+  before :each do
+    @site = subject.current_user.build_site(FactoryGirl.attributes_for(:site))
+    @site.save
+    request.host = "#{@site.subdomain}.lvh.me:3000"
+  end
+
   describe "GET #new" do
     it "assigns a new Site to @site" do
       get :new, user_id: subject.current_user
@@ -16,11 +22,6 @@ describe SitesController do
   end
 
   describe "GET #show" do
-  
-    before :each do
-      @site = subject.current_user.build_site(FactoryGirl.attributes_for(:site))
-      @site.save
-    end
   
     it "assigns the requested site to @site" do
       get :show, id: @site, user_id: subject.current_user
@@ -44,9 +45,9 @@ describe SitesController do
     
     context "with valid attributes" do
       it "creates a new site" do
-        expect {
-          post :create, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site)
-        }.to change(Site, :count).by(1)
+        site = FactoryGirl.attributes_for(:site)
+        post :create, user_id: subject.current_user, site: site
+        expect(subject.current_user.site.name).to eq(site[:name])
       end
       
       it "redirects to the new site" do
@@ -69,11 +70,6 @@ describe SitesController do
   end
 
   describe "PUT #update" do
-    
-    before :each do
-      @site = subject.current_user.build_site(FactoryGirl.attributes_for(:site))
-      @site.save
-    end
 
     it "locates the requested site" do
       get :edit, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site)
@@ -90,7 +86,7 @@ describe SitesController do
 
       it "re-directs to the updated @site" do
         put :update, user_id: subject.current_user, site: FactoryGirl.attributes_for(:site, name: "MyName")
-        expect(response).to redirect_to user_site_path subject.current_user
+        expect(response).to redirect_to edit_user_site_path subject.current_user
       end
     end
 
@@ -109,11 +105,6 @@ describe SitesController do
   end
 
   describe "DELETE #destroy" do
-
-    before :each do
-      @site = subject.current_user.build_site(FactoryGirl.attributes_for(:site))
-      @site.save
-    end
 
     it "deletes the site" do
       expect {

@@ -11,5 +11,9 @@ SiteService::Application.routes.draw do
   resources :designs
   resources :plans
 
+  constraints(Subdomain) do
+    get "/" => "sites#show"
+  end
+
   root 'main#index'
 end

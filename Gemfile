@@ -35,13 +35,9 @@ group :development do
   gem "pry"
 end
 
-group :development, :test do
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
-  gem 'stripe-ruby-mock', '~> 1.10.1.2'
-end
-
 group :test do
+  gem 'stripe-ruby-mock', '~> 1.10.1.2'
+  gem 'rspec-rails'
   gem 'faker'
   gem 'capybara'
   gem 'guard-rspec'

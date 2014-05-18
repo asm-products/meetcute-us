@@ -30,12 +30,13 @@ group :development do
   gem 'binding_of_caller'
   gem 'better_errors'
   gem 'letter_opener'
-  gem 'factory_girl_rails'
   gem "erb2haml"
   gem "pry"
+  gem "rails-erd"
 end
 
 group :test do
+  gem 'factory_girl_rails'
   gem 'stripe-ruby-mock', '~> 1.10.1.2'
   gem 'rspec-rails'
   gem 'faker'

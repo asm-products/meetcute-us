@@ -3,4 +3,5 @@ class Site < ActiveRecord::Base
 
   belongs_to :user
   has_one :design
+  has_many :events
 end

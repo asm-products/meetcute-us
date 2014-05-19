@@ -1,3 +1,5 @@
 class Event < ActiveRecord::Base
-	belongs_to :site
+  validates_presence_of :date, :title
+
+  belongs_to :site
 end

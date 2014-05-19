@@ -6,7 +6,7 @@ FactoryGirl.define do
     analytics "MyString"
     password_protected false
     is_indexed false
-    layout_id {Faker::Number.digit}
+    design_id {Faker::Number.digit}
     subdomain {Faker::Internet.domain_word}
   end
 

@@ -3,5 +3,5 @@ class Site < ActiveRecord::Base
 
   belongs_to :user
   has_one :design
-  has_many :events
+  has_many :events, :dependent => :destroy
 end

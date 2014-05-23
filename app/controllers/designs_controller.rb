@@ -11,6 +11,7 @@ class DesignsController < ApplicationController
 
   def new
     @design = Design.new
+    authorize @design
   end
 
   def create

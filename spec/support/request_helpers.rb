@@ -10,6 +10,12 @@ module RequestHelpers
     user
   end
 
+  def admin_user
+    user = create(:admin_user)
+    login_as(user, :scope => :user)
+    user
+  end
+
   def user_with_account 
     user = create(:user, account_attributes: attributes_for(:account))
     login_as(user, :scope => :user)

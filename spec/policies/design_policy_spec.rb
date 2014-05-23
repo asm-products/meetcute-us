@@ -8,7 +8,7 @@ describe DesignPolicy do
   let(:admin_user) { build(:admin_user) }
   let(:design) { build(:design) }
 
-  [:index?, :create?, :update?, :destroy?, :edit?].each do |action|
+  [:index?, :create?, :update?, :destroy?, :edit?, :new?].each do |action|
     permissions action do
       it "denies access if user is not an admin" do
         expect(subject).not_to permit(user, design)

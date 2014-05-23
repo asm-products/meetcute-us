@@ -16,6 +16,10 @@ describe "/designs/new", :type => :feature do
   it "has a description field" do
     expect(page).to have_selector("#design_description")
   end
+  
+  it "has an image file field" do
+    expect(page).to have_selector("#design_image")
+  end
 
   it "allows a Design to be created" do
     design = build(:design)
@@ -24,7 +28,5 @@ describe "/designs/new", :type => :feature do
     click_button "Create"
     expect(page).to have_content "Design created successfully."
   end
-
-  it "has an image file field"
 
 end

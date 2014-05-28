@@ -21,6 +21,6 @@
     = f.check_box :is_indexed
   .control-group
     = f.label :design
-    = f.collection_select :design, Design.all, :id, :name
+    = f.collection_select :design_id, Design.all, :id, :name
   .control-group 
     = f.submit "Update"

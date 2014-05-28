@@ -47,6 +47,6 @@ class SitesController < ApplicationController
   private
 
   def site_params
-    params.require(:site).permit(:user_id, :name, :description, :analytics, :password_protected, :is_indexed, :layout, :subdomain)
+    params.require(:site).permit(:user_id, :name, :description, :analytics, :password_protected, :is_indexed, :design_id, :subdomain)
   end
 end

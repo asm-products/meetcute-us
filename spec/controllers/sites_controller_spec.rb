@@ -79,9 +79,10 @@ describe SitesController do
     context "with valid attributes" do
       
       it "updates the @site attributes" do
-        put :update, user_id: subject.current_user, site: attributes_for(:site, name: "MyName")
+        put :update, user_id: subject.current_user, site: attributes_for(:site, name: "MyName", design_id: 2)
         @site.reload
         expect(@site.name).to eql("MyName")
+        expect(@site.design_id).to eq(2)
       end
 
       it "re-directs to the updated @site" do

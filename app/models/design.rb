@@ -4,6 +4,6 @@ class Design < ActiveRecord::Base
 
   mount_uploader :image, DesignUploader
 
-  belongs_to :site
+  has_many :sites, through: :site_designs
 
 end

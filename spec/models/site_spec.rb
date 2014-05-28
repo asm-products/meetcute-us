@@ -8,7 +8,7 @@ describe Site do
   end
 
   it { should belong_to(:user) }
-  it { should have_one(:design) }
+  it { should have_many(:designs).through(:site_designs) }
   it { should have_many(:events) }
   it { should validate_presence_of(:subdomain) }
 

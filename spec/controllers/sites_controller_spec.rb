@@ -22,12 +22,12 @@ describe SitesController do
   end
 
   describe "GET #show" do
-  
+
     it "assigns the requested site to @site" do
       get :show, id: @site, user_id: subject.current_user
       expect(assigns(:site)).to eq(@site)
     end
-    
+
     it "renders the :show template" do
       get :show, id: @site, user_id: subject.current_user
       expect(response).to render_template :show
@@ -42,14 +42,14 @@ describe SitesController do
   end
 
   describe "POST #create" do
-    
+
     context "with valid attributes" do
       it "creates a new site" do
         site = attributes_for(:site)
         post :create, user_id: subject.current_user, site: site
         expect(subject.current_user.site.name).to eq(site[:name])
       end
-      
+
       it "redirects to the new site" do
         post :create, user_id: subject.current_user, site: attributes_for(:site)
         expect(response).to redirect_to user_site_path subject.current_user
@@ -61,7 +61,7 @@ describe SitesController do
         post :create, user_id: subject.current_user, site: attributes_for(:invalid_site)
         expect(subject.current_user.site).to_not be_valid
       end
-      
+
       it "re-renders the new method" do
         post :create, user_id: subject.current_user, site: attributes_for(:invalid_site)
         expect(response).to render_template :new
@@ -77,12 +77,11 @@ describe SitesController do
     end
 
     context "with valid attributes" do
-      
+
       it "updates the @site attributes" do
-        put :update, user_id: subject.current_user, site: attributes_for(:site, name: "MyName", design_id: 2)
+        put :update, user_id: subject.current_user, site: attributes_for(:site, name: "MyName")
         @site.reload
         expect(@site.name).to eql("MyName")
-        expect(@site.design_id).to eq(2)
       end
 
       it "re-directs to the updated @site" do
@@ -97,7 +96,7 @@ describe SitesController do
         @site.reload
         expect(@site.name).to_not eq("MyName")
       end
-      
+
       it "re-renders the :edit template" do
         put :update, user_id: subject.current_user, site: attributes_for(:site, name: "MyName", subdomain: nil)
         expect(response).to render_template :edit
@@ -112,7 +111,7 @@ describe SitesController do
         delete :destroy, user_id: subject.current_user, site: attributes_for(:site)
       }.to change(Site, :count).by(-1)
     end
-    
+
     it "redirects to the users account" do
       delete :destroy, user_id: subject.current_user, site: attributes_for(:site)
       expect(response).to redirect_to user_account_path subject.current_user

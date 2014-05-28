@@ -36,7 +36,7 @@ require "spec_helper"
     end
 
     it "should have a layout dropdown" do
-      expect(page).to have_selector("#site_layouts_design")
+      expect(page).to have_selector("#site_layouts_design_id")
     end
 
     it "allows a user to update their site" do

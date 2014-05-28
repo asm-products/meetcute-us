@@ -4,26 +4,27 @@
   .control-group
     = f.label :name
     = f.text_field :name
-  .control-group 
+  .control-group
     = f.label :description
     = f.text_area :description
-  .control-group 
+  .control-group
     = f.label :subdomain
     = f.text_field :subdomain
-  .control-group 
+  .control-group
     = f.label :analytics
     = f.text_field :analytics
   .control-group
     = f.label :password_protected
     = f.check_box :password_protected
-  .control-group 
+  .control-group
     = f.label :is_indexed
     = f.check_box :is_indexed
-  
-  = f.fields_for :layouts do |layouts_form|
+
+  = f.fields_for :layouts, Layout.new do |site_layout|
+    = site_layout.hidden_field :site_id, @site.id
     .control-group
-      = layouts_form.label :design
-      = layouts_form.collection_select :design, Design.all, :id, :name
-  
-  .control-group 
+      = site_layout.label :design
+      = site_layout.collection_select :design_id, Design.all, :id, :name, :include_blank => "Select Design"
+
+  .control-group
     = f.submit "Update"

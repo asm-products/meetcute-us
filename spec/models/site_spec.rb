@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Site do
   subject(:site) { create(:site) }
   
-  it "has a valid factore" do
+  it "has a valid factory" do
     expect(site).to be_valid
   end
 

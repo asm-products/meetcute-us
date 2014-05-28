@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528030923) do
+ActiveRecord::Schema.define(version: 20140528182821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,19 +47,19 @@ ActiveRecord::Schema.define(version: 20140528030923) do
     t.integer  "site_id"
   end
 
+  create_table "layouts", force: true do |t|
+    t.integer  "design_id"
+    t.integer  "site_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "plans", force: true do |t|
     t.integer  "amount"
     t.string   "interval"
     t.string   "name"
     t.string   "currency"
     t.string   "stripe_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "site_designs", force: true do |t|
-    t.integer  "design_id"
-    t.integer  "site_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

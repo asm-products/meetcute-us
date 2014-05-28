@@ -19,8 +19,11 @@
   .control-group 
     = f.label :is_indexed
     = f.check_box :is_indexed
-  .control-group
-    = f.label :design
-    = f.collection_select :design_id, Design.all, :id, :name
+  
+  = f.fields_for :layouts do |layouts_form|
+    .control-group
+      = layouts_form.label :design
+      = layouts_form.collection_select :design, Design.all, :id, :name
+  
   .control-group 
     = f.submit "Update"

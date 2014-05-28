@@ -11,6 +11,7 @@ class DesignsController < ApplicationController
 
   def new
     @design = Design.new
+    authorize @design
   end
 
   def create
@@ -52,7 +53,7 @@ class DesignsController < ApplicationController
   private
 
   def design_params
-    params.require(:design).permit(:name, :description, :site_id)
+    params.require(:design).permit(:name, :description, :site_id, :image)
   end
 end
 

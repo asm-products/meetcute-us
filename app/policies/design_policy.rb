@@ -4,6 +4,10 @@ class DesignPolicy < ApplicationPolicy
     @user.admin?
   end
 
+  def new?
+    index?
+  end
+
   def create?
     index?
   end

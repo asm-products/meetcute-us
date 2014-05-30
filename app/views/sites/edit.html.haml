@@ -20,11 +20,10 @@
     = f.label :is_indexed
     = f.check_box :is_indexed
 
-  = f.fields_for :layouts, Layout.new do |site_layout|
-    = site_layout.hidden_field :site_id, @site.id
+  = f.fields_for :design, @site.design do |site_layout|
     .control-group
       = site_layout.label :design
-      = site_layout.collection_select :design_id, Design.all, :id, :name, :include_blank => "Select Design"
+      = site_layout.collection_select :id, Design.all, :id, :name, :include_blank => "Select Design"
 
   .control-group
     = f.submit "Update"

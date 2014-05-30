@@ -1,21 +1,23 @@
 class Site < ActiveRecord::Base
   validates_presence_of :subdomain
 
-  before_save :create_default_layout, :if => :has_no_design?
+  before_save :create_default_layout, :if => :has_no_layout?
 
   belongs_to :user
-  has_many :layouts
-  has_many :designs, through: :layouts
+  has_one :layout
+  has_one :design, through: :layout
   has_many :events, :dependent => :destroy
+
+  accepts_nested_attributes_for :design
 
   private
 
   def create_default_layout
-    self.layouts.new(site_id: self.id, design_id: 1)
+    self.build_layout(design_id: 1)
   end
 
-  def has_no_design?
-    self.layouts.nil?
+  def has_no_layout?
+    !self.layout.present?
   end
 
 end

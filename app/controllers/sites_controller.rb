@@ -19,11 +19,12 @@ class SitesController < ApplicationController
       redirect_to user_site_path current_user
     else
       render :new
-    end  
+    end
   end
 
   def edit
     @site = current_user.site
+    @layout = Layout.new
   end
 
   def update
@@ -31,7 +32,7 @@ class SitesController < ApplicationController
     if @site.update_attributes(site_params)
       flash[:notice] = "You updated your site successfully!"
       redirect_to edit_user_site_path current_user
-    else 
+    else
       render :edit
     end
   end
@@ -47,6 +48,6 @@ class SitesController < ApplicationController
   private
 
   def site_params
-    params.require(:site).permit(:user_id, :name, :description, :analytics, :password_protected, :is_indexed, :subdomain, { :layouts => [:design_id] })
+    params.require(:site).permit(:user_id, :name, :description, :analytics, :password_protected, :is_indexed, :subdomain, { :design_attributes => [:id] })
   end
 end

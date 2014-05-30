@@ -1,11 +1,11 @@
 require "spec_helper"
- 
+
  describe "User site", :type => :feature do
 
   include RequestHelpers
 
   describe "GET /users/:user_id/site/edit" do
-    
+
     let!(:user) { user_with_account_site }
 
     before { visit edit_user_site_path(user) }
@@ -14,15 +14,15 @@ require "spec_helper"
     it "should have a name field" do
       expect(page).to have_selector("#site_name")
     end
-    
+
     it "should have a description field" do
       expect(page).to have_selector("#site_description")
     end
-    
+
     it "should have a subdomain field" do
       expect(page).to have_selector("#site_subdomain")
     end
-    
+
     it "should have a analytics field" do
       expect(page).to have_selector("#site_analytics")
     end
@@ -30,13 +30,9 @@ require "spec_helper"
     it "should have a password_protected checkbox" do
       expect(page).to have_selector("#site_password_protected")
     end
-    
+
     it "should have a is_indexed checkbox" do
       expect(page).to have_selector("#site_is_indexed")
-    end
-
-    it "should have a layout dropdown" do
-      expect(page).to have_selector("#site_layouts_design_id")
     end
 
     it "allows a user to update their site" do

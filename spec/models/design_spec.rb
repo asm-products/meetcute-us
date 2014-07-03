@@ -6,7 +6,7 @@ describe Design do
     expect(create(:design)).to be_valid
   end
 
-  it { should belong_to(:layout) }
+  it { should have_one(:site) }
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:description) }
 end

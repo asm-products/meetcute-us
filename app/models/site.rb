@@ -8,16 +8,20 @@ class Site < ActiveRecord::Base
   has_one :design, through: :layout
   has_many :events, :dependent => :destroy
 
-  accepts_nested_attributes_for :design
+  accepts_nested_attributes_for :layout
+
+  def create_default_layout
+    self.build_layout(design: Site.default_design)
+  end
 
   private
 
-  def create_default_layout
-    self.build_layout(design_id: 1)
-  end
-
   def has_no_layout?
     !self.layout.present?
+  end
+
+  def self.default_design
+    Design.find(1)
   end
 
 end

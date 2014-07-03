@@ -20,10 +20,10 @@
     = f.label :is_indexed
     = f.check_box :is_indexed
 
-  = f.fields_for :design, @site.design do |site_layout|
+  = f.fields_for :layout, @site.layout do |site_layout|
     .control-group
       = site_layout.label :design
-      = site_layout.collection_select :id, Design.all, :id, :name, :include_blank => "Select Design"
+      = site_layout.collection_select :design_id, Design.all, :id, :name, :include_blank => "Select Design"
 
   .control-group
     = f.submit "Update"

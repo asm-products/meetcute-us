@@ -5,7 +5,7 @@ class SitesController < ApplicationController
   end
 
   def show
-    @site = Site.find_by_subdomain!(request.subdomain)
+    @site = Site.includes(:design).find_by_subdomain!(request.subdomain)
   end
 
   def new
@@ -47,6 +47,6 @@ class SitesController < ApplicationController
   private
 
   def site_params
-    params.require(:site).permit(:user_id, :name, :description, :analytics, :password_protected, :is_indexed, :subdomain, { :design_attributes => [:id] })
+    params.require(:site).permit(:user_id, :name, :description, :analytics, :password_protected, :is_indexed, :subdomain, { :layout_attributes => [:design_id] })
   end
 end

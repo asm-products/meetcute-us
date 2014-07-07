@@ -1,4 +1,4 @@
 class Layout < ActiveRecord::Base
   belongs_to :site
-  has_one :design
+  belongs_to :design
 end

@@ -23,7 +23,7 @@
   = f.fields_for :design, @site.layout do |site_layout|
     .control-group
       = site_layout.label :design
-      = site_layout.collection_select :id, Design.all, :id, :name, :include_blank => "Select Design"
+      = site_layout.collection_select :design_id, Design.all, :id, :name, :include_blank => "Select Design"
 
   .control-group
     = f.submit "Update"

@@ -20,7 +20,7 @@ describe Site do
     }.to change(Event, :count).by(-1)
   end
 
-  it "Should be created with a default Layout" do
+  it "Should be created with a default Design" do
     expect(site.design.id).to eq(1)
   end
 end

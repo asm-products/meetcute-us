@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe Subscription do
   let!(:subscription) {create(:subscription, user_id: 1)}

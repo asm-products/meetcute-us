@@ -1,0 +1,131 @@
+/* Ipad
+--------------------------------------------- */
+@media screen and (max-width: 766px) {
+}
+
+@media screen and (max-width: $break-small) {
+  
+  /* Global */
+  
+  h2 {
+    margin: 40px 0;
+    line-height: 50px;
+  }
+
+  .large-column,
+  .small-column {
+    margin-bottom: 50px;
+    @include span-columns(12, 12);
+  }
+  
+  /* Layout */
+
+  .main-nav {
+    height: 270px;
+    @include span-columns(12,12);
+
+    ul {
+      font-size: 14px;
+
+      li {
+        margin: 209px 11px 0 0;
+        
+        &.main-logo {
+          left: 18%;
+          margin: 0;
+          position: absolute;
+        }
+      }
+
+    }
+  }
+
+  pre {
+    width: 100%;
+    overflow: auto;
+  }
+
+  .work-thumb {
+    margin: 15px auto;
+    float: none;
+
+    &:last-child {
+      margin-right: auto;
+    }
+  }
+
+  .work-detail-left,
+  .work-detail-right {
+    @include span-columns(12, 12);
+  }
+
+  .work-detail-left {
+    margin-bottom: 50px;
+  }
+
+  .work-detail-slides,
+  .work-detail-slides img {
+    width: 100% !important;
+  }
+
+  .icon-block {
+    @include span-columns(12, 12);
+    margin: 0 0 60px 0;
+    float: none;
+    display: block;
+
+    &:first-child {
+      margin-left: auto;
+    }
+
+    &:last-child {
+      margin-right: auto;
+      float: none;
+    }
+  }
+
+  .login-modal {
+    right: -16px;
+    top: 280px;
+
+    &:before {
+      left: 90%;
+    }
+    
+    &.active {
+      top: 287px !important;
+    }
+  }
+
+  .contact-modal {
+    position: absolute;
+  }
+
+  .large-ui-form {
+    
+    input[type="text"],
+    .radio-group,
+    .select-group,
+    .checkbox-group {
+      @include span-columns(12, 12);
+      font-size: 14px;
+      margin-bottom: 15px;
+      margin-right: 0px;
+    }
+  }
+
+  .large-radio-group {
+    width: 130px;
+    height: 132px;
+    margin: 10px 10px 10px 0;
+
+    &:last-child {
+      margin-right: 10px;
+    }
+
+    label {
+      font-size: 14px;
+      padding-top: 57px;
+    }
+  }
+}

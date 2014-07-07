@@ -12,6 +12,7 @@ group :rails do
     watch(%r{app\/.+\.(erb|haml|coffee)$})
     watch(%r{app/assets/stylesheets/(.*)$}) { 'assets/main.css' }
     watch(%r{app/helpers/.+\.rb})
+    watch(%r{app/views/.+\.haml})
     watch(%r{public/.+\.(css|js|html)})
     watch(%r{config/locales/.+\.yml})
     # Rails Assets Pipeline

@@ -5,7 +5,7 @@ class SitesController < ApplicationController
   end
 
   def show
-    @site = Site.includes(:design).find_by_subdomain!(request.subdomain)
+    @site = Site.select_by_subdomain(request.subdomain)
   end
 
   def new

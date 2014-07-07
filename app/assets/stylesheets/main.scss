@@ -1,0 +1,108 @@
+/* /////////////////////////////////////////////////////
+
+CAPTURE THE CASTLE WEBSITE
+jon@capturethecastle.net @ Capture The Castle
+
+///////////////////////////////////////////////////// */
+
+
+/* Compass Imports
+--------------------------------------------- */
+
+@import "normalize";
+@import "compass/css3/box-shadow";
+@import "compass/css3/border-radius";
+@import "compass/css3/font-face";
+@import "compass/css3/transform";
+@import "compass/css3/transition";
+@import "compass/css3/opacity";
+@import "compass/utilities/sprites";
+
+
+
+/* Variables
+--------------------------------------------- */
+
+$base-color: #34495e;
+$highlight-color: #f8cd3d;
+$secondary-highlight-color: #1abc9c;
+$secondary-color: #3498db;
+$tertiary-color: #ecf0f1;
+$dark-grey: #7f8c8d;
+$light-grey: #bdc3c7;
+$warning-color: #F1C40F;
+$error-color: #E74C3C;
+$success-color: #2ECC71;
+
+$body-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$break-small: 550px;
+$break-large: 750px;
+$break-x-large: 1115px;
+
+/* Sprites
+--------------------------------------------- */
+
+$misc-sprite-dimensions : true;
+$misc-spacing : 2px;
+$misc-retina-spacing : 2px;
+$sprites: sprite-map("misc/*.png");
+$sprites2x: sprite-map("misc-retina/*.png");
+
+
+/* Imports
+--------------------------------------------- */
+
+@import "base";
+@import "grid";
+@import "utils";
+@import "modules";
+@import "retina-sprites";
+
+
+/* /////////////////////////////////////////////////////
+
+GLOBAL LAYOUT
+
+///////////////////////////////////////////////////// */
+
+.container {
+  @include container;
+  // @include susy-grid-background();
+}
+
+.content {
+  @extend .clearfix;
+  @include span-columns(8,12);
+  display: block;
+  float: none;
+  margin: 0 auto;
+}
+
+/* Main header
+--------------------------------------------- */
+
+header {
+  background: $highlight-color;
+}
+
+.main-header {
+  height: 90px;
+}
+
+.logo {
+  float: left;
+  display: block;
+  margin-right: 15px;
+  @extend .hide-text;
+  @include retina-sprite("logo");
+}
+
+.main-nav-item {
+  color: #fff;
+  font-weight: bold;
+  display: inline-block;
+  padding: 0 5px 0 0;
+  margin: 10px 5px 0 0;
+  font-size: 15px;
+}

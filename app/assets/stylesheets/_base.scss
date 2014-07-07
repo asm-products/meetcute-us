@@ -1,0 +1,249 @@
+/* /////////////////////////////////////////////////////
+
+BASE STYLES
+Only single elements. No classes or ids.
+
+///////////////////////////////////////////////////// */
+
+@include font-face("droid-bold", font-files("DroidSerif-Bold.ttf", "DroidSerif-Bold.svg", "DroidSerif-Bold.eot", "DroidSerif-Bold.woff"));
+@include font-face("droid-regular", font-files("DroidSerif-Regular.ttf", "DroidSerif-Regular.svg", "DroidSerif-Regular.eot", "DroidSerif-Regular.woff"));
+
+* { 
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box; 
+  box-sizing: border-box;
+  // *behavior: url(/scripts/boxsizing.htc); // <--- Use this for <= IE7 https://github.com/Schepp/box-sizing-polyfill
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-size: 14px;
+  line-height: 22px;
+  color: $base-color;
+  font-family: $body-font;
+}
+
+h1, h2, h3, h4, h5 {
+  text-transform: uppercase;
+  font-family: "droid-bold", Helvetica, arial, sans-serif;
+  text-align: center;
+  padding: 10px 0;
+}
+
+h1 {
+
+}
+h2 {
+  font-size: 46px;
+  margin: 80px 0;
+  line-height: 50px;
+  word-break: break-word;
+}
+
+h3 {
+  font-size: 36px;
+  line-height: 40px;
+  padding-top: 0;
+
+  &.shepherd-title {
+    font-family: $body-font;
+    text-align: left;
+    padding: 0;
+    font-size: 22px !important;
+    text-transform: none;
+  }
+}
+
+h4.header {
+  text-align: left;
+  font-family: $body-font;
+  text-transform: none;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+h5 {}
+
+a {
+  color: $base-color;
+  text-decoration: none;
+  
+  &:hover {
+    color: $highlight-color;
+  }
+  &:active {}
+}
+
+.post p,
+.work-detail-right p {
+  
+  a {
+    color: $highlight-color;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+p, ol, ul {
+  margin-bottom: 15px;
+}
+
+p {}
+
+ol {}
+
+ul {}
+
+pre {
+  background: $tertiary-color;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+
+  @media screen and (max-width: $break-small) {
+    overflow: auto;
+  }
+}
+
+code {
+  font-family: monospace;
+  background: #DBDADA;
+}
+
+strong { font-weight: bold; }
+em { font-style: italic; }
+
+hr {}
+
+article,
+aside {
+  text-align: left;
+}
+
+blockquote {}
+
+form {}
+
+label {
+  color: $dark-grey;
+}
+
+input,
+textarea {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
+  color: $dark-grey;
+  font-family: $body-font;
+
+}
+
+input[type='text'],
+input[type='password'],
+input[type='email'],
+textarea,
+.project_plan-new textarea {
+  border: none;
+  background-color: $tertiary-color;
+  padding: 10px;
+  border-radius: 10px;
+  height: 55px;
+  @include transition(box-shadow .2s ease-out);
+
+  &:focus,
+  &:hover {
+    border-color: rgba(82, 168, 236, 0.8);
+    outline: 0;
+    outline: thin dotted \9;
+    @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6));
+  }
+
+  &.input-error {
+    border-color: rgba(236, 82, 82, 0.8);
+    @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(236, 82, 82, 0.6));
+
+    @media screen and (max-width: $break-small) {
+      border: 1px solid red;
+    }
+  }
+}
+
+.project_plan-new textarea {
+  height: auto;
+}
+
+.error-messages {
+  color: #f00;
+}
+
+.field_with_errors {
+  width: 307px;
+  height: 55px;
+  float: left;
+  margin-right: 2%;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  input[type='text'],
+  input[type='password'] {
+    width: 100% !important;
+    border-color: rgba(236, 82, 82, 0.8);
+    @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(236, 82, 82, 0.6)); 
+  }
+}
+
+textarea {
+  width: 100%;
+  height: 210px;
+  background: #fff;
+  margin-bottom: 17px;
+}
+
+select{}
+button {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+:-webkit-input-placeholder,
+::-webkit-input-placeholder,
+:-moz-placeholder,
+::-moz-placeholder,
+:-ms-input-placeholder  { 
+    color: $dark-grey;
+}
+
+/* Tables
+--------------------------------------------- */
+
+table {
+  width: 100%;
+}
+
+th {
+  font-weight: bold;
+  padding: 0 0 5px 0;
+}
+
+td {
+  padding: 5px;
+}
+
+table.striped {
+
+  tbody {
+    
+    tr:nth-child(odd) {
+      background: $tertiary-color;
+    }
+  }
+}

@@ -1,3 +1,15 @@
-/ %h1 welcome to meetcute.us
-= link_to "Sign in", new_user_session_path
-= link_to "Sign up", new_user_registration_path
+%header.main-header.container
+  .content
+    %nav.main-nav
+      .main-nav-left
+        %a.logo{:href => "/"} meetcute.us
+        %a.main-nav-item{:href => "#home"} Home
+        %a.main-nav-item{:href => "#features"} Features
+        %a.main-nav-item{:href => "#pricing"} Pricing
+        %a.main-nav-item{:href => "#contact"} Contact
+      .main-nav-right
+        = link_to new_user_session_path, :class => "icon-link main-nav-item" do
+          %i.icon-lock
+          Sign In
+        
+        = link_to "Free Trial", new_user_registration_path, :class => "button"

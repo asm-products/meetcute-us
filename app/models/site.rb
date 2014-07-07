@@ -8,7 +8,7 @@ class Site < ActiveRecord::Base
   has_one :layout
   has_one :design, through: :layout
   has_many :events, :dependent => :destroy
-  
+
   accepts_nested_attributes_for :layout
     
   private
@@ -17,8 +17,6 @@ class Site < ActiveRecord::Base
     self.build_layout(design: Site.default_design)
   end
 
-  private
-
   def has_no_layout?
     !self.layout.present?
   end
@@ -26,5 +24,8 @@ class Site < ActiveRecord::Base
   def self.default_design
     Design.find(1)
   end
-
+  
+  def self.select_by_subdomain(subdomain)
+    Site.includes(:design).select { |s| s.subdomain == subdomain }.first
+  end
 end

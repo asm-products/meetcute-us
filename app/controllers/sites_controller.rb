@@ -24,7 +24,6 @@ class SitesController < ApplicationController
 
   def edit
     @site = current_user.site
-    @layout = Layout.new
   end
 
   def update

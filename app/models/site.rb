@@ -1,5 +1,6 @@
 class Site < ActiveRecord::Base
   validates_presence_of :subdomain
+  validates_uniqueness_of :subdomain
 
   before_save :create_default_layout, :if => :has_no_layout?
 
@@ -9,7 +10,7 @@ class Site < ActiveRecord::Base
   has_many :events, :dependent => :destroy
 
   accepts_nested_attributes_for :design
-
+    
   private
 
   def create_default_layout

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe AccountsController do
+describe AccountsController, :type => :controller do
   login_user
 
   # TODO: DRY up the before blocks in this file.
@@ -8,12 +8,12 @@ describe AccountsController do
   describe "GET #new" do
     it "assigns a new Account to @account" do
       get :new, user_id: subject.current_user
-      assigns(:account).should_not be_nil
+      expect(assigns(:account)).not_to be_nil
     end
 
     it "renders the new template" do
       get :new, user_id: subject.current_user
-      response.should render_template :new
+      expect(response).to render_template :new
     end
   end
 
@@ -26,19 +26,19 @@ describe AccountsController do
 
     it "assigns the requested account to @account" do
       get :show, id: @account, user_id: subject.current_user
-      assigns(:account).should eq(@account)
+      expect(assigns(:account)).to eq(@account)
     end
     
     it "renders the :show view" do
       get :show, id: @account, user_id: subject.current_user
-      response.should render_template :show
+      expect(response).to render_template :show
     end
   end
 
   describe "GET #edit" do
     it "assigns the requested account to @account" do
       get :show, id: @account, user_id: subject.current_user
-      assigns(:account).should eq(@account)
+      expect(assigns(:account)).to eq(@account)
     end
   end
 
@@ -52,19 +52,19 @@ describe AccountsController do
       
       it "redirects to the new account" do
         post :create, user_id: subject.current_user, account: attributes_for(:account)
-        response.should redirect_to user_account_path subject.current_user
+        expect(response).to redirect_to user_account_path subject.current_user
       end
     end
 
     context "with invalid attributes" do
       it "does not save an invalid account" do
         post :create, user_id: subject.current_user, account: attributes_for(:invalid_account)
-        subject.current_user.account.should_not be_valid
+        expect(subject.current_user.account).not_to be_valid
       end
       
       it "re-renders the new method" do
         post :create, user_id: subject.current_user, account: attributes_for(:invalid_account)
-        response.should render_template :new
+        expect(response).to render_template :new
       end
     end
   end
@@ -79,38 +79,38 @@ describe AccountsController do
     context "with valid attributes" do
       it "locates the requested account" do
         put :update, user_id: subject.current_user, account: attributes_for(:account)
-        assigns(:account).should eq(@account)
+        expect(assigns(:account)).to eq(@account)
       end
       
       it "updates the @account attributes" do
         put :update, user_id: subject.current_user, account: attributes_for(:account, first_name: "bob", last_name: "jones")
         @account.reload
-        @account.first_name.should eq("bob")
-        @account.last_name.should eq("jones")
+        expect(@account.first_name).to eq("bob")
+        expect(@account.last_name).to eq("jones")
       end
       
       it "re-directs to the updated account" do
         put :update, user_id: subject.current_user, account: attributes_for(:account)
-        response.should redirect_to user_account_path subject.current_user
+        expect(response).to redirect_to user_account_path subject.current_user
       end
     end
 
     context "with invalid attributes" do
       it "locates the requested account" do
         put :update, user_id: subject.current_user, account: attributes_for(:invalid_account)
-        assigns(:account).should eq(@account)
+        expect(assigns(:account)).to eq(@account)
       end
       
       it "does not update @account attributes" do
         put :update, user_id: subject.current_user, account: attributes_for(:account, first_name: "jack", last_name: nil)
         @account.reload
-        @account.first_name.should_not eq("jack")
-        @account.last_name.should_not eq("jackson")
+        expect(@account.first_name).not_to eq("jack")
+        expect(@account.last_name).not_to eq("jackson")
       end
 
       it "re-renders the edit method" do
         put :update, user_id: subject.current_user, account: attributes_for(:invalid_account)
-        response.should render_template :edit
+        expect(response).to render_template :edit
       end
     end
   end
@@ -130,7 +130,7 @@ describe AccountsController do
     
     it "redirects to accounts#index" do
       delete :destroy, user_id: subject.current_user, account: attributes_for(:account)
-      response.should redirect_to user_path subject.current_user
+      expect(response).to redirect_to user_path subject.current_user
     end
   end
 

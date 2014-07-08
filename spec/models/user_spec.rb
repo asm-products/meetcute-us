@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-describe User do
+describe User, :type => :model do
   let!(:user) { create(:user) }
 
-  it { should have_one(:account) }
-  it { should have_one(:site) }
+  it { is_expected.to have_one(:account) }
+  it { is_expected.to have_one(:site) }
 
   it "has a valid factory" do
     expect(user).to be_valid

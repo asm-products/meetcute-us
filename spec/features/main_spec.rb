@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Main page" do
+describe "Main page", :type => :feature do
   
   it "should have a link to sign in" do
       visit root_path

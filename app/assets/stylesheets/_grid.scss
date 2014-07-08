@@ -39,3 +39,7 @@ $container-style: fluid;
   $gutter-width: $default-gutter;
   $grid-padding: $default-padding;
 }
+
+@include generate-grid-class(5);
+@include generate-grid-class(4);
+@include generate-grid-class(3);

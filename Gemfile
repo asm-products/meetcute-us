@@ -11,7 +11,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'stripe'
 gem "pundit"
-gem 'rmagick'
+gem 'rmagick', require: false
 gem 'carrierwave'
 
 gem 'uglifier', '>= 1.3.0'

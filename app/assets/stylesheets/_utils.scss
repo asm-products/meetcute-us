@@ -20,6 +20,16 @@ General CSS utilities and SASS mixins
   }
 }
 
+@mixin generate-grid-class($number) {
+  .col-#{$number} {
+    @include span-columns($number, 12);
+  }
+
+  .col-#{$number}--last {
+    margin-right: 0;
+  }
+}
+
 .no-flicker{-webkit-transform:translate3d(0,0,0);}
 
 .hide-text {

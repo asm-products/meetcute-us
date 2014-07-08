@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe SitesController do
+describe SitesController, :type => :controller do
   login_user
 
   before :each do
@@ -73,7 +73,7 @@ describe SitesController do
 
     it "locates the requested site" do
       get :edit, user_id: subject.current_user, site: attributes_for(:site)
-      assigns(:site).should eq(@site)
+      expect(assigns(:site)).to eq(@site)
     end
 
     context "with valid attributes" do

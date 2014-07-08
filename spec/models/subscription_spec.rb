@@ -1,14 +1,14 @@
 require 'rails_helper'
 
-describe Subscription do
+describe Subscription, :type => :model do
   let!(:subscription) {create(:subscription, user_id: 1)}
 
   it "has a valid factory" do
-    subscription.should be_valid
+    expect(subscription).to be_valid
   end
 
   it "is invallid without a plan_id" do
-    build(:subscription, plan_id: nil).should_not be_valid
+    expect(build(:subscription, plan_id: nil)).not_to be_valid
   end
 
   context "Stripe integration" do

@@ -11,12 +11,12 @@ describe "User sessions", :type => :feature do
 
     it "has an email field" do  
       visit new_user_session_path
-      page.should have_selector("#user_email")
+      expect(page).to have_selector("#user_email")
     end
 
     it "has a passeword field" do
       visit new_user_session_path
-      page.should have_selector("#user_password")
+      expect(page).to have_selector("#user_password")
     end
 
     it "does not accept an invalid email address" do

@@ -9,13 +9,15 @@ jon@capturethecastle.net @ Capture The Castle
 /* Compass Imports
 --------------------------------------------- */
 
-@import "normalize";
+@import "compass/reset";
 @import "compass/css3/box-shadow";
 @import "compass/css3/border-radius";
 @import "compass/css3/font-face";
 @import "compass/css3/transform";
 @import "compass/css3/transition";
 @import "compass/css3/opacity";
+@import "compass/css3/background-size";
+@import "compass/typography/vertical_rhythm";
 @import "compass/utilities/sprites";
 
 
@@ -23,18 +25,24 @@ jon@capturethecastle.net @ Capture The Castle
 /* Variables
 --------------------------------------------- */
 
-$base-color: #34495e;
-$highlight-color: #f8cd3d;
-$secondary-highlight-color: #1abc9c;
-$secondary-color: #3498db;
+/* Colors */
+$highlight-color: #F7BE00;
+$secondary-highlight-color: #8cc2e9;
+$secondary-color: #252525;
+$light-grey: #f5f5f5;
+$base-color: #525252;
+
 $tertiary-color: #ecf0f1;
 $dark-grey: #7f8c8d;
-$light-grey: #bdc3c7;
 $warning-color: #F1C40F;
 $error-color: #E74C3C;
 $success-color: #2ECC71;
 
-$body-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+/* Type */
+$serif-regular: "droid-regular", "Time New Roman", serif;
+$base-font: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-font-size: 16px;
+$base-line-height: 24px;
 
 $break-small: 550px;
 $break-large: 750px;
@@ -53,11 +61,11 @@ $sprites2x: sprite-map("misc-retina/*.png");
 /* Imports
 --------------------------------------------- */
 
-@import "base";
-@import "grid";
-@import "utils";
-@import "modules";
 @import "retina-sprites";
+@import "base";
+@import "utils";
+@import "grid";
+@import "modules";
 
 
 /* /////////////////////////////////////////////////////
@@ -71,13 +79,32 @@ GLOBAL LAYOUT
   // @include susy-grid-background();
 }
 
+.container--dark,
+.container--light {
+  padding: 6em 0;
+}
+
+.container--light {
+  background: #fff;
+}
+
+.container--banner {
+  padding: 2.5em 0 2em 0;
+  background: $highlight-color;
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: 200;
+  text-align: center;
+}
+
 .content {
   @extend .clearfix;
-  @include span-columns(8,12);
+  @include span-columns(10,12);
   display: block;
   float: none;
   margin: 0 auto;
 }
+
 
 /* Main header
 --------------------------------------------- */
@@ -86,8 +113,24 @@ header {
   background: $highlight-color;
 }
 
+.main-nav {
+  @extend .content;
+}
+
 .main-header {
+  width: 100%;
   height: 90px;
+  padding-top: 23px;
+  top: 0;
+  position: fixed;
+}
+
+.main-nav-left {
+  float: left;
+}
+
+.main-nav-right {
+  float: right;
 }
 
 .logo {
@@ -105,4 +148,18 @@ header {
   padding: 0 5px 0 0;
   margin: 10px 5px 0 0;
   font-size: 15px;
+}
+
+/* Content sections
+--------------------------------------------- */
+
+.info-header {
+  @include span-columns(8, 12);
+  font-size: 2em;
+  border-bottom: 1px solid $base-color;
+  text-align: center;
+  float: none;
+  display: block;
+  margin: 0 auto 2em auto;
+  line-height: 2em;
 }

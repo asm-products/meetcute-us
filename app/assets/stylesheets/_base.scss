@@ -8,6 +8,8 @@ Only single elements. No classes or ids.
 @include font-face("droid-bold", font-files("DroidSerif-Bold.ttf", "DroidSerif-Bold.svg", "DroidSerif-Bold.eot", "DroidSerif-Bold.woff"));
 @include font-face("droid-regular", font-files("DroidSerif-Regular.ttf", "DroidSerif-Regular.svg", "DroidSerif-Regular.eot", "DroidSerif-Regular.woff"));
 
+@include establish-baseline($base-font-size);
+
 * { 
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box; 
@@ -16,21 +18,19 @@ Only single elements. No classes or ids.
 }
 
 html {
+  height: 100%;  
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
 }
 
 body {
-  font-size: 14px;
-  line-height: 22px;
+  height: 100%;  
+  background: $light-grey;
   color: $base-color;
-  font-family: $body-font;
+  font-family: $base-font;
 }
 
 h1, h2, h3, h4, h5 {
-  text-transform: uppercase;
-  font-family: "droid-bold", Helvetica, arial, sans-serif;
-  text-align: center;
   padding: 10px 0;
 }
 
@@ -45,49 +45,29 @@ h2 {
 }
 
 h3 {
-  font-size: 36px;
-  line-height: 40px;
+  font-size: 3.5em;
+  line-height: 1em;
   padding-top: 0;
-
-  &.shepherd-title {
-    font-family: $body-font;
-    text-align: left;
-    padding: 0;
-    font-size: 22px !important;
-    text-transform: none;
-  }
 }
 
-h4.header {
-  text-align: left;
-  font-family: $body-font;
-  text-transform: none;
-  font-size: 18px;
-  margin-bottom: 15px;
+h4 {
+  font-size: 1.5em;
 }
 
 h5 {}
+
+h6 {
+  font-size: 1.5em;
+}
 
 a {
   color: $base-color;
   text-decoration: none;
   
   &:hover {
-    color: $highlight-color;
+    color: $secondary-color;
   }
   &:active {}
-}
-
-.post p,
-.work-detail-right p {
-  
-  a {
-    color: $highlight-color;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
 }
 
 p, ol, ul {
@@ -126,7 +106,17 @@ aside {
   text-align: left;
 }
 
-blockquote {}
+blockquote,
+cite {
+  font-size: 1.2em;
+  line-height: 1.6em;
+  font-style: italic;
+  font-family: $serif-regular;
+}
+
+cite {
+  color: adjust-lightness($base-color, 25%);
+}
 
 form {}
 
@@ -140,7 +130,7 @@ textarea {
   font-size: 14px;
   line-height: 22px;
   color: $dark-grey;
-  font-family: $body-font;
+  font-family: $base-font;
 
 }
 

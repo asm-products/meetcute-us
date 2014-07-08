@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe DesignsController do
+describe DesignsController, :type => :controller do
   login_admin
   
   before :each do

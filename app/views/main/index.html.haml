@@ -1,15 +1,186 @@
 %header.main-header.container
+  %nav.main-nav
+    .main-nav-left
+      %a.logo{:href => "/"} meetcute.us
+      %a.main-nav-item{:href => "#home"} Home
+      %a.main-nav-item{:href => "#features"} Features
+      %a.main-nav-item{:href => "#pricing"} Pricing
+      %a.main-nav-item{:href => "#contact"} Contact
+    .main-nav-right
+      = link_to new_user_session_path, :class => "icon-link main-nav-item" do
+        %i.icon.icon-lock
+        Sign In
+      
+      = link_to "Free Trial", new_user_registration_path, :class => "button button--light"
+
+.hero.hero--nudged
+  %hgroup
+    %h3.hero-title 
+      Welcome to 
+      %strong MeetCute.us
+    %h4 Tell your love story
+
+.container.container--light
   .content
-    %nav.main-nav
-      .main-nav-left
-        %a.logo{:href => "/"} meetcute.us
-        %a.main-nav-item{:href => "#home"} Home
-        %a.main-nav-item{:href => "#features"} Features
-        %a.main-nav-item{:href => "#pricing"} Pricing
-        %a.main-nav-item{:href => "#contact"} Contact
-      .main-nav-right
-        = link_to new_user_session_path, :class => "icon-link main-nav-item" do
-          %i.icon-lock
-          Sign In
-        
-        = link_to "Free Trial", new_user_registration_path, :class => "button"
+    %h5.info-header Your story, your website
+    .descriptor
+      %i.icon.icon-thumb
+      %h6 Easy To Use
+      %p No coding skills required, manage your whole site from a simple dashboard.
+
+    .descriptor
+      %i.icon.icon-clock
+      %h6 Fast Setup
+      %p Have a web site setup in minutes, not hours. Just create your account and publish.
+    
+    .descriptor
+      %i.icon.icon-wrench
+      %h6 Custom
+      %p Start with one of our templates, customize every part to your hearts desire.
+
+    .descriptor
+      %i.icon.icon-displays
+      %h6 Everywhere
+      %p Your web site will look great everywhere, phones, tablets, We’ve got you covered.
+
+.container.container--dark
+  .content
+    %h5.info-header Features
+
+    .feature
+      .feature-image.feature-image--mask
+        %img{:src => "http://p-hold.com/540/500"}
+      .feature-content
+        %h3 Simple Custom Templates
+        %p We’ll give you a good place to start with one of our stunning templates, from there, customize as much or as little as you want. No coding skills required, just point and click to change fonts, colors, or anything else you want.
+        %p Your changes are live, no guessing what your web site will look like. What you see is what you get.
+
+    .feature
+      .feature-content
+        %h3 Photo Galleries
+        %p Nothing tells a story better than photos. Upload as many photos as you want, there is no limit. Each template is designed with photo gallery integration, you can add as many as you want. Want a gallery of just your first date? Engagement? Proposal? No problem.
+        %p Capture photos from a #hashtag you chooose from Instagram. Create a unique hashtag for your wedding and instantly capture photos your guests take. You have complete control over what photos are displayed so don’t worry about any embarrising photos ending up on your site.
+      .feature-image.feature-image--mask
+        %img{:src => "http://p-hold.com/540/500"}
+    
+    .feature
+      .feature-image.feature-image--mask
+        %img{:src => "http://p-hold.com/540/500"}
+      .feature-content
+        %h3 RSVP
+        %p Don’t wait for your RSVP responses to come in the mail. Collect RSVP’s straight from your website. Need to collect extra information from your guests? No problem, with our form builder you’ll be able to gather any information you’d like.
+
+    .feature
+      .feature-content
+        %h3 Wedding Info
+        %p Have a bunch of general information your guests need to know? With wedding info, explain anything you need to to your guests. Sometimes your guests will need a map to the venue, instructions on where to stay. You can display a map so your guests can navigate to the venue witht their phones, or display contact information for the venue. Your guests will be prepared and be on time.
+      .feature-image.feature-image--mask
+        %img{:src => "http://p-hold.com/540/500"}
+
+    .feature
+      .feature-image.feature-image--mask
+        %img{:src => "http://p-hold.com/540/500"}
+      .feature-content
+        %h3 Scheduling
+        %p Every wedding has a schedule. Be sure your guests and family members are informed. Let them know when the ceromony or reception starts. They can even add your schedule to their own calendar.
+
+    .feature
+      .feature-content
+        %h3 And much much more...
+        %p Let guests know where you’re registered by straight from your website, have an online guest book for people to wish you the best, feature the bridal party with their own photos and biography’s. With MeetCute.us your guests and family will only have to go to one place to get everything they need to konw about your wedding.
+      .feature-image.feature-image--mask
+        %img{:src => "http://p-hold.com/540/500"}
+
+.container.container--light
+  .content
+    %h5.info-header What people are saying
+
+    .slider
+      .quote
+        %img{:src => "http://p-hold.com/220/220"}
+        %blockquote “San Francisco fusce fusce sodales maecenas bibendum Toms vivamus tellus elementum ligula amet bicycle in nibh congue mattis eu vinyl. Eros nam urna auctor ipsum tattoo magna donec odio ut urna.”
+        %cite Jason & Alex, Denver Co.
+
+.container.container--dark
+  .content
+    %h5.info-header Pricing
+
+    .pricing
+      %h6 Bronze
+      %header.pricing-header
+        %span.pricing-number $5/
+        %span.pricing-cycle mo
+        %p 14 day FREE trial
+      %ul.pricing-menu
+        %li 1 Photo Gallery
+        %li Unlimited Bandwidth
+        %li Free Hosting
+        %li Password Protection
+        %li Password Protection
+        %li Password Protection
+        %li Password Protection
+      %footer.pricing-footer
+        %button.button.button-loud Sign Up
+    
+    .pricing
+      %h6 Silver
+      %header.pricing-header
+        %span.pricing-number $15/
+        %span.pricing-cycle mo
+        %p 14 day FREE trial
+      %ul.pricing-menu
+        %li 1 Photo Gallery
+        %li Unlimited Bandwidth
+        %li Free Hosting
+        %li Password Protection
+        %li Password Protection
+        %li Password Protection
+        %li Password Protection
+      %footer.pricing-footer
+        %button.button.button-loud Sign Up
+    
+    .pricing
+      %h6 gold
+      %header.pricing-header
+        %span.pricing-number $25/
+        %span.pricing-cycle mo
+        %p 14 day FREE trial
+      %ul.pricing-menu
+        %li 1 Photo Gallery
+        %li Unlimited Bandwidth
+        %li Free Hosting
+        %li Password Protection
+        %li Password Protection
+        %li Password Protection
+        %li Password Protection
+      %footer.pricing-footer
+        %button.button.button-loud Sign Up
+
+.container.container--banner
+  .content
+    %p 
+      Start your 14 day free trial today.
+      %button.button.button--light.button--light--large Get Started
+
+.container.container--darker
+  %footer.content
+    .footer-content
+      %h4 Contact Us
+      %ul.icon-list
+        %li
+          %i.icon.icon-map
+          %a{:href => "#"} 7282 Atscadero, Ca 93422
+        %li
+          %i.icon.icon-phone
+          %a{:href => "#"} 206.953.3666
+        %li
+        %i.icon.icon-email
+        %a{:href => "mailto:info@meetcute.us"} info@meetcute.us
+
+    .footer-content
+      %h4 Connect With Us
+      %ul.icon-list.icon-list--horizontal
+        %li
+        %li
+        %li
+        %li

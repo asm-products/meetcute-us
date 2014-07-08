@@ -10,21 +10,21 @@ Only single elements. No classes or ids.
 
 @include establish-baseline($base-font-size);
 
-* { 
+* {
   -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box; 
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   // *behavior: url(/scripts/boxsizing.htc); // <--- Use this for <= IE7 https://github.com/Schepp/box-sizing-polyfill
 }
 
 html {
-  height: 100%;  
+  height: 100%;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
 }
 
 body {
-  height: 100%;  
+  height: 100%;
   background: $light-grey;
   color: $base-color;
   font-family: $base-font;
@@ -63,7 +63,7 @@ h6 {
 a {
   color: $base-color;
   text-decoration: none;
-  
+
   &:hover {
     color: $secondary-color;
   }
@@ -134,35 +134,35 @@ textarea {
 
 }
 
-input[type='text'],
-input[type='password'],
-input[type='email'],
-textarea,
-.project_plan-new textarea {
-  border: none;
-  background-color: $tertiary-color;
-  padding: 10px;
-  border-radius: 10px;
-  height: 55px;
-  @include transition(box-shadow .2s ease-out);
+// input[type='text'],
+// input[type='password'],
+// input[type='email'],
+// textarea,
+// .project_plan-new textarea {
+//   border: none;
+//   background-color: $tertiary-color;
+//   padding: 10px;
+//   border-radius: 10px;
+//   height: 55px;
+//   @include transition(box-shadow .2s ease-out);
 
-  &:focus,
-  &:hover {
-    border-color: rgba(82, 168, 236, 0.8);
-    outline: 0;
-    outline: thin dotted \9;
-    @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6));
-  }
+//   &:focus,
+//   &:hover {
+//     border-color: rgba(82, 168, 236, 0.8);
+//     outline: 0;
+//     outline: thin dotted \9;
+//     @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6));
+//   }
 
-  &.input-error {
-    border-color: rgba(236, 82, 82, 0.8);
-    @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(236, 82, 82, 0.6));
+//   &.input-error {
+//     border-color: rgba(236, 82, 82, 0.8);
+//     @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(236, 82, 82, 0.6));
 
-    @media screen and (max-width: $break-small) {
-      border: 1px solid red;
-    }
-  }
-}
+//     @media screen and (max-width: $break-small) {
+//       border: 1px solid red;
+//     }
+//   }
+// }
 
 .project_plan-new textarea {
   height: auto;
@@ -186,7 +186,7 @@ textarea,
   input[type='password'] {
     width: 100% !important;
     border-color: rgba(236, 82, 82, 0.8);
-    @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(236, 82, 82, 0.6)); 
+    @include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(236, 82, 82, 0.6));
   }
 }
 
@@ -208,7 +208,7 @@ button {
 ::-webkit-input-placeholder,
 :-moz-placeholder,
 ::-moz-placeholder,
-:-ms-input-placeholder  { 
+:-ms-input-placeholder  {
     color: $dark-grey;
 }
 
@@ -231,7 +231,7 @@ td {
 table.striped {
 
   tbody {
-    
+
     tr:nth-child(odd) {
       background: $tertiary-color;
     }

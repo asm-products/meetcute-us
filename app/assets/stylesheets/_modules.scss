@@ -34,6 +34,34 @@ MODULES
   @include retina-sprite("icon-displays");
 }
 
+.icon-map {
+  @include retina-sprite("icon-map");
+}
+
+.icon-phone {
+  @include retina-sprite("icon-phone");
+}
+
+.icon-email {
+  @include retina-sprite("icon-mail");
+}
+
+.icon-facebook {
+  @include retina-sprite("icon-facebook");
+}
+
+.icon-twitter {
+  @include retina-sprite("icon-twitter");
+}
+
+.icon-pinterest {
+  @include retina-sprite("icon-pinterest");
+}
+
+.icon-tumblr {
+  @include retina-sprite("icon-tumblr");
+}
+
 /* Buttons
 --------------------------------------------- */
 
@@ -74,6 +102,17 @@ MODULES
   padding: 20px 0;
 }
 
+/* Inputs
+--------------------------------------------- */
+
+.input--light {
+  border: 1px solid #fff;
+  color: #fff;
+  background: transparent;
+  padding: 6px 10px;
+  font-weight: bold;
+  @include border-radius(3px);
+}
 
 /* Hero
 --------------------------------------------- */
@@ -230,5 +269,31 @@ MODULES
 
   .button:hover {
     background: adjust-lightness($secondary-highlight-color, 5%);
+  }
+}
+
+/* Lists
+--------------------------------------------- */
+
+.icon-list {
+
+  .icon {
+    margin-right: 5px;
+  }
+}
+
+.icon-list--horizontal {
+
+  a {
+    display: block;
+  }
+
+  li {
+    float: left;
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }

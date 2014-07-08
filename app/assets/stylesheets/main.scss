@@ -28,12 +28,13 @@ jon@capturethecastle.net @ Capture The Castle
 /* Colors */
 $highlight-color: #F7BE00;
 $secondary-highlight-color: #8cc2e9;
+$on-dark-highlight: #D3D3D3;
 $secondary-color: #252525;
 $light-grey: #f5f5f5;
+$dark-grey: #2C2C2C;
 $base-color: #525252;
 
 $tertiary-color: #ecf0f1;
-$dark-grey: #7f8c8d;
 $warning-color: #F1C40F;
 $error-color: #E74C3C;
 $success-color: #2ECC71;
@@ -80,12 +81,17 @@ GLOBAL LAYOUT
 }
 
 .container--dark,
-.container--light {
+.container--light,
+.container--darker {
   padding: 6em 0;
 }
 
 .container--light {
   background: #fff;
+}
+
+.container--darker {
+  background: $dark-grey;
 }
 
 .container--banner {
@@ -162,4 +168,19 @@ header {
   display: block;
   margin: 0 auto 2em auto;
   line-height: 2em;
+}
+
+/* Marketing footer
+--------------------------------------------- */
+.main-footer,
+.main-footer a {
+  color: $on-dark-highlight;
+}
+
+.footer-content {
+  @extend .col-4;
+
+  &:last-child {
+    @extend .col-4--last;
+  }
 }

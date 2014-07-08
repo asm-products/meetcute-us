@@ -10,7 +10,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'stripe'
-gem "pundit"
+gem 'pundit', github: 'stgeneral/pundit', branch: 'rspec3-deprecations'
 gem 'rmagick', require: false
 gem 'carrierwave'
 
@@ -27,7 +27,7 @@ group :doc do
 end
 
 group :development do
-  gem 'thin' 
+  gem 'thin'
   gem 'rb-fsevent', '~> 0.9.1'
   gem 'guard'
   gem 'guard-rails'

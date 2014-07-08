@@ -27,7 +27,7 @@ describe SubscriptionsController, :type => :controller do
       get :new, user_id: subject.current_user, plan_id: @plan.id
       expect(assigns(:subscription)).not_to be_nil
     end
-    
+
     it "renders the new template" do
       get :new, user_id: subject.current_user, plan_id: @plan.id
       expect(response).to render_template :new
@@ -39,7 +39,7 @@ describe SubscriptionsController, :type => :controller do
       get :show, id: @subscription
       expect(assigns(:subscription)).not_to be_nil
     end
-    
+
     it "renders the :show view" do
       get :show, id: @subscription
       expect(response).to render_template :show
@@ -57,42 +57,42 @@ describe SubscriptionsController, :type => :controller do
     context "with valid attributs" do
 
       before :each do
-        StripeMock.start 
+        StripeMock.start
         @plan = Stripe::Plan.create(id: "test_plan")
         @card = StripeMock.generate_card_token(last4: "9191", exp_year: 2015)
-      end 
-      
-      after { StripeMock.stop } 
-      
+      end
+
+      after { StripeMock.stop }
+
       it "creates a new subscription" do
         expect{
-          post :create, 
-            user_id: subject.current_user, 
+          post :create,
+            user_id: subject.current_user,
             subscription: attributes_for(:subscription, plan_id: @plan.id, stripe_card_token: @card)
         }.to change(Subscription, :count).by(1)
       end
-      
+
       it "redirects to the new subscription" do
-        post :create, 
-          user_id: subject.current_user, 
+        post :create,
+          user_id: subject.current_user,
           subscription: attributes_for(:subscription, plan_id: @plan.id, stripe_card_token: @card)
-        
+
         expect(response).to redirect_to Subscription.last
       end
     end
 
     context "with invalid attributs" do
-      # it "does not save an invalid subscription" do
-      #   expect{
-      #     post :create, user_id: subject.current_user, subscription: attributes_for(:invalid_subscription)
-      #   }.to_not change(Subscription, :count).by(1)
-      # end
-      
+      it "does not save an invalid subscription" do
+        expect{
+          post :create, user_id: subject.current_user, subscription: attributes_for(:invalid_subscription)
+        }.to change(Subscription, :count).by(0)
+      end
+
       it "re-renders the new method" do
         post :create, user_id: subject.current_user, subscription: attributes_for(:invalid_subscription)
         expect(response).to render_template :new
       end
-      
+
     end
   end
 
@@ -130,7 +130,7 @@ describe SubscriptionsController, :type => :controller do
         @subscription.reload
         expect(@subscription.plan_id).not_to be_nil
       end
-      
+
       it "re-renders the edit method" do
         put :update, id: @subscription, subscription: attributes_for(:invalid_subscription)
         expect(response).to render_template :edit
@@ -145,10 +145,10 @@ describe SubscriptionsController, :type => :controller do
 
     it "deletes the subscription" do
       expect{
-        delete :destroy, id: @subscription 
+        delete :destroy, id: @subscription
       }.to change(Subscription, :count).by(-1)
     end
-    
+
     it "redirects to subscriptions#index" do
       delete :destroy, id: @subscription
       expect(response).to redirect_to user_subscriptions_path subject.current_user

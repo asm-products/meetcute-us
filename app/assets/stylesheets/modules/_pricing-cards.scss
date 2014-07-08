@@ -1,0 +1,60 @@
+/* /////////////////////////////////////////////////////
+
+PRICONG CARDS
+
+///////////////////////////////////////////////////// */
+
+.pricing {
+  border: 2px solid $secondary-highlight-color;
+  text-align: center;
+  @extend .col-4;
+
+  &:last-child {
+    @extend .col-4--last;
+  }
+
+  h6 {
+    background: $secondary-highlight-color;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.5em;
+    line-height: 2em;
+  }
+}
+
+.pricing-header {
+  padding: 15px 0 6px 0;
+  background: adjust-lightness($light-grey, -7%);
+
+  p {
+    font-size: .9em;
+    font-weight: 200;
+  }
+}
+
+.pricing-number {
+  line-height: 1em;
+  font-size: 3em;
+}
+
+.pricing-cycle {
+  font-size: 2em;
+}
+
+.pricing-menu {
+
+  li {
+    padding: 5px 0;
+    margin: 5px 0;
+    border-bottom: 1px solid adjust-lightness($light-grey, -7%);
+  }
+}
+
+.pricing-footer {
+  padding: 20px;
+  background: adjust-lightness($light-grey, -7%);
+
+  .button:hover {
+    background: adjust-lightness($secondary-highlight-color, 5%);
+  }
+}

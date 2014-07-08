@@ -1,0 +1,26 @@
+/* /////////////////////////////////////////////////////
+
+FOOTERS
+
+///////////////////////////////////////////////////// */
+
+.main-footer,
+.main-footer a {
+  color: $on-dark-highlight;
+}
+
+.footer-content {
+  @extend .col-4;
+
+  &:last-child {
+    @extend .col-4--last;
+  }
+
+  h4 {
+  	margin-bottom: 0.5em;
+  }
+
+  p {
+  	margin: 0 0 10px 0;
+  }
+}

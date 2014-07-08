@@ -1,0 +1,41 @@
+/* /////////////////////////////////////////////////////
+
+CONTAINERS
+
+///////////////////////////////////////////////////// */
+
+.container {
+  @include container;
+  // @include susy-grid-background();
+}
+
+.container--dark,
+.container--light,
+.container--darker {
+  padding: 6em 0;
+}
+
+.container--light {
+  background: #fff;
+}
+
+.container--darker {
+  background: $dark-grey;
+}
+
+.container--banner {
+  padding: 2.5em 0 2em 0;
+  background: $highlight-color;
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: 200;
+  text-align: center;
+}
+
+.content {
+  @extend .clearfix;
+  @include span-columns(10,12);
+  display: block;
+  float: none;
+  margin: 0 auto;
+}

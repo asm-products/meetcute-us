@@ -5,31 +5,6 @@ General CSS utilities and SASS mixins
 
 ///////////////////////////////////////////////////// */
 
-@mixin image-replace($image) {
-  background: image-url($image) no-repeat;
-  width: image-width($image);
-  height: image-height($image);
-}
-
-@mixin set-active-nav($bodyClass, $navClass) {
-  .#{$bodyClass} {
-    .main-nav .#{$navClass},
-    .mobile-nav .#{$navClass} {
-      color: $highlight-color;
-    }
-  }
-}
-
-@mixin generate-grid-class($number) {
-  .col-#{$number} {
-    @include span-columns($number, 12);
-  }
-
-  .col-#{$number}--last {
-    margin-right: 0;
-  }
-}
-
 .no-flicker{-webkit-transform:translate3d(0,0,0);}
 
 .hide-text {
@@ -87,7 +62,7 @@ General CSS utilities and SASS mixins
 
 .mobile-visible {
   display: none;
-  
+
   @media screen and (max-width: $break-small) {
     display: block;
   }

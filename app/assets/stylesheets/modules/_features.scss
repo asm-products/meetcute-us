@@ -1,0 +1,35 @@
+/* /////////////////////////////////////////////////////
+
+MARKETING FEATURES
+
+///////////////////////////////////////////////////// */
+
+.feature {
+  @extend .clearfix;
+  margin: 6em 0;
+
+  h3 {
+    font-size: 1.5em;
+    font-weight: 200;
+    line-height: 1em;
+    margin-bottom: 1em;
+  }
+}
+
+.feature-image,
+.feature-content {
+  @extend .col-5;
+
+  &:last-child {
+    @extend .col-5--last;
+  }
+}
+
+.feature-image--mask {
+  overflow: hidden;
+  @include retina-sprite("browser");
+
+  img {
+    margin-top: 46px;
+  }
+}

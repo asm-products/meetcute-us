@@ -1,0 +1,59 @@
+/* /////////////////////////////////////////////////////
+
+ICONS
+
+///////////////////////////////////////////////////// */
+
+.icon,
+.icon-small {
+  display: inline-block;
+  @extend .hide-text;
+}
+
+.icon-lock {
+  @include retina-sprite("icon-lock");
+}
+
+.icon-thumb {
+  @include retina-sprite("icon-thumb");
+}
+
+.icon-clock {
+  @include retina-sprite("icon-clock");
+}
+
+.icon-wrench {
+  @include retina-sprite("icon-wrench");
+}
+
+.icon-displays {
+  @include retina-sprite("icon-displays");
+}
+
+.icon-map {
+  @include retina-sprite("icon-map");
+}
+
+.icon-phone {
+  @include retina-sprite("icon-phone");
+}
+
+.icon-email {
+  @include retina-sprite("icon-mail");
+}
+
+.icon-facebook {
+  @include retina-sprite("icon-facebook");
+}
+
+.icon-twitter {
+  @include retina-sprite("icon-twitter");
+}
+
+.icon-pinterest {
+  @include retina-sprite("icon-pinterest");
+}
+
+.icon-tumblr {
+  @include retina-sprite("icon-tumblr");
+}

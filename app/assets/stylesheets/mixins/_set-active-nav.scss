@@ -1,0 +1,14 @@
+/* /////////////////////////////////////////////////////
+
+ACTIVE NAV MIXINs
+
+///////////////////////////////////////////////////// */
+
+@mixin set-active-nav($bodyClass, $navClass) {
+  .#{$bodyClass} {
+    .main-nav .#{$navClass},
+    .mobile-nav .#{$navClass} {
+      color: $highlight-color;
+    }
+  }
+}

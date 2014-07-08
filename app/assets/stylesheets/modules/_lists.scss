@@ -1,0 +1,29 @@
+/* /////////////////////////////////////////////////////
+
+LISTS
+
+///////////////////////////////////////////////////// */
+
+.icon-list {
+  overflow: hidden;
+
+  .icon {
+    margin-right: 5px;
+  }
+}
+
+.icon-list--horizontal {
+
+  a {
+    display: block;
+  }
+
+  li {
+    float: left;
+    margin-right: 10px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+/* /////////////////////////////////////////////////////
+
+SPRITES
+
+///////////////////////////////////////////////////// */
+
+$misc-sprite-dimensions : true;
+$misc-spacing : 2px;
+$misc-retina-spacing : 2px;
+$sprites: sprite-map("misc/*.png");
+$sprites2x: sprite-map("misc-retina/*.png");

@@ -1,0 +1,16 @@
+/* /////////////////////////////////////////////////////
+
+TYPE HEADERS
+
+///////////////////////////////////////////////////// */
+
+.info-header {
+  @include span-columns(8, 12);
+  font-size: 2em;
+  border-bottom: 1px solid $base-color;
+  text-align: center;
+  float: none;
+  display: block;
+  margin: 0 auto 2em auto;
+  line-height: 2em;
+}

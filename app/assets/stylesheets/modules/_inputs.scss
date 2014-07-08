@@ -1,0 +1,57 @@
+/* /////////////////////////////////////////////////////
+
+INPUTS
+
+///////////////////////////////////////////////////// */
+
+/* Buttons
+--------------------------------------------- */
+
+.button {
+  font-weight: bold;
+  text-align: center;
+  padding: 10px;
+  display: inline-block;
+  cursor: pointer;
+  @include border-radius(3px);
+  @include transition(background .2s ease-out);
+}
+
+.button--light {
+  border: 1px solid #fff;
+  color: #fff;
+  background: rgba(0,0,0,0);
+  @include transition(background .2s ease-out);
+
+  &:hover {
+    background: rgba(0,0,0,0.1);
+  }
+}
+
+.button--light--large {
+  border-width: 2px;
+  font-size: 0.9em;
+  font-weight: 200;
+  padding: 20px;
+}
+
+.button-loud {
+  background: $secondary-highlight-color;
+  color: #fff;
+  font-size: 1em;
+  text-align: center;
+  width: 100%;
+  padding: 20px 0;
+}
+
+/* Inputs
+--------------------------------------------- */
+
+.input--light {
+  border: 1px solid #fff;
+  color: #fff;
+  background: transparent;
+  padding: 6px 10px;
+  font-weight: bold;
+  @include border-radius(3px);
+}

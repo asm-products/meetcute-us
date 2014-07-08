@@ -1,0 +1,15 @@
+/* /////////////////////////////////////////////////////
+
+GRID GENERATION
+
+///////////////////////////////////////////////////// */
+
+@mixin generate-grid-class($number) {
+  .col-#{$number} {
+    @include span-columns($number, 12);
+  }
+
+  .col-#{$number}--last {
+    margin-right: 0;
+  }
+}

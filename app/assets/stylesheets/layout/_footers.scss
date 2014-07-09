@@ -24,3 +24,29 @@ FOOTERS
   	margin: 0 0 10px 0;
   }
 }
+
+footer.legal {
+  padding-top: 10px;
+  overflow: hidden;
+
+  .secondary-nav-item {
+    margin-right: 10px;
+    @include transition(color .2s ease-out);
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      color: $on-dark-highlight;
+    }
+  }
+}
+
+.legal-left {
+  float: left;
+}
+
+.legal-right {
+  float: right;
+}

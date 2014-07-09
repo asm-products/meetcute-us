@@ -63,10 +63,12 @@ h6 {
 a {
   color: $base-color;
   text-decoration: none;
+  @include transition(color .2s ease-out);
 
   &:hover {
     color: $secondary-color;
   }
+
   &:active {}
 }
 

@@ -5,8 +5,9 @@ PRICONG CARDS
 ///////////////////////////////////////////////////// */
 
 .pricing {
-  border: 2px solid $secondary-highlight-color;
+  border: 3px solid $secondary-highlight-color;
   text-align: center;
+  @include border-radius(3px);
   @extend .col-4;
 
   &:last-child {
@@ -47,6 +48,12 @@ PRICONG CARDS
     padding: 5px 0;
     margin: 5px 0;
     border-bottom: 1px solid adjust-lightness($light-grey, -7%);
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
   }
 }
 

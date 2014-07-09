@@ -8,6 +8,10 @@ MARKETING FEATURES
   @extend .clearfix;
   margin: 6em 0;
 
+  &:last-child {
+    margin-bottom: 0;
+  }
+
   h3 {
     font-size: 1.5em;
     font-weight: 200;

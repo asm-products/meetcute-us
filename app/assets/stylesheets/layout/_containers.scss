@@ -12,7 +12,7 @@ CONTAINERS
 .container--dark,
 .container--light,
 .container--darker {
-  padding: 6em 0;
+  padding: 4em 0 7.5em 0;
 }
 
 .container--light {
@@ -20,6 +20,10 @@ CONTAINERS
 }
 
 .container--darker {
+  background: $medium-grey;
+}
+
+.container--black {
   background: $dark-grey;
 }
 

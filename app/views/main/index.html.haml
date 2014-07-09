@@ -195,7 +195,17 @@
 
     .footer-content
       %h4 Newsletter
-      %p Be the first to hear about new features
+      %p Sign up for our newsletter and be the first to know about new features.
       %form.form-inline{:action => "#"}
         %input{:type => "text", :name => "Email", :placeholder => "your@email.com", :class => "input--light"}
         %button.button.button--light Sign up
+
+.container.container--black
+  %footer.content.legal
+    .legal-left
+      %p Copyright &copy; 2014 MeetCute.us, All Rights Reserved
+
+    .legal-right
+      %a.secondary-nav-item{:href => "#"} Terms
+      %a.secondary-nav-item{:href => "#"} Privacy
+      %a.secondary-nav-item{:href => "#"} Legal

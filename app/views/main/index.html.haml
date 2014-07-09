@@ -1,18 +1,3 @@
-%header.main-header.container
-  %nav.main-nav
-    .main-nav-left
-      %a.logo{:href => "/"} meetcute.us
-      %a.main-nav-item{:href => "#home"} Home
-      %a.main-nav-item{:href => "#features"} Features
-      %a.main-nav-item{:href => "#pricing"} Pricing
-      %a.main-nav-item{:href => "#contact"} Contact
-    .main-nav-right
-      = link_to new_user_session_path, :class => "icon-link main-nav-item" do
-        %i.icon.icon-lock
-        Sign In
-
-      = link_to "Free Trial", new_user_registration_path, :class => "button button--light"
-
 .hero.hero--nudged
   %hgroup
     %h3.hero-title
@@ -161,41 +146,3 @@
     %p
       Start your 14 day free trial today.
       %button.button.button--light.button--light--large Get Started
-
-.container.container--darker
-  %footer.content.main-footer
-    .footer-content
-      %h4 Contact Us
-      %ul.icon-list
-        %li
-          %i.icon.icon-map
-          %a{:href => "#"} 7282 Atscadero, Ca 93422
-        %li
-          %i.icon.icon-phone
-          %a{:href => "#"} 206.953.3666
-        %li
-          %i.icon.icon-email
-          %a{:href => "mailto:info@meetcute.us"} info@meetcute.us
-
-    .footer-content
-      %h4 Connect With Us
-      %ul.icon-list.icon-list--horizontal
-        %li
-          %a{:href => "#"}
-            %i.icon.icon-facebook
-        %li
-          %a{:href => "#"}
-            %i.icon.icon-twitter
-        %li
-          %a{:href => "#"}
-            %i.icon.icon-pinterest
-        %li
-          %a{:href => "#"}
-            %i.icon.icon-tumblr
-
-    .footer-content
-      %h4 Newsletter
-      %p Be the first to hear about new features
-      %form.form-inline{:action => "#"}
-        %input{:type => "text", :name => "Email", :placeholder => "your@email.com", :class => "input--light"}
-        %button.button.button--light Sign up

@@ -1,7 +1,6 @@
 require 'rails_helper'
 
- describe "User site", :type => :feature do
-
+describe "User site", :type => :feature do
   include RequestHelpers
 
   describe "GET /users/:user_id/site/edit" do
@@ -46,7 +45,5 @@ require 'rails_helper'
       expect(page).to have_content "You updated your site successfully!"
       expect(User.last.site.name).to eq("MyName")
     end
-
   end
-
- end
+end

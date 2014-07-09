@@ -23,7 +23,7 @@ describe UsersController, :type => :controller do
       get :new
       expect(assigns(:user)).not_to be_nil
     end
-    
+
     it "renders the new template" do
       get :new
       expect(response).to render_template :new
@@ -35,7 +35,7 @@ describe UsersController, :type => :controller do
       get :show, id: subject.current_user
       expect(assigns(:user)).to eq(subject.current_user)
     end
-    
+
     it "renders the :show view" do
       get :show, id: subject.current_user
       expect(response).to render_template :show
@@ -56,7 +56,7 @@ describe UsersController, :type => :controller do
           post :create, user: attributes_for(:user)
         }.to change(User, :count).by(1)
       end
-      
+
       it "redirects to the new user" do
         post :create, user: attributes_for(:user, :account => build(:account))
         expect(response).to redirect_to user_account_path(User.last)
@@ -64,11 +64,11 @@ describe UsersController, :type => :controller do
     end
 
     context "with invalid attributes" do
-      # it "does not save an invalid user" do
-      #   expect{
-      #     post :create, user: attributes_for(:invalid_user)
-      #   }.not_to change(User, :count).by(1)
-      # end
+      it "does not save an invalid user" do
+        expect{
+          post :create, user: attributes_for(:invalid_user)
+        }.not_to change(User, :count).by(1)
+      end
 
       it "re-renders the new method" do
         post :create, user: attributes_for(:invalid_user)
@@ -84,7 +84,7 @@ describe UsersController, :type => :controller do
         put :update, id: subject.current_user, user: attributes_for(:user)
         expect(assigns(:user)).to eq(subject.current_user)
       end
-      
+
       it "updates the @user attributes" do
         put :update, id: subject.current_user, user: attributes_for(:user, email: "test@test.com")
         subject.current_user.reload
@@ -123,7 +123,7 @@ describe UsersController, :type => :controller do
         delete :destroy, id: subject.current_user
       }.to change(User, :count).by(-1)
     end
-    
+
     it "rediercts to users#index" do
       delete :destroy, id: subject.current_user
       expect(response).to redirect_to user_path

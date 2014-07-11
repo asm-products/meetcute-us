@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Design, :type => :model do
 
   it "has a valid factory" do
-    expect(create(:design)).to be_valid
+    expect(build(:design)).to be_valid
   end
 
   it { is_expected.to have_one(:site) }

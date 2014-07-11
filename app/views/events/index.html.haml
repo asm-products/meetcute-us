@@ -1,2 +1,7 @@
-%h1 Events#index
-%p Find me in app/views/events/index.html.haml
+%h1 Your Events
+= link_to "New Event", new_event_path
+%ul
+  - @events.each do |event|
+    %li
+      %h2= event.title
+      %h3= event.date

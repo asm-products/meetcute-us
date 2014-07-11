@@ -1,0 +1,13 @@
+= form_for(@event) do |f|
+  = f.hidden_field :site_id
+  .control-group
+    = f.label :title
+    = f.text_field :title
+  .control-group
+    = f.label :date
+    = f.text_field :date
+  .control-group
+    = f.label :description
+    = f.text_area :description
+  .control-group
+    = f.submit button_text

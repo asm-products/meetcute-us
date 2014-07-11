@@ -3,5 +3,7 @@
 %ul
   - @events.each do |event|
     %li
-      %h2= event.title
+      %h2
+        = link_to event.title, edit_event_path(event)
       %h3= event.date
+      = link_to "Edit", edit_event_path(event)

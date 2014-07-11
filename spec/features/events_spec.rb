@@ -21,6 +21,11 @@ describe "Site events", :type => :feature do
       click_link "New Event"
       expect(page).to have_content("New Event")
     end
+
+    it "should have edit links for each event" do
+      click_link "Edit"
+      expect(page).to have_content(@event.description)
+    end
   end
 
   context "Adding events" do

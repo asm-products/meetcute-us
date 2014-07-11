@@ -28,6 +28,22 @@ describe "Site events", :type => :feature do
     end
   end
 
+  context "Editing events" do
+    before do
+      @event = create(:event, site: user.site)
+      visit edit_event_path(@event)
+    end
+
+    it "should allow an event to be updated" do
+      fill_in "event[title]", :with => "My New Title"
+      fill_in "event[description]", :with => "My awesome description"
+      fill_in "event[date]", :with => DateTime.parse("Jan 15, 2015")
+      click_button "Update Event"
+      expect(page).to have_content "Your event has been updated!"
+      expect(user.site.events.last.title).to eq("My New Title")
+    end
+  end
+
   context "Adding events" do
     before { visit new_event_path }
 

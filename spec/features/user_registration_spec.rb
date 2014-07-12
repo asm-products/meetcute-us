@@ -5,7 +5,7 @@ describe "User registration", :type => :feature do
   include RequestHelpers
 
   describe "GET /users/sign_up" do
-    
+
     before { visit new_user_registration_path }
 
     it "has a sign up page" do
@@ -28,7 +28,7 @@ describe "User registration", :type => :feature do
       expect(page).to have_selector("#user_site_attributes_subdomain")
     end
 
-    it "has an email field" do 
+    it "has an email field" do
       expect(page).to have_selector("#user_email")
     end
 
@@ -71,21 +71,20 @@ describe "User registration", :type => :feature do
         fill_in "user[site_attributes][subdomain]", :with => site.subdomain
         click_button "Sign up"
       end
-      
       expect(page).to have_content "Welcome! You have signed up successfully."
       expect(Account.where("user_id = #{User.last.id}")).to exist
       expect(Site.where("user_id = #{User.last.id}")).to exist
     end
-  
+
   end
 
   describe "GET /users/edit" do
 
     let!(:user) { authed_user }
-    
+
     before { visit edit_user_registration_path(user) }
     after { Warden.test_reset! }
-    
+
     it "has an email field" do
       expect(page).to have_selector("#user_email")
     end
@@ -97,7 +96,7 @@ describe "User registration", :type => :feature do
     it "has a confirm password field" do
       expect(page).to have_selector("#user_password_confirmation")
     end
-    
+
     it "has a current password field" do
       expect(page).to have_selector("#user_current_password")
     end

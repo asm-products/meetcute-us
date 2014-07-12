@@ -67,7 +67,7 @@ describe UsersController, :type => :controller do
       it "does not save an invalid user" do
         expect{
           post :create, user: attributes_for(:invalid_user)
-        }.not_to change(User, :count).by(1)
+        }.to change(User, :count).by(0)
       end
 
       it "re-renders the new method" do

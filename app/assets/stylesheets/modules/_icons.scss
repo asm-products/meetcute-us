@@ -57,3 +57,7 @@ ICONS
 .icon-tumblr {
   @include retina-sprite("icon-tumblr");
 }
+
+.icon-close {
+  @include retina-sprite("icon-close");
+}

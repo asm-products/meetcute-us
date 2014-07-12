@@ -21,6 +21,15 @@
           %span.add-on .meetcute.us
         %input{:type => "submit", :value => "Sign Up", :class => "button button--light button--mega"}
 
+      %p.header-text Sign into MeetCute.us
+      %form{:action => "#"}
+        %input{:type => "email", :name => "email", :placeholder => "your@email.com", :class => "input--mega"}
+        %input{:type => "password", :name => "password", :placeholder => "Password", :class => "input--mega"}
+        .control-group
+          %input{:type => "checkbox", :name => "remember_me", :class => "checkbox-large checkbox-large--light"}
+          %label{:for => "remember_me", :class => "checkbox-large--label"} Remember Me
+        %input{:type => "submit", :value => "Sign In", :class => "button button--light button--mega"}
+
     %header.main-header.container
       %nav.main-nav
         .main-nav-left
@@ -30,11 +39,16 @@
           %a.main-nav-item{:href => "#pricing"} Pricing
           %a.main-nav-item{:href => "#contact"} Contact
         .main-nav-right
-          = link_to new_user_session_path, :class => "icon-link main-nav-item" do
-            %i.icon.icon-lock
-            Sign In
+          - if current_user
+            = link_to user_path(current_user), :data => { :sign_in => "true" }, :class => "icon-link main-nav-item" do
+              %i.icon.icon-lock
+              = current_user.email
+          - else
+            = link_to new_user_session_path, :data => { :sign_in => "true" }, :class => "icon-link main-nav-item" do
+              %i.icon.icon-lock
+              Sign In
 
-          = link_to "Free Trial", new_user_registration_path, :class => "button button--light"
+          = link_to "Free Trial", new_user_registration_path, :data => { :sign_up => "true" }, :class => "button button--light"
 
     = yield
 

@@ -4,6 +4,13 @@ INPUTS
 
 ///////////////////////////////////////////////////// */
 
+/* Common
+--------------------------------------------- */
+
+.control-group {
+  @extend .clear-fix;
+}
+
 /* Buttons
 --------------------------------------------- */
 
@@ -90,6 +97,33 @@ INPUTS
   }
 }
 
+/* Checkboxes */
+
+.checkbox-large {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin: 0 10px 0 0;
+  float: left;
+  outline: none;
+  @include appearance(none);
+}
+
+.checkbox-large--light {
+  cursor: pointer;
+  border: 2px solid $light-grey;
+
+  &:checked {
+    background: transparent url('misc/icon-check.png') left top no-repeat;
+  }
+}
+
+.checkbox-large--label {
+  color: $light-grey;
+  font-size: 1.5em;
+  line-height: 0.9em;
+}
+
 /* Forms
 --------------------------------------------- */
 
@@ -111,6 +145,7 @@ INPUTS
 
   input[type='submit'] {
     padding: 15px 0;
+    margin-top: 20px;
   }
     
   form {

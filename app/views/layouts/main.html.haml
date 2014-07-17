@@ -5,30 +5,32 @@
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = csrf_meta_tags
     = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
-  %body
+  %body{:class => "#{body_class}"}
     - flash.each do |key, msg|
       = content_tag :div, msg, :id => key, :class => 'user-notification'
 
-    .fixed-form
+    .fixed-form{:data => { :bind => "css: formTransitionState()" }}
       %i.icon.icon-close
-      %p.header-text Sign up for your free trial.
-      %form{:action => "#"}
-        %input{:type => "email", :name => "email", :placeholder => "your@email.com", :class => "input--mega"}
-        %input{:type => "password", :name => "password", :placeholder => "Password", :class => "input--mega"}
-        %input{:type => "password", :name => "password", :placeholder => "Confirm Password", :class => "input--mega"}
-        .control-group.input-add-on
-          %input{:type => "text", :name => "url", :placeholder => "Your Domain Here", :class => "input--mega"}
-          %span.add-on .meetcute.us
-        %input{:type => "submit", :value => "Sign Up", :class => "button button--light button--mega"}
+      #sign-up{:data => { :bind => "visible: formType() == 'signUp' " }}
+        %p.header-text Sign up for your free trial.
+        %form{:action => "#"}
+          %input{:type => "email", :name => "email", :placeholder => "your@email.com", :class => "input--mega"}
+          %input{:type => "password", :name => "password", :placeholder => "Password", :class => "input--mega"}
+          %input{:type => "password", :name => "password", :placeholder => "Confirm Password", :class => "input--mega"}
+          .control-group.input-add-on
+            %input{:type => "text", :name => "url", :placeholder => "Your Domain Here", :class => "input--mega"}
+            %span.add-on .meetcute.us
+          %input{:type => "submit", :value => "Sign Up", :class => "button button--light button--mega"}
 
-      %p.header-text Sign into MeetCute.us
-      %form{:action => "#"}
-        %input{:type => "email", :name => "email", :placeholder => "your@email.com", :class => "input--mega"}
-        %input{:type => "password", :name => "password", :placeholder => "Password", :class => "input--mega"}
-        .control-group
-          %input{:type => "checkbox", :name => "remember_me", :class => "checkbox-large checkbox-large--light"}
-          %label{:for => "remember_me", :class => "checkbox-large--label"} Remember Me
-        %input{:type => "submit", :value => "Sign In", :class => "button button--light button--mega"}
+      #sign-in{:data => { :bind => "visible: formType() == 'signIn' " }}
+        %p.header-text Sign into MeetCute.us
+        %form{:action => "#", :data => { :bind => "submit: signIn" }}
+          %input{:type => "email", :name => "user[email]", :placeholder => "your@email.com", :class => "input--mega"}
+          %input{:type => "password", :name => "user[password]", :placeholder => "Password", :class => "input--mega"}
+          .control-group
+            %input{:type => "checkbox", :name => "user[remember_me]", :class => "checkbox-large checkbox-large--light"}
+            %label{:for => "remember_me", :class => "checkbox-large--label"} Remember Me
+          %input{:type => "submit", :value => "Sign In", :class => "button button--light button--mega"}
 
     %header.main-header.container
       %nav.main-nav
@@ -40,19 +42,19 @@
           %a.main-nav-item{:href => "#contact"} Contact
         .main-nav-right
           - if current_user
-            = link_to user_path(current_user), :data => { :sign_in => "true" }, :class => "icon-link main-nav-item" do
+            = link_to user_path(current_user), :data => { :type => "signIn" }, :class => "icon-link main-nav-item" do
               %i.icon.icon-lock
               = current_user.email
           - else
-            = link_to new_user_session_path, :data => { :sign_in => "true" }, :class => "icon-link main-nav-item" do
+            = link_to new_user_session_path, :data => { :type => "signIn" }, :class => "icon-link main-nav-item" do
               %i.icon.icon-lock
               Sign In
 
-          = link_to "Free Trial", new_user_registration_path, :data => { :sign_up => "true" }, :class => "button button--light"
+          = link_to "Free Trial", new_user_registration_path, :data => { :type => "signUp" }, :class => "button button--light"
 
     = yield
 
-    .container.container--darker
+    .container.container--darker.footer-full
       %footer.content.main-footer
         .footer-content
           %h4 Contact Us
@@ -90,7 +92,7 @@
             %input{:type => "text", :name => "Email", :placeholder => "your@email.com", :class => "input--light"}
             %button.button.button--light Sign up
     
-    .container.container--black
+    .container.container--black.footer-full
       %footer.content.legal
         .legal-left
           %p Copyright &copy; 2014 MeetCute.us, All Rights Reserved

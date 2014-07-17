@@ -82,6 +82,15 @@ INPUTS
   @include border-radius(3px);
 }
 
+.input--mega_dark {
+  color: adjust-lightness($medium-grey, 25%);
+  border-color: adjust-lightness($medium-grey, 25%);
+}
+
+.input--mega_full {
+  width: 100%;
+}
+
 .input-add-on {
   position: relative;
   overflow: hidden;
@@ -106,15 +115,20 @@ INPUTS
   margin: 0 10px 0 0;
   float: left;
   outline: none;
-  @include appearance(none);
-}
-
-.checkbox-large--light {
   cursor: pointer;
-  border: 2px solid $light-grey;
+  border: 2px solid adjust-lightness($medium-grey, 25%);
+  @include appearance(none);
 
   &:checked {
     background: transparent url('misc/icon-check.png') left top no-repeat;
+  }
+}
+
+.checkbox-large--light {
+  border-color: $light-grey;
+
+  &:checked {
+    background: transparent url('misc/icon-check-light.png') left top no-repeat;
   }
 }
 

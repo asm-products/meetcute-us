@@ -1,3 +1,3 @@
 class SessionsController < Devise::SessionsController
-  # layout "main"
+  layout "basic"
 end

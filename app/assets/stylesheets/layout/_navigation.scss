@@ -44,3 +44,15 @@ header {
   margin: 10px 5px 0 0;
   font-size: 15px;
 }
+
+.layout-basic {
+
+  .main-header {
+    position: relative;
+  }
+
+  .logo {
+    float: none;
+    margin: 0 auto;
+  }
+}

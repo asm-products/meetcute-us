@@ -62,12 +62,13 @@ h6 {
 }
 
 a {
-  color: $base-color;
+  color: $secondary-highlight-color;
   text-decoration: none;
-  @include transition(color .2s ease-out);
+  //@include transition(color .2s ease-out);
 
   &:hover {
-    color: $secondary-color;
+    color: adjust-lightness($secondary-highlight-color, -15%);
+	text-decoration: underline;
   }
 
   &:active {}

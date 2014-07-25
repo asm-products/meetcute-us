@@ -1,4 +1,5 @@
 class AccountsController < ApplicationController
+  layout "dashboard"
 
   def show
     @account = current_user.account

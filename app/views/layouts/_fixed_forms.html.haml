@@ -1,0 +1,22 @@
+.fixed-form{:data => { :bind => "css: formTransitionState()" }}
+  %i.icon.icon-close
+  #sign-up{:data => { :bind => "visible: formType() == 'signUp' " }}
+    %p.header-text Sign up for your free trial.
+    %form{:action => "#"}
+      %input{:type => "email", :name => "email", :placeholder => "your@email.com", :class => "input--mega"}
+      %input{:type => "password", :name => "password", :placeholder => "Password", :class => "input--mega"}
+      %input{:type => "password", :name => "password", :placeholder => "Confirm Password", :class => "input--mega"}
+      .control-group.input-add-on
+        %input{:type => "text", :name => "url", :placeholder => "Your Domain Here", :class => "input--mega"}
+        %span.add-on .meetcute.us
+      %input{:type => "submit", :value => "Sign Up", :class => "button button--light button--mega"}
+
+  #sign-in{:data => { :bind => "visible: formType() == 'signIn' " }}
+    %p.header-text Sign into MeetCute.us
+    %form{:action => "#", :data => { :bind => "submit: signIn" }}
+      %input{:type => "email", :name => "user[email]", :placeholder => "your@email.com", :class => "input--mega"}
+      %input{:type => "password", :name => "user[password]", :placeholder => "Password", :class => "input--mega"}
+      .control-group
+        %input{:type => "checkbox", :name => "user[remember_me]", :class => "checkbox-large checkbox-large--light"}
+        %label{:for => "remember_me", :class => "checkbox-large--label"} Remember Me
+      %input{:type => "submit", :value => "Sign In", :class => "button button--light button--mega"}

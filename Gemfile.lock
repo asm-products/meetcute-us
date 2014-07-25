@@ -131,9 +131,6 @@ GEM
       multi_json (~> 1.8)
     guard-rails (0.5.2)
       guard (~> 2.0)
-    guard-rspec (4.2.10)
-      guard (~> 2.1)
-      rspec (>= 2.14, < 4.0)
     haml (4.1.0.beta.1)
       tilt
     haml-rails (0.5.3)
@@ -224,10 +221,6 @@ GEM
     rest-client (1.6.7)
       mime-types (>= 1.16)
     rmagick (2.13.2)
-    rspec (3.0.0)
-      rspec-core (~> 3.0.0)
-      rspec-expectations (~> 3.0.0)
-      rspec-mocks (~> 3.0.0)
     rspec-core (3.0.2)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.2)
@@ -329,7 +322,6 @@ DEPENDENCIES
   guard
   guard-livereload
   guard-rails
-  guard-rspec
   haml-rails
   jbuilder (~> 1.2)
   jquery-rails

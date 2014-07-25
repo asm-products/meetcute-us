@@ -9,6 +9,15 @@ INPUTS
 
 .control-group {
   @extend .clear-fix;
+  margin-bottom: 20px;
+}
+
+.control-group-left {
+  float: left;
+}
+
+.control-group-right {
+  float: right;
 }
 
 /* Buttons
@@ -32,6 +41,18 @@ INPUTS
 
   &:hover {
     background: rgba(0,0,0,0.1);
+  }
+}
+
+.button-standard {
+  color: $light-grey;
+  background: $dark-grey;
+  border: none;
+  width: 25%;
+  @include transition(background .2s ease-out);
+
+  &:hover {
+	background: adjust-lightness($dark-grey, 15%);
   }
 }
 

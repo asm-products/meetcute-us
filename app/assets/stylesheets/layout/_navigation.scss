@@ -6,6 +6,10 @@ NAVIGATION
 
 header {
   background: $highlight-color;
+
+  &.dashboard-header {
+	background:  #fff;
+  }
 }
 
 .main-nav {
@@ -18,6 +22,14 @@ header {
   padding-top: 23px;
   top: 0;
   position: fixed;
+}
+
+.dashboard-header {
+  width: 100%;
+  height: 80px;
+  padding-top: 25px;
+  position: relative;
+  border-bottom: 1px solid #f1f1f1;
 }
 
 .main-nav-left {
@@ -45,6 +57,19 @@ header {
   font-size: 15px;
 }
 
+.dashboard-header {
+
+  .main-nav-item {
+	margin: 0;
+	color: $base-color;
+	font-size: 12px;
+
+	&:hover {
+	  text-decoration: none;
+	}
+  }
+}
+
 .layout-basic {
 
   .main-header {
@@ -54,5 +79,65 @@ header {
   .logo {
     float: none;
     margin: 0 auto;
+  }
+}
+/* Sub menus  */
+
+.sub-menu {
+  background: adjust-lightness($light-grey, -2%);
+  border: 1px solid #f1f1f1;
+  padding: 5px;
+  position: absolute;
+  min-width: 160px;
+  top: 100%;
+  left: 0;
+  display: none;
+  @include border-radius(3px);
+  @include box-shadow(0 0 3px rgba(0,0,0,.1));
+
+  &:before {
+	bottom: 100%;
+	left: 63.5%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(238,238,238,0);
+	border-bottom-color: #f1f1f1;
+	border-width: 8px;
+	margin-left: -8px;
+	top: -17px;
+  }
+
+  a {
+	margin-bottom: 0;
+	width: 100%;
+	padding: 0px 10px;
+	@include border-radius(3px);
+
+	&:hover {
+	  background: $dark-blue;
+	  color: #fff;
+	}
+  }
+
+  i {
+    margin-right: 5px;
+  }
+}
+
+.nav-dropdown {
+
+  li {
+	position: relative;
+
+	&:hover {
+
+	  .sub-menu {
+	    display: block;
+	  }
+	}
   }
 }

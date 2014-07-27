@@ -28,7 +28,7 @@ describe AccountsController, :type => :controller do
       get :show, id: @account, user_id: subject.current_user
       expect(assigns(:account)).to eq(@account)
     end
-    
+
     it "renders the :show view" do
       get :show, id: @account, user_id: subject.current_user
       expect(response).to render_template :show
@@ -49,7 +49,7 @@ describe AccountsController, :type => :controller do
           post :create, user_id: subject.current_user, account: attributes_for(:second_account)
         }.to change(Account, :count).by(1)
       end
-      
+
       it "redirects to the new account" do
         post :create, user_id: subject.current_user, account: attributes_for(:account)
         expect(response).to redirect_to user_account_path subject.current_user
@@ -61,7 +61,7 @@ describe AccountsController, :type => :controller do
         post :create, user_id: subject.current_user, account: attributes_for(:invalid_account)
         expect(subject.current_user.account).not_to be_valid
       end
-      
+
       it "re-renders the new method" do
         post :create, user_id: subject.current_user, account: attributes_for(:invalid_account)
         expect(response).to render_template :new
@@ -70,25 +70,25 @@ describe AccountsController, :type => :controller do
   end
 
   describe "PUT #update" do
-  
+
     before :each do
       @account = subject.current_user.build_account(attributes_for(:account))
       @account.save
     end
-    
+
     context "with valid attributes" do
       it "locates the requested account" do
         put :update, user_id: subject.current_user, account: attributes_for(:account)
         expect(assigns(:account)).to eq(@account)
       end
-      
+
       it "updates the @account attributes" do
         put :update, user_id: subject.current_user, account: attributes_for(:account, first_name: "bob", last_name: "jones")
         @account.reload
         expect(@account.first_name).to eq("bob")
         expect(@account.last_name).to eq("jones")
       end
-      
+
       it "re-directs to the updated account" do
         put :update, user_id: subject.current_user, account: attributes_for(:account)
         expect(response).to redirect_to user_account_path subject.current_user
@@ -100,7 +100,7 @@ describe AccountsController, :type => :controller do
         put :update, user_id: subject.current_user, account: attributes_for(:invalid_account)
         expect(assigns(:account)).to eq(@account)
       end
-      
+
       it "does not update @account attributes" do
         put :update, user_id: subject.current_user, account: attributes_for(:account, first_name: "jack", last_name: nil)
         @account.reload
@@ -127,7 +127,7 @@ describe AccountsController, :type => :controller do
         delete :destroy, user_id: subject.current_user, account: attributes_for(:account)
       }.to change(Account, :count).by(-1)
     end
-    
+
     it "redirects to accounts#index" do
       delete :destroy, user_id: subject.current_user, account: attributes_for(:account)
       expect(response).to redirect_to user_path subject.current_user

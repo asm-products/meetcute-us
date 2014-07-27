@@ -3,9 +3,8 @@
 MARKETING FEATURES
 
 ///////////////////////////////////////////////////// */
-
 .feature {
-  @extend .clearfix;
+  @extend .clear-fix;
   margin: 6em 0;
 
   &:last-child {

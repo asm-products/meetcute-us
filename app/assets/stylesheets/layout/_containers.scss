@@ -6,7 +6,7 @@ CONTAINERS
 
 .container {
   @include container;
-  // @include susy-grid-background();
+  /*@include susy-grid-background();*/
 }
 
 .container--dark,
@@ -37,7 +37,7 @@ CONTAINERS
 }
 
 .content {
-  @extend .clearfix;
+  @extend .clear-fix;
   @include span-columns(10,12);
   display: block;
   float: none;
@@ -67,4 +67,12 @@ CONTAINERS
   padding: 20px 40px 40px 40px;
   width: 50%;
   margin-top: 40px;
+}
+
+.dashboard-layout {
+  overflow: hidden;
+}
+
+.dashboard-content {
+  width: 85.1%;
 }

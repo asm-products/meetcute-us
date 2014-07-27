@@ -5,11 +5,6 @@ Only single elements. No classes or ids.
 
 ///////////////////////////////////////////////////// */
 
-@include font-face("droid-bold", font-files("DroidSerif-Bold.ttf", "DroidSerif-Bold.svg", "DroidSerif-Bold.eot", "DroidSerif-Bold.woff"));
-@include font-face("droid-regular", font-files("DroidSerif-Regular.ttf", "DroidSerif-Regular.svg", "DroidSerif-Regular.eot", "DroidSerif-Regular.woff"));
-
-@include establish-baseline($base-font-size);
-
 * {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;

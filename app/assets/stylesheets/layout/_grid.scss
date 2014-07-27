@@ -43,3 +43,5 @@ $container-style: fluid;
 @include generate-grid-class(5);
 @include generate-grid-class(4);
 @include generate-grid-class(3);
+@include generate-grid-class(2);
+@include generate-grid-class(10);

@@ -1,0 +1,23 @@
+/* /////////////////////////////////////////////////////
+
+SIDEBARS
+
+///////////////////////////////////////////////////// */
+
+.sidebar {
+  background: $dark-blue;
+  height: 100%;
+
+  h1 {
+	background: adjust-lightness($dark-blue, -15%);
+	height: 80px;
+	text-align: center;
+	padding: 22px;
+	position: relative;
+  }
+  
+  .logo {
+	float: none;
+  }
+}
+

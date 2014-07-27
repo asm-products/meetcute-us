@@ -5,42 +5,51 @@
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = csrf_meta_tags
     = tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY
-  %body{:class => "#{body_class} layout-basic"}
+  %body{:class => "#{body_class} dashboard-layout container"}
     - flash.each do |key, msg|
       = content_tag :div, msg, :id => key, :class => 'user-notification'
 
-    %header.main-header.container.dashboard-header
-      %nav.main-nav
-        .main-nav-left
-          %a.logo{:href => "/"} meetcute.us
-          = link_to "My Account", edit_user_account_path(current_user), :class => "main-nav-item"
-          = link_to "Account Settings", edit_registration_path(current_user), :class => "main-nav-item"
-          = link_to "My Subscription", subscription_path(current_user), :class => "main-nav-item"
-          = link_to "My Site", edit_user_site_path(current_user), :class => "main-nav-item"
-          = link_to "Events", events_path, :class => "main-nav-item"
-        .main-nav-right
-          - if current_user
-            = link_to user_path(current_user), :data => { :type => "signIn" }, :class => "icon-link main-nav-item" do
-              %i.icon.icon-lock
-              = current_user.email
-          - else
-            = link_to new_user_session_path, :data => { :type => "signIn" }, :class => "icon-link main-nav-item" do
-              %i.icon.icon-lock
-              Sign In
+    %aside.sidebar.col-2.col-2--last
+      %h1
+        %a.logo{:href => "/"} meetcute.us
 
-          = link_to "Sign Out", destroy_user_session_path, :method => :delete , :class => "button button--light"
+      %ul.vertical-nav
+        %li= link_to "Events", events_path, :class => "main-nav-item"
 
-    = yield
+    %section.dashboard-content.col-10.col-10--last
+      %header.dashboard-header
+        %nav.main-nav
+          .main-nav-right
+            %ul.nav-dropdown
+              %li
+                = link_to user_path(current_user), :data => { :type => "signIn" }, :class => "icon-link main-nav-item" do
+                  = current_user.email
+                  %i.fa.fa-angle-down
 
-    .container.container--black.footer-full
-      %footer.content.legal
-        .legal-left
-          %p Copyright &copy; 2014 MeetCute.us, All Rights Reserved
+                %ul.sub-menu
+                  %li
+                    = link_to edit_user_account_path(current_user), :class => "main-nav-item" do
+                      %i.fa.fa-user
+                      My Account
+                  %li
+                    = link_to edit_registration_path(current_user), :class => "main-nav-item" do
+                      %i.fa.fa-cog
+                      Account Settings
+                  %li
+                    = link_to subscription_path(current_user), :class => "main-nav-item" do
+                      %i.fa.fa-calendar
+                      My Subscription
+                  %li
+                    = link_to edit_user_site_path(current_user), :class => "main-nav-item" do
+                      %i.fa.fa-wrench
+                      Site Settings
+                  %li
+                    = link_to destroy_user_session_path, :method => :delete , :class => "main-nav-item" do
+                      %i.fa.fa-sign-out
+                      Sign Out
 
-        .legal-right
-          %a.secondary-nav-item{:href => "#"} Terms
-          %a.secondary-nav-item{:href => "#"} Privacy
-          %a.secondary-nav-item{:href => "#"} Legal
+
+      = yield
 
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = yield :js if content_for?(:js)

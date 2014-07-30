@@ -202,3 +202,30 @@ INPUTS
     cursor: pointer;
   }
 }
+
+/* Form panel inputs  */
+
+.form-panel {
+
+  input[type='text'] {
+	width: 75%;
+	padding: 5px 10px;
+	background: adjust-lightness($light-grey, 1%);
+	border: 1px solid adjust-lightness($light-grey, -2%);
+	@include border-radius(3px);
+  }
+  
+  .control-group {
+
+	&:last-child {
+	  margin-bottom: 0;
+	  border-bottom: 0;
+	}
+  }
+
+  label {
+	display: block;
+	margin-bottom: 10px;
+	color: adjust-lightness($medium-grey, 25%);
+  }
+}

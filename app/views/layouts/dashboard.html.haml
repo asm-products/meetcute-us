@@ -14,7 +14,10 @@
         %a.logo{:href => "/"} meetcute.us
 
       %ul.vertical-nav
-        %li= link_to "Events", events_path, :class => "main-nav-item"
+        %li
+          = link_to events_path, :class => "main-nav-item" do
+            Events
+            %i.fa.fa-angle-right.pull-right
 
     %section.dashboard-content.col-10.col-10--last
       %header.dashboard-header
@@ -49,7 +52,8 @@
                       Sign Out
 
 
-      = yield
+      .dashboard-pane
+        = yield
 
     = javascript_include_tag "application", "data-turbolinks-track" => true
     = yield :js if content_for?(:js)

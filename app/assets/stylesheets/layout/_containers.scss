@@ -76,3 +76,28 @@ CONTAINERS
 .dashboard-content {
   width: 85.1%;
 }
+
+.dashboard-pane {
+  padding: 15px;
+
+  h3 {
+	font-size: 1em;
+  }
+}
+
+.form-panel {
+  background: #fff;
+  margin-top: 20px;
+  padding: 15px;
+}
+
+.form-panel-header {
+  padding: 20px;
+  background: adjust-lightness($light-grey, -2%);
+  overflow: hidden;
+
+  h3 {
+	margin-top: 4px;
+	float: left;
+  }
+}

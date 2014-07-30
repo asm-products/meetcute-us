@@ -1,4 +1,5 @@
 class RegistrationsController < Devise::RegistrationsController
+  layout "dashboard"
   before_filter :configure_permitted_parameters
 
   def new

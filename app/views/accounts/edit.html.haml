@@ -1,16 +1,17 @@
 %h1 My Account
-= form_for [current_user, @account] do |f|
-  .control-group
-    = f.label :first_name
-    = f.text_field :first_name
-  .control-group
-    = f.label :last_name
-    = f.text_field :last_name
-  .control-group
-    = f.label :username
-    = f.text_field :username
-  .control-group
-    = f.label :wedding_date
-    = f.text_field :wedding_date
-  .control-group
-    = f.submit "Update"
+.form-panel
+  = form_for [current_user, @account] do |f|
+    .control-group
+      = f.label :first_name
+      = f.text_field :first_name
+    .control-group
+      = f.label :last_name
+      = f.text_field :last_name
+    .control-group
+      = f.label :username
+      = f.text_field :username
+    .control-group
+      = f.label :wedding_date
+      = f.text_field :wedding_date
+    .control-group
+      = f.submit "Update", :class => "button button-standard"

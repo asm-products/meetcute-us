@@ -46,13 +46,12 @@ INPUTS
 
 .button-standard {
   color: $light-grey;
-  background: $dark-grey;
+  background: $primary-action-color;
   border: none;
-  width: 25%;
   @include transition(background .2s ease-out);
 
   &:hover {
-	background: adjust-lightness($dark-grey, 15%);
+	background: adjust-lightness($primary-action-color, -10%);
   }
 }
 
@@ -207,14 +206,20 @@ INPUTS
 
 .form-panel {
 
-  input[type='text'] {
-	width: 75%;
+  input[type='text'],
+  input[type='email'],
+  input[type='password'],
+  textarea {
+	width: 80%;
 	padding: 5px 10px;
-	background: adjust-lightness($light-grey, 1%);
-	border: 1px solid adjust-lightness($light-grey, -2%);
+	border: 1px solid #d6d6d6;
 	@include border-radius(3px);
   }
   
+  input[type='submit'] {
+    margin-left: 20.5%;
+  }
+
   .control-group {
 
 	&:last-child {
@@ -224,8 +229,13 @@ INPUTS
   }
 
   label {
-	display: block;
+	display: inline-block;
 	margin-bottom: 10px;
+	padding-right: 10px;
+	text-align: right;
+	width: 20%;
+	font-weight: bold;
 	color: adjust-lightness($medium-grey, 25%);
+	float: left;
   }
 }

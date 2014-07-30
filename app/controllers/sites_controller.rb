@@ -1,4 +1,6 @@
 class SitesController < ApplicationController
+  layout "dashboard"
+
   def index
     @sites = Site.all
     authorize @sites

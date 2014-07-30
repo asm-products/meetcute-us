@@ -70,34 +70,41 @@ CONTAINERS
 }
 
 .dashboard-layout {
-  overflow: hidden;
+  background: $dark-blue;
+  @extend .clear-fix;
 }
 
 .dashboard-content {
   width: 85.1%;
+  height: 100%;
+  min-height: 1000px;
 }
 
 .dashboard-pane {
   padding: 15px;
+  background: $light-grey;
+  height: 100%;
 
   h3 {
 	font-size: 1em;
+	padding: 0;
   }
 }
 
 .form-panel {
   background: #fff;
   margin-top: 20px;
-  padding: 15px;
 }
 
 .form-panel-header {
-  padding: 20px;
-  background: adjust-lightness($light-grey, -2%);
+  padding: 10px;
+  background: #fafafa;
+  border: 2px solid #ececec;
   overflow: hidden;
+}
 
-  h3 {
-	margin-top: 4px;
-	float: left;
-  }
+.form-panel-content {
+  padding: 15px;
+  border: 2px solid #ececec;
+  border-top: none;
 }

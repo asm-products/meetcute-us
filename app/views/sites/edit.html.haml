@@ -1,29 +1,31 @@
-%h1 Sites#edit
-%p Find me in app/views/sites/edit.html.haml
-= form_for [current_user, @site] do |f|
-  .control-group
-    = f.label :name
-    = f.text_field :name
-  .control-group
-    = f.label :description
-    = f.text_area :description
-  .control-group
-    = f.label :subdomain
-    = f.text_field :subdomain
-  .control-group
-    = f.label :analytics
-    = f.text_field :analytics
-  .control-group
-    = f.label :password_protected
-    = f.check_box :password_protected
-  .control-group
-    = f.label :is_indexed
-    = f.check_box :is_indexed
+.form-panel
+  .form-panel-header
+    %h3 Site Settings
+  .form-panel-content
+    = form_for [current_user, @site] do |f|
+      .control-group
+        = f.label :name
+        = f.text_field :name
+      .control-group
+        = f.label :description
+        = f.text_area :description
+      .control-group
+        = f.label :subdomain
+        = f.text_field :subdomain
+      .control-group
+        = f.label :analytics
+        = f.text_field :analytics
+      .control-group
+        = f.label :password_protected
+        = f.check_box :password_protected
+      .control-group
+        = f.label :is_indexed
+        = f.check_box :is_indexed
 
-  = f.fields_for :design, @site.layout do |site_layout|
-    .control-group
-      = site_layout.label :design
-      = site_layout.collection_select :design_id, Design.all, :id, :name, :include_blank => "Select Design"
+      = f.fields_for :design, @site.layout do |site_layout|
+        .control-group
+          = site_layout.label :design
+          = site_layout.collection_select :design_id, Design.all, :id, :name, :include_blank => "Select Design"
 
-  .control-group
-    = f.submit "Update"
+      .control-group
+        = f.submit "Update", :class => "button button-standard"

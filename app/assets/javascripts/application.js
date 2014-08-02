@@ -15,4 +15,5 @@
 //= require jquery.velocity.min
 //= require knockout-3.1.0
 //= require turbolinks
+//= require main
 

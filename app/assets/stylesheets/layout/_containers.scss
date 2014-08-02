@@ -91,20 +91,51 @@ CONTAINERS
   }
 }
 
-.form-panel {
+.panel {
   background: #fff;
   margin-top: 20px;
 }
 
-.form-panel-header {
+.panel-header {
   padding: 10px;
   background: #fafafa;
   border: 2px solid #ececec;
   overflow: hidden;
 }
 
-.form-panel-content {
+.panel-content {
   padding: 15px;
   border: 2px solid #ececec;
   border-top: none;
+}
+
+.panel-content {
+  overflow: hidden;
+}
+
+.panel-item {
+  overflow: hidden;
+  border-bottom: 1px solid $light-grey;
+  padding-top: 16px;
+}
+
+.panel-item-title {
+  float: left;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.panel-item-left {
+  overflow: hidden;
+  float: left;
+  width: 80%;
+}
+
+.panel-item-right {
+  float: right;
+  width: 20%;
+}
+
+.panel-footer {
+  margin-top: 20px;
 }

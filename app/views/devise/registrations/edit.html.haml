@@ -1,9 +1,7 @@
--#Edit #{resource_name.to_s.humanize}
-
-.form-panel
-  .form-panel-header
+.panel
+  .panel-header
     %h3 Account Settings
-  .form-panel-content
+  .panel-content
     = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
       = devise_error_messages!
       .control-group
@@ -13,18 +11,14 @@
         %div
           Currently waiting confirmation for: #{resource.unconfirmed_email}
       .control-group
-        = f.label :password do
-          Password
-          %em (leave blank if you don't want to change it)
-        = f.password_field :password, :autocomplete => "off"
+        = f.label :password
+        = f.password_field :password, :autocomplete => "off", :placeholder => "leave blank if you don't want to change it"
       .control-group
         = f.label :password_confirmation
         = f.password_field :password_confirmation
       .control-group
-        = f.label :current_password do
-          Current Password
-          %em (we need your current password to confirm your changes)
-        = f.password_field :current_password
+        = f.label :current_password
+        = f.password_field :current_password, :placeholder => "we need your current password to confirm your changes"
       .control-gropu
         = f.submit "Update", :class => "button button-standard"
     -#%h3 Cancel my account

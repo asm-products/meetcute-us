@@ -1,0 +1,18 @@
+#notice {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+  font-weight: bold;
+  padding: 4px;
+  background: $success-color;
+  opacity: 0.8;
+  @include transition(top .4s $easeInOutQuint);
+
+  &.transition-out {
+	top: -32px;
+  }
+}

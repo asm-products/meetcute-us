@@ -1,0 +1,13 @@
+@mixin button($className, $color, $background) {
+  .button-#{$className} {
+	background: $background;
+	border: none;
+	color: $color;
+
+	&:hover {
+	  color: $color;
+	  text-decoration: none;
+	  background: adjust-lightness($background, -10%);
+	}
+  }
+}

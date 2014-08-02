@@ -23,6 +23,9 @@ INPUTS
 /* Buttons
 --------------------------------------------- */
 
+@include button(standard, #fff, $primary-action-color);
+@include button(positive, #fff, $success-color);
+
 .button {
   font-weight: bold;
   text-align: center;
@@ -41,17 +44,6 @@ INPUTS
 
   &:hover {
     background: rgba(0,0,0,0.1);
-  }
-}
-
-.button-standard {
-  color: $light-grey;
-  background: $primary-action-color;
-  border: none;
-  @include transition(background .2s ease-out);
-
-  &:hover {
-	background: adjust-lightness($primary-action-color, -10%);
   }
 }
 
@@ -77,6 +69,11 @@ INPUTS
   text-align: center;
   width: 100%;
   padding: 20px 0;
+}
+
+.button-inline {
+  padding: 0 10px;
+  margin-left: 10px;
 }
 
 /* Inputs
@@ -204,7 +201,7 @@ INPUTS
 
 /* Form panel inputs  */
 
-.form-panel {
+.panel {
 
   input[type='text'],
   input[type='email'],

@@ -1,4 +1,6 @@
 class EventsController < ApplicationController
+  layout "dashboard"
+
   def index
     @events = current_user.site.events
   end

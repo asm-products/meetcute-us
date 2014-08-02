@@ -1,5 +1,7 @@
-%h1
-  Edit
-  = @event.title
-
-= render "form", button_text: "Update Event"
+.panel
+  .panel-header
+    %h3
+      Edit Event:
+      = @event.title
+  .panel-content
+    = render "form", button_text: "Update Event"

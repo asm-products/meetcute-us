@@ -1,9 +1,17 @@
-%h1 Your Events
-= link_to "New Event", new_event_path
-%ul
-  - @events.each do |event|
-    %li
-      %h2
-        = link_to event.title, edit_event_path(event)
-      %h3= event.date
-      = link_to "Edit", edit_event_path(event)
+.panel
+  .panel-header
+    %h3 Your Events
+  .panel-content
+    - @events.each do |event|
+      .panel-item
+        .panel-item-left
+          = link_to event.title, edit_event_path(event), :class => "panel-item-title"
+          %p.inline-content= event.description.truncate(75, separator: /\s/)
+        .panel-item-right
+          %em= event.date.strftime("%m/%d/%Y %I:%M%P")
+          = link_to "Edit", edit_event_path(event), :class => "button button-standard button-inline"
+
+    .panel-footer
+      =link_to new_event_path, :class => "button button-positive" do
+        %i.fa.fa-plus
+        New Event

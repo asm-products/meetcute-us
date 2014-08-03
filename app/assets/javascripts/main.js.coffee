@@ -5,49 +5,42 @@ App = (options) ->
   self = @
 
   self.init = ->
-	new AlertsWatcher()
+  new AlertsWatcher()
     # ko.applyBindings(new FixedFormVewModel())
 
   self.init()
 
   self
 
-
-
-
-
 AlertsWatcher = (options) ->
   self = @
 
   self.defaultOptions =
-	delay: 5000
-	id: "#alert"
-	transitionOutClass: "transition-out"
+    delay: 5000
+    id: "#notice"
+    transitionOutClass: "transition-out"
 
   self.config = $.extend {}, self.defaultOptions, options
 
   self.$alert = $(self.config.id)
 
   self.init = ->
-	self.delegateEvents()
+    self.delegateEvents()
 
   self.delegateEvents = ->
-	self.checkForVisibleAlerts()
+    self.checkForVisibleAlerts()
 
   self.checkForVisibleAlerts = ->
-	self.beginCountDown() if self.$alert.length
+    self.beginCountDown() if self.$alert.length
 
   self.beginCountDown = ->
-	setTimeout ->
-	  self.$alert.addClass self.config.transitionOutClass
-	, self.config.delay
+    setTimeout ->
+      self.$alert.addClass self.config.transitionOutClass
+    , self.config.delay
 
   self.init()
 
   self
-
-
-
 
 FixedFormVewModel = (options) ->
   self = @

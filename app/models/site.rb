@@ -8,6 +8,7 @@ class Site < ActiveRecord::Base
   has_one :layout
   has_one :design, through: :layout
   has_many :events, :dependent => :destroy
+  has_many :stories, :dependent => :destroy
 
   accepts_nested_attributes_for :layout
 

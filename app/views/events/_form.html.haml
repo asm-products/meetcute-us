@@ -5,7 +5,7 @@
     = f.text_field :title
   .control-group
     = f.label :date
-    = f.text_field :date
+    = f.datetime_select :date, :ampm => true, :order => [:month, :day, :year]
   .control-group
     = f.label :description
     = f.text_area :description

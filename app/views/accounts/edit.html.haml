@@ -14,6 +14,6 @@
         = f.text_field :username
       .control-group
         = f.label :wedding_date
-        = f.text_field :wedding_date
+        = f.date_select :wedding_date, :order => [:month, :day, :year]
       .control-group
         = f.submit "Update", :class => "button button-standard"

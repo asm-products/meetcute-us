@@ -56,4 +56,19 @@ RSpec.describe StoriesController, :type => :controller do
 	end
   end
 
+  describe "POST #create" do 
+	context "with valid credentials" do 
+	  it "creates a new story" do
+		expect {
+		  post :create, story: attributes_for(:story, site: @site)
+		}.to change(Story, :count).by(1)
+	  end
+
+	  it "redirects to current_user.site.storues" do 
+		post :create, story: attributes_for(:story, site: @site)
+		expect(response).to redirect_to stories_path
+	  end
+	end
+  end
+
 end

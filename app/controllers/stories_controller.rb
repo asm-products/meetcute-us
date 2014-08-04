@@ -12,6 +12,11 @@ class StoriesController < ApplicationController
   end
 
   def create
+	@story = Story.new(story_params)
+	if @story.save
+	  flash[:notice] = "Your story has been created!"
+	  redirect_to stories_path
+	end
   end
 
   def edit
@@ -22,5 +27,11 @@ class StoriesController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def story_params
+	params.require(:story).permit(:title, :content, :image, :display_order, :site_id)
   end
 end

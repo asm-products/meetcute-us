@@ -1,5 +1,5 @@
 class SitesController < ApplicationController
-  layout "dashboard"
+  layout "dashboard", :except => [:show]
 
   def index
     @sites = Site.all

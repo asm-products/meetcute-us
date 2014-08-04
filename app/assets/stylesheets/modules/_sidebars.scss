@@ -9,13 +9,13 @@ SIDEBARS
   height: 100%;
 
   h1 {
-	background: adjust-lightness($dark-blue, -15%);
-	height: 80px;
-	text-align: center;
-	padding: 22px;
-	position: relative;
+    background: adjust-lightness($dark-blue, -15%);
+    height: 80px;
+    text-align: center;
+    padding: 22px;
+    position: relative;
   }
-  
+
   .logo {
     float: none;
   }
@@ -26,15 +26,22 @@ SIDEBARS
   li {
     border-bottom: 1px solid rgba(255,255,255,.05);
   }
-  a {
-	color: #aeb2b7;
-	text-decoration: none;
-	display: block;
-	padding: 18px 25px;
-	font-size: 12px;
-	outline: 0;
 
-	i {
+  a {
+    color: #aeb2b7;
+    text-decoration: none;
+    display: block;
+    padding: 18px 25px;
+    font-size: 12px;
+    outline: 0;
+    margin: 0;
+
+    &:hover,
+    &.active {
+      background: adjust-lightness($dark-blue, -2%);
+    }
+
+    i {
       margin-top: 7px;
     }
   }

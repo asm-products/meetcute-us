@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  
+  layout "dashboard"
+
   def index
     @users = User.all
     authorize @users

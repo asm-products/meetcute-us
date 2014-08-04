@@ -6,10 +6,11 @@
       .panel-item
         .panel-item-left
           = link_to event.title, edit_event_path(event), :class => "panel-item-title"
+          %em.inline-content= event.date.strftime("%m/%d/%Y @ %I:%M%P")
           %p.inline-content= event.description.truncate(75, separator: /\s/)
         .panel-item-right
-          %em= event.date.strftime("%m/%d/%Y %I:%M%P")
           = link_to "Edit", edit_event_path(event), :class => "button button-standard button-inline"
+          = link_to "Delete", event_path(event), :method => :delete, :class => "button button-danger button-inline"
 
     .panel-footer
       =link_to new_event_path, :class => "button button-positive" do

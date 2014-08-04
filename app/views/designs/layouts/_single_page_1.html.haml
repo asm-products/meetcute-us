@@ -1,2 +1,4 @@
 %h3= @site.name
 =@site.design.name
+- @site.events.each do |event|
+  =event.title

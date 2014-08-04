@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   helper_method :body_class
 
   private
-  
+
   def user_not_authorized 
     flash[:error] = "You are not authorized to perform this action"
     redirect_to request.referrer || root_path

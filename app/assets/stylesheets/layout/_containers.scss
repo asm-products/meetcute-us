@@ -120,20 +120,27 @@ CONTAINERS
 }
 
 .panel-item-title {
-  float: left;
   font-weight: bold;
   margin-right: 10px;
+  display: block;
+  color: $base-color;
 }
 
 .panel-item-left {
   overflow: hidden;
   float: left;
-  width: 80%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  em {
+    font-size: 0.9em;
+  }
 }
 
 .panel-item-right {
   float: right;
-  width: 20%;
+  text-align: right;
+  margin-top: 2.2%;
 }
 
 .panel-footer {

@@ -14,10 +14,7 @@
         %a.logo{:href => "/"} meetcute.us
 
       %ul.vertical-nav
-        %li
-          = link_to events_path, :class => "main-nav-item" do
-            Events
-            %i.fa.fa-angle-right.pull-right
+        = vertical_nav_link "Events", events_path
 
     %section.dashboard-content.col-10.col-10--last
       %header.dashboard-header

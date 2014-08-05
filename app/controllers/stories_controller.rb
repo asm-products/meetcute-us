@@ -1,4 +1,6 @@
 class StoriesController < ApplicationController
+  layout "dashboard", :except => [:show]
+
   def index
 	@stories = current_user.site.stories
   end
@@ -16,6 +18,8 @@ class StoriesController < ApplicationController
 	if @story.save
 	  flash[:notice] = "Your story has been created!"
 	  redirect_to stories_path
+	else
+	  render :new
 	end
   end
 
@@ -24,9 +28,21 @@ class StoriesController < ApplicationController
   end
 
   def update
+	@story = Story.find(params[:id])
+	if @story.update_attributes(story_params)
+	  flash[:notice] = "Your story has been updated!"
+	  redirect_to stories_path
+	else
+	  render :edit
+	end
   end
 
   def destroy
+	story = Story.find(params[:id])
+	if story.destroy
+	  flash[:notice] = "Your story has been deleted."
+	  redirect_to stories_path
+	end
   end
 
   private

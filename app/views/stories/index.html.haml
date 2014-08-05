@@ -1,2 +1,16 @@
-%h1 Stories#index
-%p Find me in app/views/stories/index.html.haml
+.panel
+  .panel-header
+    %h3 Your Stories
+  .panel-content
+    - @stories.each do |story|
+      .panel-item
+        .panel-item-left
+          = link_to story.title, edit_story_path(story), :class => "panel-item-title"
+          %p.inline-content= story.content.truncate(75, separator: /\s/)
+        .panel-item-right
+          = link_to "Edit", edit_story_path(story), :class => "button button-standard button-inline"
+          = link_to "Delete", story_path(story), :method => :delete, :class => "button button-danger button-inline"
+    .panel-footer
+      =link_to new_story_path, :class => "button button-positive" do
+        %i.fa.fa-plus
+        New Story

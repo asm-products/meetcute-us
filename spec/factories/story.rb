@@ -7,7 +7,7 @@ FactoryGirl.define do
   end
 
   factory :invalid_story, parent: :story do |f|
-    f.date nil
+    f.title nil
   end
 end
 

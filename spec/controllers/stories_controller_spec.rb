@@ -64,11 +64,69 @@ RSpec.describe StoriesController, :type => :controller do
 		}.to change(Story, :count).by(1)
 	  end
 
-	  it "redirects to current_user.site.storues" do 
+	  it "redirects to current_user.site.stories" do 
 		post :create, story: attributes_for(:story, site: @site)
 		expect(response).to redirect_to stories_path
 	  end
 	end
+
+	context "with invalid attributes" do
+	  it "does not save an invalid story" do
+		expect {
+		  post :create, story: attributes_for(:invalid_story, site: @site)
+		}.to change(Story, :count).by(0)
+	  end
+
+	  it "re-renders the new method" do
+		post :create, story: attributes_for(:invalid_story, site: @site)
+		expect(response).to render_template :new
+	  end
+	end
   end
 
+  describe "PUT #update" do
+	context "with valid attributes" do
+	  it "locates the requested story" do
+		put :update, id: @story, story: attributes_for(:story)
+		expect(assigns(:story)).to eq(@story)
+	  end
+
+	  it "updates the story attributes" do
+		put :update, id: @story, story: attributes_for(:story, title: "test")
+		@story.reload
+		expect(@story.title).to eq("test")
+	  end
+
+	  it "re-directs to current_user.site.stories" do
+		put :update, id: @story, story: attributes_for(:story)
+		expect(response).to redirect_to stories_path
+	  end
+	end
+
+	context "with invalid attributes" do
+	  it "does not update the story attributes" do
+		put :update, id: @story, story: attributes_for(:invalid_story, content: "test")
+		@story.reload
+		expect(@story.title).not_to eq("test")
+	  end
+
+	  it "re-renders the edit method" do
+		put :update, id: @story, story: attributes_for(:invalid_story)
+		expect(response).to render_template :edit
+	  end
+	end
+  end
+
+  describe "DELETE #destroy" do
+	it "deletes the event" do
+	  expect {
+		delete :destroy, id: @story
+	  }.to change(Story, :count).by(-1)
+	end
+
+	it "re-directs to current_user.site.stories" do
+	  delete :destroy, id: @story
+	  expect(response).to redirect_to stories_path
+	end
+  end
 end

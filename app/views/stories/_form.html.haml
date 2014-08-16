@@ -1,0 +1,16 @@
+= form_for(@story) do |f|
+  = f.hidden_field :site_id
+  .control-group
+    = f.label :title
+    = f.text_field :title
+  .control-group
+    = f.label :content
+    = f.text_area :content
+  .control-group
+    = f.label :display_order
+    = f.number_field :display_order
+  .control-group
+    = f.label :image
+    = f.file_field :image
+  .control-group
+    = f.submit button_text, :class => "button button-standard"

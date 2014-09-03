@@ -1,0 +1,9 @@
+= form_for(@gallery) do |f|
+  = f.hidden_field :site_id
+  .control-group
+    = f.label :title
+    = f.text_field :title
+    = f.label :description
+    = f.text_area :description
+  .control-group
+    = f.submit button_text, :class => "button button-standard"

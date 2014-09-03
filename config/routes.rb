@@ -12,6 +12,7 @@ SiteService::Application.routes.draw do
   resources :plans
   resources :events
   resources :stories
+  resources :galleries
 
   constraints(Subdomain) do
     get "/" => "sites#show"

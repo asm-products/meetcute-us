@@ -1,4 +1,6 @@
 class GalleriesController < ApplicationController
+  layout "dashboard"
+
   def index
     @galleries = current_user.site.galleries
   end

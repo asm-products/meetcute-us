@@ -42,7 +42,7 @@ describe "Site stories", :type => :feature do
       fill_in "story[content]", :with => "My content"
       fill_in "story[display_order]", :with => 1
       click_button "Update Story"
-      expect(page).to have_content "Your story has been created!"
+      expect(page).to have_content "Your story has been updated!"
       expect(user.site.stories.last.title).to eq("My story title")
     end
   end

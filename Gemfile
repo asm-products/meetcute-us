@@ -38,14 +38,12 @@ group :development do
   gem 'letter_opener'
   gem "erb2haml"
   gem "awesome_print"
-  gem "pry-rails"
   gem "rails-erd"
 end
 
 group :test do
   gem 'factory_girl_rails'
   gem 'stripe-ruby-mock', '~> 1.10.1.2'
-  gem 'rspec-rails'
   gem 'faker'
   gem 'capybara'
   # gem 'guard-rspec'
@@ -53,4 +51,10 @@ group :test do
   gem 'launchy'
   gem 'database_cleaner'
   gem 'shoulda-matchers'
+end
+
+group :development, :test do
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'rspec-rails'
 end

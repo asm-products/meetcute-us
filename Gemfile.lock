@@ -328,6 +328,7 @@ DEPENDENCIES
   launchy
   letter_opener
   pg
+  pry
   pry-rails
   pundit!
   rails (= 4.1)

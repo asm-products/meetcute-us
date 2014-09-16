@@ -4,4 +4,9 @@ FactoryGirl.define do
     description {Faker::Lorem.paragraph}
     site_id {Faker::Number.digit}
   end
+
+  factory :invalid_gallery, parent: :gallery do
+    title nil
+    description nil
+  end
 end

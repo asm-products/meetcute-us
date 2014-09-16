@@ -6,4 +6,6 @@ RSpec.describe Gallery, :type => :model do
   end
   
   it { should belong_to(:site) }
+  it { is_expected.to validate_presence_of(:title) }
+  it { is_expected.to validate_presence_of(:description) }
 end

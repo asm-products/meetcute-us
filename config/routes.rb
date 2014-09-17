@@ -8,11 +8,14 @@ SiteService::Application.routes.draw do
     resources :subscriptions
   end
 
+  resources :galleries, shallow: true do
+    resources :images
+  end
+
   resources :designs
   resources :plans
   resources :events
   resources :stories
-  resources :galleries
 
   constraints(Subdomain) do
     get "/" => "sites#show"

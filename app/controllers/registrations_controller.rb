@@ -1,5 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
-  layout "basic"
+  layout Proc.new{ ["edit"].include?(action_name) ? "dashboard" : "basic" }
+
   before_filter :configure_permitted_parameters
 
   def new
@@ -19,5 +20,5 @@ class RegistrationsController < Devise::RegistrationsController
       parameters.permit(:email, :password, :account_id, :role, { :account_attributes => allowed_account_attributes }, { :site_attributes => allowed_site_attributes })
     end
   end
-
 end
+

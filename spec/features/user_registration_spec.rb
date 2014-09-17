@@ -8,38 +8,6 @@ describe "User registration", :type => :feature do
 
     before { visit new_user_registration_path }
 
-    it "has a sign up page" do
-      expect(page).to have_content "Sign up"
-    end
-
-    it "has a first_name field" do
-      expect(page).to have_selector("#user_account_attributes_first_name")
-    end
-
-    it "has a last_name field" do
-      expect(page).to have_selector("#user_account_attributes_last_name")
-    end
-
-    it "has a wedding_date field" do
-      expect(page).to have_selector("#user_account_attributes_wedding_date")
-    end
-
-    it "has a subdomain field" do
-      expect(page).to have_selector("#user_site_attributes_subdomain")
-    end
-
-    it "has an email field" do
-      expect(page).to have_selector("#user_email")
-    end
-
-    it "has a password field" do
-      expect(page).to have_selector("#user_password")
-    end
-
-    it "has a confirm password field" do
-      expect(page).to have_selector("#user_password_confirmation")
-    end
-
     it "does not accept an invalid email address" do
       within("#new_user") do
         fill_in "user[email]", :with => "test@test"

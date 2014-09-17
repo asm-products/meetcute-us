@@ -1,40 +1,27 @@
-%h2 Sign up
-%p Start your 14 day free trial. No credit card required.
-= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-  = devise_error_messages!
+.container.single-form
+  %h4.form-header Sign Up
+  = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+    .control-group
+      = devise_error_messages!
+    = f.fields_for :account, resource.account do |act_fields|
+      .control-group
+        = act_fields.text_field :first_name, :autofocus => true, :class => "input--mega input--mega_dark input--mega_half", :placeholder => "First Name"
+        = act_fields.text_field :last_name, :class => "input--mega input--mega_dark input--mega_half", :placeholder => "Last Name"
+    .control-group
+      = f.email_field :email, :class => "input--mega input--mega_dark input--mega_full", :placeholder => "Email"
+    .control-group
+      = f.password_field :password, :class => "input--mega input--mega_dark input--mega_half", :placeholder => "Password"
+      = f.password_field :password_confirmation, :class => "input--mega input--mega_dark input--mega_half", :placeholder => "Confirm Password"
+    .control-group
+      = f.fields_for :account, resource.account do |act_fields|
+        = act_fields.text_field :wedding_date, :class => "input--mega input--mega_dark input--mega_half", :placeholder => "Wedding Date"
+      = f.fields_for :site, resource.site do |site_fields|
+        = site_fields.text_field :subdomain, :class => "input--mega input--mega_dark input--mega_half", :placeholder => "Subdomain"
+    .control-group
+      = f.select :role, [:guest, :bronze, :silver, :gold, :admin]
+    .control-group
+      .control-group-left
+        = f.submit "Sign up", :class => "button button-standard"
+      .control-group-right
+        = render "devise/shared/links"
 
-  = f.fields_for :account, resource.account do |act_fields|
-    %div 
-      = act_fields.label :first_name
-      = act_fields.text_field :first_name
-    %div 
-      = act_fields.label :last_name
-      = act_fields.text_field :last_name
-  %div
-    = f.label :email
-    %br/
-    = f.email_field :email, :autofocus => true
-  %div
-    = f.label :password
-    %br/
-    = f.password_field :password
-  %div
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation
-  
-  = f.fields_for :account, resource.account do |act_fields|
-    %div 
-      = act_fields.label :wedding_date
-      = act_fields.text_field :wedding_date
-
-  = f.fields_for :site, resource.site do |site_fields|
-    %div 
-      = site_fields.label :subdomain
-      = site_fields.text_field :subdomain
-  %div 
-    = f.label :role
-    = f.select :role, [:guest, :bronze, :silver, :gold, :admin]
-
-  %div= f.submit "Sign up"
-= render "devise/shared/links"

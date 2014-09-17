@@ -109,6 +109,16 @@ INPUTS
   width: 100%;
 }
 
+.input--mega_half {
+  width: 48%;
+  float: left;
+  margin-right: 20px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
 .input-add-on {
   position: relative;
   overflow: hidden;
@@ -170,7 +180,7 @@ INPUTS
   &.transition-in {
     top: 90px;
   }
-  
+
   input {
     margin-bottom: 20px;
   }
@@ -179,7 +189,7 @@ INPUTS
     padding: 15px 0;
     margin-top: 20px;
   }
-    
+
   form {
     margin: 30px auto;
     width: 460px;
@@ -213,7 +223,7 @@ INPUTS
 	border: 1px solid #d6d6d6;
 	@include border-radius(3px);
   }
-  
+
   input[type='submit'] {
     margin-left: 20.5%;
   }

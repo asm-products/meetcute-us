@@ -10,9 +10,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'stripe'
-gem 'pundit', github: 'stgeneral/pundit', branch: 'rspec3-deprecations'
+gem 'pundit', github: 'stgeneral/pundit', branch: 'rspec3-deprecations' # fix rspec complain
 gem 'rmagick', require: false
-gem 'carrierwave'
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave', ref: 'c2ee2e8' # fix rspec complain
 
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'

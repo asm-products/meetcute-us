@@ -1,10 +1,15 @@
 = form_for(@gallery) do |f|
   = f.hidden_field :site_id
+  .hidden.additional-fields
+    = add_fields_data(f, :images)
   .control-group
     = f.label :title
     = f.text_field :title
   .control-group
     = f.label :description
     = f.text_area :description
+  = f.fields_for :image do |builder|
+    .control-group.control-group-ui
+      = render("image_fields", :f => builder)
   .control-group
     = f.submit button_text, :class => "button button-standard"

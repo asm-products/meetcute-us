@@ -1,0 +1,98 @@
+.add-field {
+  display: block;
+  color: adjust-lightness($light-grey, -25%);
+  font-weight: bold;
+  width: 250px;
+  height: 250px;
+  border: 1px dashed #DFDFDF;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 5px;
+  position: relative;
+  padding-top: 70px;
+  @include transition(background, color, .2s ease-out);
+
+  &:hover {
+    text-decoration: none;
+    background: $light-grey;
+    border-color: transparent;
+  }
+
+  .fa-plus {
+    margin-left: 5px;
+  }
+
+  .fa-image {
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    font-size: 100px;
+    opacity: 0.2;
+    @include transform(translate(-50%, -50%));
+  }
+
+  img {
+    display: none;
+  }
+}
+
+.add-field--content {
+  margin: 0 20px 20px 0;
+  overflow: hidden;
+  width: 250px;
+  float: left;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &.preview-mode {
+
+    .add-field {
+      background: $light-grey;
+      border-color: transparent;
+      font-size: 0;
+      margin: 0;
+      border-radius: 5px 5px 0 0;
+
+      .fa {
+        display: none;
+      }
+
+      img {
+        display: block;
+        position: absolute;
+        width: 95%;
+        top: 50%;
+        left: 50%;
+        @include transform(translate(-50%, -50%));
+      }
+    }
+
+    .add-field--footer {
+      display: block;
+    }
+  }
+}
+
+.add-field--footer {
+  background: adjust-lightness($light-grey, 2%);
+  height: 50px;
+  float: left;
+  width: 250px;
+  border-radius: 0 0 5px 5px;
+  border: 1px solid #F0F0F0;
+  border-top: none;
+  overflow: hidden;
+  padding: 12px;
+  font-size: 12px;
+  display: none;
+}
+
+.add-field--footer_left {
+  float: left;
+}
+
+.add-field--footer_right {
+  float: right;
+}

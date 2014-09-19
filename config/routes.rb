@@ -9,7 +9,7 @@ SiteService::Application.routes.draw do
   end
 
   resources :galleries, shallow: true do
-    resources :images
+    resources :images, on: :member
   end
 
   resources :designs

@@ -15,5 +15,7 @@
 //= require jquery.velocity.min
 //= require knockout-3.1.0
 //= require turbolinks
+//= require modules/add-field-manager
+//= require modules/alerts-watcher
 //= require main
 

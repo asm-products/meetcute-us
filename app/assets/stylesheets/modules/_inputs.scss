@@ -20,6 +20,10 @@ INPUTS
   float: right;
 }
 
+.control-group-ui {
+  margin-left: 20%;
+}
+
 /* Buttons
 --------------------------------------------- */
 
@@ -213,15 +217,14 @@ INPUTS
 /* Form panel inputs  */
 
 .panel {
-
-  input[type='text'],
-  input[type='email'],
-  input[type='password'],
-  textarea {
-	width: 80%;
-	padding: 5px 10px;
-	border: 1px solid #d6d6d6;
-	@include border-radius(3px);
+    input[type='text'],
+    input[type='email'],
+    input[type='password'],
+    textarea {
+    width: 80%;
+    padding: 5px 10px;
+    border: 1px solid #d6d6d6;
+    @include border-radius(3px);
   }
 
   input[type='submit'] {
@@ -230,20 +233,31 @@ INPUTS
 
   .control-group {
 
-	&:last-child {
-	  margin-bottom: 0;
-	  border-bottom: 0;
-	}
+    &:last-child {
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
   }
 
   label {
-	display: inline-block;
-	margin-bottom: 10px;
-	padding-right: 10px;
-	text-align: right;
-	width: 20%;
-	font-weight: bold;
-	color: adjust-lightness($medium-grey, 25%);
-	float: left;
+    display: inline-block;
+    margin-bottom: 10px;
+    padding-right: 10px;
+    text-align: right;
+    width: 20%;
+    font-weight: bold;
+    color: adjust-lightness($medium-grey, 25%);
+    float: left;
+
+    &.add-field {
+      cursor: pointer;
+      width: 250px;
+      color: adjust-lightness($light-grey, -25%);
+      text-align: center;
+
+      &:hover {
+        color: $secondary-highlight-color;
+      }
+    }
   }
 }

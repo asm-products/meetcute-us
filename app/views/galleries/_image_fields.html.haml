@@ -1,0 +1,17 @@
+.add-field--content
+  = f.label :image, class: "add-field" do
+    %i.fa.fa-plus
+    Add Image
+    %i.fa.fa-image
+    = f.file_field :image, class: "hidden"
+  .add-field--footer
+    .add-field--footer_left
+      = link_to "#", class: "js-add-caption" do
+        %i.fa.fa-plus
+        Add Caption
+      = f.text_area :caption, :placeholder => "Caption", :class => "hidden"
+    .add-field--footer_right
+      = f.hidden_field  :_destroy
+      = link_to "#", class: "js-remove-fields" do
+        %i.fa.fa-times
+        Remove

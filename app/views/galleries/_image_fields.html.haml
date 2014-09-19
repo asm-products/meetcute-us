@@ -9,7 +9,8 @@
       = link_to "#", class: "js-add-caption" do
         %i.fa.fa-plus
         Add Caption
-      = f.text_area :caption, :placeholder => "Caption", :class => "hidden"
+      .add-field--text.hidden
+        = f.text_area :caption, :placeholder => "Caption"
     .add-field--footer_right
       = f.hidden_field  :_destroy
       = link_to "#", class: "js-remove-fields" do

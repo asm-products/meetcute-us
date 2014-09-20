@@ -30,6 +30,7 @@ INPUTS
 @include button(standard, #fff, $primary-action-color);
 @include button(positive, #fff, $success-color);
 @include button(danger, #fff, $error-color);
+@include button(neutral, #fff, $tertiary-color);
 
 .button {
   font-weight: bold;

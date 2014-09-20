@@ -71,3 +71,7 @@ General CSS utilities and SASS mixins
 .pull-right {
   float: right;
 }
+
+.blur {
+  @include filter(blur(2px));
+}

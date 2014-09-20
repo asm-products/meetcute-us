@@ -14,6 +14,7 @@ App = ->
       previewLocation: ".add-field"
       form: "form[class*='gallery']"
       fieldDataSource: ".additional-fields"
+      hasTextField: true
 
   self.init()
 

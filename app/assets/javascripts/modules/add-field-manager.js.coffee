@@ -6,6 +6,7 @@ class AddFieldManager
     @previewLocation = $(options.previewLocation)
     @form = $(options.form)
     @fieldDataSource = $(options.fieldDataSource)
+    @hasTextField = options.hasTextField
     @delegateEvents()
 
   delegateEvents: =>
@@ -17,9 +18,9 @@ class AddFieldManager
       e.preventDefault()
       that.removeField(this)
 
+
   previewFile: (field, $viewer) ->
     if field.files
-      that = @
       reader = new FileReader()
       reader.onload = (e) =>
         $parent = $(field).parents(".#{@target[0].className}")
@@ -27,7 +28,9 @@ class AddFieldManager
         $parent.addClass "preview-mode"
         $viewer.prop "src", e.target.result
         $parent.find(".#{@previewLocation[0].className}").append $viewer
+
         @addFields @fieldDataSource.html(), $parent
+        @initPanelEvents($parent) if @hasTextField
 
       reader.readAsDataURL(field.files[0]) if field.files[0]
 
@@ -40,6 +43,46 @@ class AddFieldManager
     $trigger = $(trigger)
     $trigger.parents(".#{@target[0].className}").hide()
     $trigger.prev("[id*='destroy']").val('1')
+
+  initPanelEvents: ($context) ->
+    eventData =
+      transitionClass: "transition-in"
+      cancelBtn: $context.find ".button-neutral"
+      saveBtn: $context.find ".button-positive"
+      textField: $context.find "textarea"
+      addCaptionLink: $context.find ".js-add-caption"
+      panel: $context.find ".add-field--text"
+      image: $context.find "img"
+
+    eventData.addCaptionLink.on "click", eventData, @setShowPanelState
+    eventData.cancelBtn.on "click", eventData, @resetFieldState
+    eventData.saveBtn.on "click", eventData, @saveFieldState
+
+  resetFieldState: (event) =>
+    event.preventDefault()
+    event.data.textField.val ""
+    event.data.addCaptionLink.html "<i class='fa fa-plus'> Add Caption</i>"
+    @togglePanelState(event.data.panel, event.data.image, "hide")
+
+  saveFieldState: (event) =>
+    event.preventDefault()
+    event.data.addCaptionLink.text "View Caption"
+    @togglePanelState(event.data.panel, event.data.image, "hide")
+
+  setShowPanelState: (event) =>
+    event.preventDefault()
+    @togglePanelState(event.data.panel, event.data.image, "show")
+
+  togglePanelState: (panel, image, state) ->
+    value = if state is "show" then 0 else "100%"
+
+    image.toggleClass "blur"
+
+    panel.velocity
+      top: value
+    ,
+      easing: "easeOutQuint"
+      duration: 500
 
 @AddFieldManager = AddFieldManager
 

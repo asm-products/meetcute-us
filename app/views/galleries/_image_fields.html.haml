@@ -4,13 +4,15 @@
     Add Image
     %i.fa.fa-image
     = f.file_field :image, class: "hidden"
+    .add-field--text.hidden
+      = f.text_area :caption, :placeholder => "Caption"
+      %button.button.button-neutral Cancel
+      %button.button.button-positive Save
   .add-field--footer
     .add-field--footer_left
       = link_to "#", class: "js-add-caption" do
         %i.fa.fa-plus
         Add Caption
-      .add-field--text.hidden
-        = f.text_area :caption, :placeholder => "Caption"
     .add-field--footer_right
       = f.hidden_field  :_destroy
       = link_to "#", class: "js-remove-fields" do

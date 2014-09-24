@@ -60,13 +60,16 @@ class AddFieldManager
 
   resetFieldState: (event) =>
     event.preventDefault()
-    event.data.textField.val ""
-    event.data.addCaptionLink.html "<i class='fa fa-plus'> Add Caption</i>"
+    if event.data.textField.val() is ""
+      event.data.addCaptionLink.html "<i class='fa fa-plus'> Add Caption</i>"
+
     @togglePanelState(event.data.panel, event.data.image, "hide")
 
   saveFieldState: (event) =>
     event.preventDefault()
-    event.data.addCaptionLink.text "View Caption"
+    unless event.data.textField.val() is ""
+      event.data.addCaptionLink.text "View Caption"
+
     @togglePanelState(event.data.panel, event.data.image, "hide")
 
   setShowPanelState: (event) =>

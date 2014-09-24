@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :image do
     gallery_id {Faker::Number.digit}
     caption {Faker::Lorem.paragraph}
-    visible true
+    visible 1
     image "http://placekitten.com/300/300"
   end
 

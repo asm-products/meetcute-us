@@ -9,7 +9,7 @@
           %p.inline-content= gallery.description.truncate(75, separator: /\s/)
         .panel-item-right
           = link_to "Edit", edit_gallery_path(gallery), :class => "button button-standard button-inline"
-          = link_to "Delete", gallery_path(gallery), :method => :delete, :class => "button button-danger button-inline"
+          = link_to "Delete", gallery_path(gallery), :method => :delete, :class => "button button-danger button-inline", :data => { :confirm => "Delete this gallery?" }
 
     .panel-footer
       =link_to new_gallery_path, :class => "button button-positive" do

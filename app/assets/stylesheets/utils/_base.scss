@@ -73,5 +73,5 @@ General CSS utilities and SASS mixins
 }
 
 .blur {
-  @include filter(blur(2px));
+  @include filter(blur(4px));
 }

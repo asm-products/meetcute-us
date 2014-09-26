@@ -86,7 +86,7 @@ RSpec.describe GalleriesController, :type => :controller do
     context "With nested images_attributes" do
       it "saves each image" do
         expect {
-          post :create, gallery: attributes_for(:gallery, images_attributes: attributes_for(:image))
+          post :create, gallery: attributes_for(:gallery, images_attributes: [build(:image)])
         }.to change(Gallery, :count).by(1)
       end
     end

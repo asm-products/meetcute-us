@@ -7,6 +7,7 @@ class AddFieldManager
     @form = $(options.form)
     @fieldDataSource = $(options.fieldDataSource)
     @hasTextField = options.hasTextField
+    @fieldCount = 0
     @delegateEvents()
 
   delegateEvents: =>
@@ -17,7 +18,6 @@ class AddFieldManager
     @form.on "click", @removeTrigger, (e) ->
       e.preventDefault()
       that.removeField(this)
-
 
   previewFile: (field, $viewer) ->
     if field.files
@@ -35,9 +35,9 @@ class AddFieldManager
       reader.readAsDataURL(field.files[0]) if field.files[0]
 
   addFields: (fieldData, $afterElem) ->
-    time = new Date().getTime()
-    regexp = new RegExp("0", "g")
-    $afterElem.after(fieldData.replace(regexp, time))
+    @fieldCount++
+    regexp = new RegExp(1, "g")
+    $afterElem.after(fieldData.replace(regexp, @fieldCount))
 
   removeField: (trigger) ->
     $trigger = $(trigger)

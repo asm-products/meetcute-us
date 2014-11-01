@@ -23,7 +23,7 @@ class AddFieldManager
     if field.files
       reader = new FileReader()
       reader.onload = (e) =>
-        $parent = $(field).parents(".#{@target[0].className}")
+        $parent = $(field).parents(".#{@target[0].classList[0]}")
 
         $parent.addClass "preview-mode"
         $viewer.prop "src", e.target.result
@@ -41,7 +41,7 @@ class AddFieldManager
 
   removeField: (trigger) ->
     $trigger = $(trigger)
-    $trigger.parents(".#{@target[0].className}").hide()
+    $trigger.parents(".#{@target[0].classList[0]}").hide()
     $trigger.prev("[id*='destroy']").val('1')
 
   initPanelEvents: ($context) ->

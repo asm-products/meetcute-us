@@ -1,5 +1,5 @@
 class Image < ActiveRecord::Base
-  validates_presence_of :visible
+  #validates_presence_of :visible
 
   mount_uploader :image, ImageUploader
 

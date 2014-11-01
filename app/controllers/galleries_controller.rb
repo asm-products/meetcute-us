@@ -35,6 +35,7 @@ class GalleriesController < ApplicationController
 
   def edit
     @gallery = Gallery.find(params[:id])
+    @gallery.pry
   end
 
   def destroy

@@ -32,7 +32,8 @@ group :development do
   gem 'guard'
   gem 'guard-rails'
   gem 'guard-livereload'
-  gem 'debugger'
+  # Not compatible with ruby 2.1.*
+  #gem 'debugger'
   gem 'binding_of_caller'
   gem 'better_errors'
   gem 'letter_opener'

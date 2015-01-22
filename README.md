@@ -6,8 +6,53 @@
 
 This is a product being built by the Assembly community. You can help push this idea forward by visiting [https://assembly.com/meetcute-us](https://assembly.com/meetcute-us).
 
-### How Assembly Works
+### Environment Setup
 
-Assembly products are like open-source and made with contributions from the community. Assembly handles the boring stuff like hosting, support, financing, legal, etc. Once the product launches we collect the revenue and split the profits amongst the contributors.
+This is a Rails 4.1 app so you should already be setup with ruby, rubygems, and
+postgresql on your machine.
 
-Visit [https://assembly.com](https://assembly.com) to learn more.
+#### Local
+
+First clone this repo:
+
+`> git clone git@github.com:asm-products/meetcute-us.git`
+
+Cd into meetcure-us:
+
+`> cd meetcute-us`
+
+Bundle install all gems:
+
+`> bundle install`
+
+Configure your local postgres database, change `config/database.yml` to match
+your local settings
+
+Migrate the databases:
+
+Development:
+
+`> rake db:migrate`
+
+Test:
+
+`> RAILS_ENV=test rake db:migrate`
+
+A good way to see if everything is working is to run the test suite:
+
+`> rake spec`
+
+If all goes well, start the local server, the app uses `guard` to manage
+starting/stopping/restarting the server for you:
+
+`> bundle exec guard`
+
+## Contributing
+
+1. Fork it ( https://github.com/asm-products/meetcute-us )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Create specs for all additions
+4. Make sure all specs pass
+5. Commit your changes (`git commit -am 'Add some feature'`)
+6. Push to the branch (`git push origin my-new-feature`)
+7. Create a new Pull Request
